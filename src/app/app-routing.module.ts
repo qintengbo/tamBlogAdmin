@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+
+  // 路由重定向
+  { path: '', 
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  // 通用路由，跳转至404页面等
+  // { path: '**', component: '' }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      // { enableTracing: true } // <-- debugging purposes only
+    )
+  ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule { }
