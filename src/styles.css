@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/* global styles */
+* { 
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+	font-family: 'Microsoft YaHei', Arial, sans-serif;
+	font-size: 14px;
+	overflow-x: hidden;
+}
+/* clear float */
+.clearfix:before,
+.clearfix:after {
+	content: '';
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}

@@ -15,12 +15,11 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
-      this.validateForm.controls[ i ].updateValueAndValidity();
+    for (const i of Object.keys(this.validateForm.controls)) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
     }
   }
-  
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
