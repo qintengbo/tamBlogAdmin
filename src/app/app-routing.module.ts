@@ -6,7 +6,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
 
   // 路由重定向
-  { path: '', 
+  { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },

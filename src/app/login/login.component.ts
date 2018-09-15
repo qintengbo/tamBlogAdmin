@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { HttpRequestService } from '../httpRequest.service';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,16 @@ export class LoginComponent implements OnInit {
 
   submitForm(): void {
     for (const i of Object.keys(this.validateForm.controls)) {
+      console.log(this.validateForm.controls[i]);
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
   }
-  constructor(private fb: FormBuilder) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private httpRequestService: HttpRequestService
+    ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
