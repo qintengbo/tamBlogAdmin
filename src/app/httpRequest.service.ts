@@ -1,17 +1,18 @@
 /**
- * Request文件
+ * Created by tam on 2018/09/15.
+ * httpRequest Service
  */
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { LoginData } from './loginData';
 
 /**
  * 配置环境地址
  */
-const PATH = 'http://localhost:3000'; // 开发环境
+const PATH = '/api'; // 开发环境
 
 @Injectable({
   providedIn: 'root'
@@ -32,15 +33,14 @@ export class HttpRequestService {
    * path
    */
   // 登录接口
-  loginUrl = `${PATH}/admin/login`;
+  loginUrl = `${PATH}/login`;
 
   /**
    * request
    */
   // 登录请求
-  loginRequest (loginData: LoginData): Observable<LoginData> {
-    return this.http.post<LoginData>(this.loginUrl, loginData, this.httpOptions).pipe(
-      tap(_ => console.log(1111, loginData)),
+  loginRequest (data): Observable<LoginData> {
+    return this.http.post<LoginData>(this.loginUrl, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
     );
   }

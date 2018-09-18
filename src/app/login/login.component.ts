@@ -15,6 +15,7 @@ import { HttpRequestService } from '../httpRequest.service';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
+  // 提交登录表单
   submitForm(validateForm): void {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
