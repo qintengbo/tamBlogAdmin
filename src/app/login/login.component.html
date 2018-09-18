@@ -10,7 +10,7 @@
       <div class="login-name">
         <p>博客后台管理系统</p>
       </div>
-      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(validateForm)">
         <nz-form-item>
           <nz-form-control>
             <nz-input-group nzPrefixIcon="anticon anticon-user">

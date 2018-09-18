@@ -1,26 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
-import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
-import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { HttpRequestService } from './httpRequest.service';
+
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [
+  declarations: [ // 导入该应用的组件、管道、指令
     AppComponent,
     LoginComponent
   ],
-  imports: [
+  imports: [ // 导入该应用的其他模块
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -29,11 +29,10 @@ registerLocaleData(zh);
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [{
+  providers: [{ // 声明服务
     provide: NZ_I18N,
-    useValue: zh_CN,
-    // HttpRequestService
+    useValue: zh_CN
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // 启动应用根组件
 })
 export class AppModule { }

@@ -15,11 +15,14 @@ import { HttpRequestService } from '../httpRequest.service';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
-  submitForm(): void {
+  submitForm(validateForm): void {
     for (const i of Object.keys(this.validateForm.controls)) {
-      console.log(this.validateForm.controls[i]);
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
+    }
+    if (validateForm.valid) {
+      this.httpRequestService.loginRequest(validateForm.value)
+      .subscribe(res => console.log(222, res));
     }
   }
 
