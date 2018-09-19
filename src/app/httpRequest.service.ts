@@ -7,7 +7,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginData } from './loginData';
+import { LoginFrom } from '../class/login/LoginFrom';
+import { Reponse } from '../class/common/reponse';
+import { NzMessageService } from 'ng-zorro-antd';
 
 /**
  * 配置环境地址
@@ -19,7 +21,8 @@ const PATH = '/api'; // 开发环境
 })
 export class HttpRequestService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private message: NzMessageService
   ) { }
 
   // http请求配置
@@ -39,21 +42,22 @@ export class HttpRequestService {
    * request
    */
   // 登录请求
-  loginRequest (data): Observable<LoginData> {
-    return this.http.post<LoginData>(this.loginUrl, data, this.httpOptions).pipe(
+  loginRequest (data: LoginFrom): Observable<Response> {
+    return this.http.post<Reponse>(this.loginUrl, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
     );
   }
 
   /**
    * 处理失败的http操作
-   * @param operation - 失败的http操作的名称
    * @param result - 观察结果，可选值
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // 打印错误信息
       console.error(error);
+      // 打印error.message
+      this.message.create('error', `${operation} failed: ${error.status + ' ' + error.statusText}`);
       // 通过返回空结果让应用继续运行
       return of(result as T);
     };
