@@ -12,12 +12,16 @@ import zh from '@angular/common/locales/zh';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './index/index.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [ // 导入该应用的组件、管道、指令
     AppComponent,
+    IndexComponent,
+    DashboardComponent,
     LoginComponent
   ],
   imports: [ // 导入该应用的其他模块

@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './index/index.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }, // 登录
+  { path: '', component: DashboardComponent }, // 页头和菜单
+  { path: 'index', component: IndexComponent }, // 首页
 
   // 路由重定向
   { path: '',
