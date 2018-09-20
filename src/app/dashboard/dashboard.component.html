@@ -1,16 +1,32 @@
 <nz-layout class="layout">
-  <nz-header>
+  <nz-header style="background: #002140">
     <div class="logo">
       <img src="" alt>
     </div>
-    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
-      <li nz-menu-item>nav 1</li>
-      <li nz-menu-item>nav 2</li>
-      <li nz-menu-item>nav 3</li>
+    <div class="header-userpannel">
+      <nz-avatar nzSize="large" nzText="Q"></nz-avatar>
+      <nz-dropdown class="userProfile">
+        <a nz-dropdown>
+          管理员 <i class="anticon anticon-down"></i>
+        </a>
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>
+            <a><i class="anticon anticon-setting"></i> 个人设置</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/login"><i class="anticon anticon-poweroff"></i> 退出登录</a>
+          </li>
+        </ul>
+      </nz-dropdown>
+    </div>
+    <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
+      <li nz-menu-item>
+        <i class="anticon anticon-home" style="margin-right: 8px"></i>首页
+      </li>
     </ul>
   </nz-header>
   <nz-layout>
-    <nz-sider [nzWidth]="200" style="background:#fff">
+    <nz-sider [nzCollapsible]="true" [nzWidth]="200" style="background:#fff">
       <ul nz-menu [nzMode]="'inline'" style="height:100%">
         <li nz-submenu>
           <span title><i class="anticon anticon-user"></i>subnav 1</span>
