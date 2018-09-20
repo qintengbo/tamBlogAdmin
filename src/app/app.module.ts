@@ -30,13 +30,15 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     NgZorroAntdModule,
-    AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
-  providers: [{ // 声明服务
-    provide: NZ_I18N,
-    useValue: zh_CN
-  }],
+  providers: [ // 声明服务
+    {
+      provide: NZ_I18N,
+      useValue: zh_CN,
+    },
+  ],
   bootstrap: [AppComponent] // 启动应用根组件
 })
 export class AppModule { }

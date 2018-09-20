@@ -6,8 +6,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent }, // 登录
-  { path: '', component: DashboardComponent }, // 页头和菜单
-  { path: 'index', component: IndexComponent }, // 首页
+  {
+    path: 'admin',
+    component: DashboardComponent, // 页头和菜单
+    children: [
+      {
+        path: 'index',
+        component: IndexComponent
+      }
+    ]
+  },
 
   // 路由重定向
   { path: '',

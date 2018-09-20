@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators
 } from '@angular/forms';
 import { HttpRequestService } from '../httpRequest.service';
+import { NzMessageService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,13 +24,22 @@ export class LoginComponent implements OnInit {
     }
     if (validateForm.valid) {
       this.httpRequestService.loginRequest(validateForm.value)
-      .subscribe(res => console.log(222, res));
+      .subscribe(res => {
+        if (res['code'] === 0) {
+          // 登录成功跳转首页
+          this.router.navigate(['/admin/index']);
+        } else {
+          this.message.create('error', res['msg']);
+        }
+      });
     }
   }
 
   constructor(
     private fb: FormBuilder,
-    private httpRequestService: HttpRequestService
+    private httpRequestService: HttpRequestService,
+    private message: NzMessageService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
