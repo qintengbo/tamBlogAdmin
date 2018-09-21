@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// import { SelectivePreloadingStrategy } from 'service/selective-preloading-strategy';
 import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,7 +31,10 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      // { enableTracing: true } // <-- debugging purposes only
+      {
+        enableTracing: false, // <-- debugging purposes only
+        // preloadingStrategy: SelectivePreloadingStrategy
+      }
     )
   ],
   exports: [ RouterModule ]

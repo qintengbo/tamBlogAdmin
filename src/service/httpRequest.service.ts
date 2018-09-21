@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginFrom } from '../class/login/LoginFrom';
-import { Reponse } from '../class/common/reponse';
+import { LoginFrom } from 'class/login/LoginFrom';
+import { Reponse } from 'class/common/reponse';
 import { NzMessageService } from 'ng-zorro-antd';
 
 /**

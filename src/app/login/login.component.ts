@@ -4,7 +4,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { HttpRequestService } from '../httpRequest.service';
+import { HttpRequestService } from 'service/httpRequest.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
 
