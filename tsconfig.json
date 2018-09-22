@@ -17,7 +17,7 @@
       "dom"
     ],
     "paths": {
-      "@myproject/*": ["app/*"],
+      "@/*": ["app/*"],
       "testing/*": ["testing/*"]
     }
   }
