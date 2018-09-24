@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { AuthGuard } from 'services/auth-guard.service';
+import { LoginAuthService } from 'services/login-auth.service';
+
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent }, // 登录
+  { path: 'login', component: LoginComponent },
   {
     path: 'admin',
     component: DashboardComponent, // 页头和菜单
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'index',
@@ -35,6 +39,10 @@ const appRoutes: Routes = [
       }
     )
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [
+    AuthGuard,
+    LoginAuthService
+  ]
 })
 export class AppRoutingModule { }

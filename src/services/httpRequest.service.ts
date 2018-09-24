@@ -11,10 +11,8 @@ import { LoginFrom } from 'class/login/LoginFrom';
 import { Reponse } from 'class/common/reponse';
 import { NzMessageService } from 'ng-zorro-antd';
 
-/**
- * 配置环境地址
- */
-const PATH = '/api'; // 开发环境
+// 拦截器配置
+const PATH = '/api';
 
 @Injectable({
   providedIn: 'root'

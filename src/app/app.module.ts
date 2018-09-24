@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor } from 'services/auth-interceptor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -38,6 +40,10 @@ registerLocaleData(zh);
       provide: NZ_I18N,
       useValue: zh_CN,
     },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent] // 启动应用根组件
 })

@@ -4,9 +4,10 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { HttpRequestService } from 'service/httpRequest.service';
-import { NzMessageService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
+import { LoginAuthService } from 'services/login-auth.service';
+import { HttpRequestService } from 'services/httpRequest.service';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +27,15 @@ export class LoginComponent implements OnInit {
       this.httpRequestService.loginRequest(validateForm.value)
       .subscribe(res => {
         if (res['code'] === 0) {
-          // 登录成功跳转首页
-          this.router.navigate(['/admin/index']);
+          // 登录成功则改变登录状态为true
+          this.loginAuthService.isLoggedIn = true;
+          // 存储token
+          sessionStorage['token'] = res['token'];
+          // 从我们的身份验证服务获取重定向URL，如果没有则跳转到默认页面
+          let redirect = this.loginAuthService.redirectUrl ? this.loginAuthService.redirectUrl : '/admin/index';
+          this.router.navigate([redirect]);
         } else {
+          this.loginAuthService.isLoggedIn = false;
           this.message.create('error', res['msg']);
         }
       });
@@ -37,9 +44,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private loginAuthService: LoginAuthService,
     private httpRequestService: HttpRequestService,
-    private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private message: NzMessageService
     ) { }
 
   ngOnInit(): void {
