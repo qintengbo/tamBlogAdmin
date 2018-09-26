@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    // 判断是否登录
+    // 判断是否登录,token是否过期
     this.loginAuthService.login();
     if (this.loginAuthService.isLoggedIn) { return true; }
 
