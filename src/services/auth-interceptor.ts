@@ -31,9 +31,8 @@ export class AuthInterceptor implements HttpInterceptor {
         map((event: HttpEvent<any>) => {
           // 如果账号已过期，则跳转到登录页面
           if (event instanceof HttpResponse) {
-            console.log('aaa', event['body']['expired']);
             if (event['body']['expired']) {
-              this.loginAuthService.expired = true;
+              this.loginAuthService.login(event['body']['expired']);
             }
           }
           return event;
