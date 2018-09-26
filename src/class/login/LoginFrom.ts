@@ -1,5 +1,5 @@
 // 登录请求参数
 export class LoginFrom {
-  userName: string;
+  username: string;
   password: string;
 }

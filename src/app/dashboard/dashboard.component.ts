@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpRequestService } from 'services/httpRequest.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  // 获取用户信息
+  getUserInfo (): void {
+    this.httpRequestService.userInfoRequest()
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
 
-  constructor() { }
+  constructor(
+    private httpRequestService: HttpRequestService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getUserInfo();
   }
 
 }

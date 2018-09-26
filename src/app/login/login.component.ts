@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
   // 提交登录表单
-  submitForm(validateForm): void {
+  submitForm (validateForm): void {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [ null, [ Validators.required ] ],
+      username: [ null, [ Validators.required ] ],
       password: [ null, [ Validators.required ] ]
     });
   }

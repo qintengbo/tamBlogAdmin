@@ -40,7 +40,8 @@ registerLocaleData(zh);
       provide: NZ_I18N,
       useValue: zh_CN,
     },
-    { provide: HTTP_INTERCEPTORS,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     }

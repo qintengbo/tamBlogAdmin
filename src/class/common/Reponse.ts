@@ -2,5 +2,6 @@
 export class Reponse {
   code: number;
   msg: string;
+  token: string;
   data: any;
 }

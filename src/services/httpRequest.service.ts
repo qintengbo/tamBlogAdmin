@@ -35,6 +35,8 @@ export class HttpRequestService {
    */
   // 登录接口
   loginUrl = `${PATH}/login`;
+  // 获取用户信息接口
+  userInfo = `${PATH}/userInfo`;
 
   /**
    * request
@@ -43,6 +45,12 @@ export class HttpRequestService {
   loginRequest (data: LoginFrom): Observable<Response> {
     return this.http.post<Reponse>(this.loginUrl, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
+    );
+  }
+  // 获取用户信息请求
+  userInfoRequest (): Observable<Response> {
+    return this.http.get<any>(this.userInfo).pipe(
+      catchError(this.handleError<any>('userInfoRequest'))
     );
   }
 
