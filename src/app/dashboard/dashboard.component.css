@@ -5,6 +5,12 @@
   margin: 16px 28px 16px 0;
   float: left;
 }
+.page-header {
+  background: #002140;
+}
+.index-icon {
+  margin-right: 8px;
+}
 .layoutUl {
   line-height: 64px; 
   float: right;
@@ -45,4 +51,19 @@
 }
 .userProfile .ant-dropdown-link:hover {
   color: #1890ff;
+}
+.menu {
+  background: #fff;
+}
+.menu-ul {
+  height: calc(100% - 60px);
+  border-right: 0;
+}
+.collapsed {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 700;
+  color: #1890ff;
+  cursor: pointer;
 }

@@ -9,14 +9,12 @@ import {
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginAuthService } from 'services/login-auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private router: Router,
-    private loginAuthService: LoginAuthService
+    private router: Router
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -32,7 +30,9 @@ export class AuthInterceptor implements HttpInterceptor {
           // 如果账号已过期，则跳转到登录页面
           if (event instanceof HttpResponse) {
             if (event['body']['expired']) {
-              this.loginAuthService.login(event['body']['expired']);
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 1000);
             }
           }
           return event;

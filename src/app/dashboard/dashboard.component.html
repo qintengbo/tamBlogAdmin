@@ -1,5 +1,5 @@
 <nz-layout class="layout">
-  <nz-header style="background: #002140">
+  <nz-header class="page-header">
     <div class="logo">
       <img src="" alt>
     </div>
@@ -7,52 +7,61 @@
       <nz-avatar nzSize="large" nzText="Q"></nz-avatar>
       <nz-dropdown class="userProfile">
         <a nz-dropdown>
-          管理员 <i class="anticon anticon-down"></i>
+          {{ username }} <i class="anticon anticon-down"></i>
         </a>
         <ul nz-menu nzSelectable>
           <li nz-menu-item>
             <a><i class="anticon anticon-setting"></i> 个人设置</a>
           </li>
-          <li nz-menu-item>
-            <a routerLink="/login"><i class="anticon anticon-poweroff"></i> 退出登录</a>
+          <li nz-menu-item (click)="logout()">
+            <a><i class="anticon anticon-poweroff"></i> 退出登录</a>
           </li>
         </ul>
       </nz-dropdown>
     </div>
     <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
       <li nz-menu-item>
-        <i class="anticon anticon-home" style="margin-right: 8px"></i>首页
+        <i class="anticon anticon-home index-icon"></i>首页
       </li>
     </ul>
   </nz-header>
   <nz-layout>
-    <nz-sider [nzCollapsible]="true" [nzWidth]="200" style="background:#fff">
-      <ul nz-menu [nzMode]="'inline'" style="height:100%">
+    <nz-sider [nzWidth]="220" class="menu" [nzCollapsed]="isCollapsed">
+      <div class="collapsed" (click)="toggleCollapsed()">
+        <i class="anticon" [class.anticon-left]="isCollapsed" [class.anticon-right]="!isCollapsed"></i>
+      </div>
+      <ul nz-menu [nzMode]="'inline'" [nzTheme]="'light'" class="menu-ul" [nzInlineCollapsed]="isCollapsed">
+        <li nz-menu-item>
+          <span title>
+            <i class="anticon anticon-home"></i>
+            <span>首页</span>
+          </span>
+        </li>
         <li nz-submenu>
-          <span title><i class="anticon anticon-user"></i>subnav 1</span>
+          <span title>
+            <i class="anticon anticon-file-text"></i>
+            <span>文章管理</span>
+          </span>
           <ul>
-            <li nz-menu-item>option1</li>
-            <li nz-menu-item>option2</li>
-            <li nz-menu-item>option3</li>
-            <li nz-menu-item>option4</li>
+            <li nz-menu-item>文章列表</li>
           </ul>
         </li>
         <li nz-submenu>
-          <span title><i class="anticon anticon-laptop"></i>subnav 2</span>
+          <span title>
+            <i class="anticon anticon-appstore-o"></i>
+            <span>分类管理</span>
+          </span>
           <ul>
-            <li nz-menu-item>option5</li>
-            <li nz-menu-item>option6</li>
-            <li nz-menu-item>option7</li>
-            <li nz-menu-item>option8</li>
+            <li nz-menu-item>分类列表</li>
           </ul>
         </li>
         <li nz-submenu>
-          <span title><i class="anticon anticon-notification"></i>subnav 3</span>
+          <span title>
+            <i class="anticon anticon-tags-o"></i>
+            <span>标签管理</span>
+          </span>
           <ul>
-            <li nz-menu-item>option9</li>
-            <li nz-menu-item>option10</li>
-            <li nz-menu-item>option11</li>
-            <li nz-menu-item>option12</li>
+            <li nz-menu-item>标签列表</li>
           </ul>
         </li>
       </ul>
@@ -68,4 +77,5 @@
       </nz-content>
     </nz-layout>
   </nz-layout>
+  <nz-footer style="text-align: center;">Ant Design ©2017 Implement By Angular</nz-footer>
 </nz-layout>

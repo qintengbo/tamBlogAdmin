@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): boolean {
     // 判断是否登录,token是否过期
-    this.loginAuthService.login(this.loginAuthService.expired);
+    this.loginAuthService.login();
     if (this.loginAuthService.isLoggedIn) { return true; }
 
     // 存储尝试的URL以进行重定向
