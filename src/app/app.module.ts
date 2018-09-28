@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 registerLocaleData(zh);
 
@@ -24,6 +25,7 @@ registerLocaleData(zh);
     AppComponent,
     IndexComponent,
     DashboardComponent,
+    ArticleListComponent,
     LoginComponent
   ],
   imports: [ // 导入该应用的其他模块

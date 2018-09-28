@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       this.httpRequestService.loginRequest(validateForm.value)
       .subscribe(res => {
         if (res['code'] === 0) {
+          this.message.create('success', res['msg']);
           // 存储token
           sessionStorage['token'] = res['token'];
           // 从我们的身份验证服务获取重定向URL，如果没有则跳转到默认页面

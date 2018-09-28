@@ -1,3 +1,7 @@
+.layout {
+  height: 100%;
+  overflow: hidden;
+}
 .logo {
   width: 120px;
   height: 31px;
@@ -21,6 +25,9 @@
 .layoutUl > .ant-menu-item {
   border-bottom: 0;
 }
+.layoutUl > .ant-menu-item:focus {
+  outline: 0
+}
 .layoutUl > .ant-menu-item:hover,
 .layoutUl > .ant-menu-item:active {
   border-bottom: 0;
@@ -41,7 +48,7 @@
 }
 .header-userpannel > .ant-avatar {
   color: #fff;
-  background: #1890ff;
+  background: #87d068;
 }
 .userProfile {
   margin-left: 12px;
@@ -66,4 +73,20 @@
   font-weight: 700;
   color: #1890ff;
   cursor: pointer;
+}
+.content-layout {
+  padding: 0 24px;
+}
+.indexContent {
+  background: #fff; 
+  padding: 24px; 
+  min-height: 100px;
+}
+.breadCon {
+  margin: 16px 0;
+}
+.copyright {
+  width: 100%;
+  padding: 15px 50px;
+  text-align: center;
 }

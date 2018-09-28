@@ -11,6 +11,9 @@ body {
 	font-size: 14px;
 	overflow-x: hidden;
 }
+li, p, div, span:focus {
+	outline: 0;
+}
 /* clear float */
 .clearfix:before,
 .clearfix:after {

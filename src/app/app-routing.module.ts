@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { LoginAuthService } from 'services/login-auth.service';
@@ -17,6 +18,10 @@ const appRoutes: Routes = [
       {
         path: 'index',
         component: IndexComponent
+      },
+      {
+        path: 'articleList',
+        component: ArticleListComponent
       }
     ]
   },
