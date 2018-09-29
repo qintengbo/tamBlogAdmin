@@ -77,14 +77,6 @@
 .content-layout {
   padding: 0 24px;
 }
-.indexContent {
-  background: #fff; 
-  padding: 24px; 
-  min-height: 100px;
-}
-.breadCon {
-  margin: 16px 0;
-}
 .copyright {
   width: 100%;
   padding: 15px 50px;

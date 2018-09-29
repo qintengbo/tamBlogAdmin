@@ -3,8 +3,6 @@ import { HttpRequestService } from 'services/httpRequest.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { LoginAuthService } from 'services/login-auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',

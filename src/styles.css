@@ -23,3 +23,14 @@ li, p, div, span:focus {
 .clearfix:after {
 	clear: both;
 }
+.indexContent {
+  background: #fff; 
+  padding: 24px; 
+  min-height: 100px;
+}
+.breadCon {
+  margin: 16px 0 !important;
+}
+.ng-star-inserted {
+  flex: auto;
+}
