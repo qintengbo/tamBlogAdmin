@@ -1,0 +1,10 @@
+.search-input {
+  display: inline-block;
+  width: 240px;
+}
+.addBtn {
+  position: absolute;
+  top: 15px;
+  right: 24px;
+  z-index: 10;
+}

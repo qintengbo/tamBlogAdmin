@@ -1,7 +1,46 @@
 <nz-breadcrumb class="breadCon" nzSeparator=">">
-    <nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
-    <nz-breadcrumb-item>文章列表</nz-breadcrumb-item>
-  </nz-breadcrumb>
-  <nz-content class="indexContent">
-    article-list works!
-  </nz-content>
+  <nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>文章列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-content class="indexContent">
+  <button class="addBtn" nz-button nzType="primary"><i class="anticon anticon-file-add"></i>新建文章</button>
+  <nz-tabset>
+    <nz-tab nzTitle="全部"></nz-tab>
+    <nz-tab nzTitle="已发布"></nz-tab>
+    <nz-tab nzTitle="未发布"></nz-tab>
+  </nz-tabset>
+  <div>按标题搜索：
+    <nz-input-group class="search-input" nzSearch [nzSuffix]="suffixIconButton">
+      <input type="text" nz-input placeholder="请输入文章标题">
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
+    </ng-template>
+  </div>
+  <nz-table #basicTable [nzData]="dataSet">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>标题</th>
+        <th>分类</th>
+        <th>标签</th>
+        <th>状态</th>
+        <th>点赞数</th>
+        <th>发布时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let data of basicTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.address}}</td>
+        <td>
+          <a>Action 一 {{data.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td>
+      </tr> -->
+    </tbody>
+  </nz-table>
+</nz-content>
