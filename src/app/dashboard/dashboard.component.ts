@@ -33,7 +33,10 @@ export class DashboardComponent implements OnInit {
   }
   // 菜单高亮
   menuLight (): void {
-    this.activeIndex = this.route.snapshot.firstChild.url[0].path;
+    this.route.url.subscribe(url => {
+      console.log(url);
+    });
+    // console.log(this.route);
   }
   // 退出登录
   logout (): void {
