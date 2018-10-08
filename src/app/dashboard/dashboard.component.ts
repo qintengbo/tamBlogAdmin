@@ -33,10 +33,10 @@ export class DashboardComponent implements OnInit {
   }
   // 菜单高亮
   menuLight (): void {
-    this.route.url.subscribe(url => {
-      console.log(url);
-    });
-    // console.log(this.route);
+    // TODO: 这里暂时不知道为什么要使用setTimeout才能拿到正确的path，否则path在菜单跳转后不会改变
+    setTimeout(() => {
+      this.activeIndex = this.route.firstChild.url['value'][0].path;
+    }, 0);
   }
   // 退出登录
   logout (): void {

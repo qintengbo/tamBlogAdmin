@@ -1,0 +1,55 @@
+<nz-breadcrumb class="breadCon" nzSeparator=">">
+  <nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item><a routerLink="/admin/articleList">文章列表</a></nz-breadcrumb-item>
+  <nz-breadcrumb-item>新建文章</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-content class="indexContent">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+    <div nz-row [nzGutter]="24">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item nzFlex>
+          <nz-form-label class="article-label" [nzSpan]="4.5" nzRequired>标题</nz-form-label>
+          <nz-form-control [nzSpan]="18">
+            <input nz-input formControlName="title" placeholder="填写文章标题">
+            <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
+              <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+                请输入文章标题
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-item nzFlex>
+          <nz-form-label [nzSpan]="6" nzRequired>分类</nz-form-label>
+          <nz-form-control [nzSpan]="18">
+            <nz-select formControlName="classification" nzPlaceHolder="选择文章分类">
+              <nz-option nzValue="male" nzLabel="前端"></nz-option>
+              <nz-option nzValue="female" nzLabel="数据库"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
+              请选择文章分类
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row [nzGutter]="24">
+      <div class="text-btn">
+        <span>预览</span>
+        <span>导入md文件</span>
+      </div>
+      <div nz-col [nzSpan]="24">
+        <nz-form-item>
+          <nz-form-label class="text-label" [nzSpan]="24" nzRequired>正文</nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <textarea formControlName="text" nz-input rows="18" placeholder="编写文章内容"></textarea>
+            <nz-form-explain *ngIf="validateForm.get('text').dirty&&validateForm.get('text').hasError('required')">
+              请输入正文
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</nz-content>

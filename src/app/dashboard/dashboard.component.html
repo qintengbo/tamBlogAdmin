@@ -37,13 +37,13 @@
             <span>首页</span>
           </span>
         </li>
-        <li nz-submenu [nzOpen]="activeIndex == 'articleList'">
+        <li nz-submenu [nzOpen]="activeIndex == 'articleList' || activeIndex == 'articleDetail'">
           <span title>
             <i class="anticon anticon-file-text"></i>
             <span>文章管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'articleList'" routerLink="/admin/articleList">文章列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'articleList' || activeIndex == 'articleDetail'" routerLink="/admin/articleList">文章列表</li>
           </ul>
         </li>
         <li nz-submenu>
