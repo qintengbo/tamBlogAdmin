@@ -1,9 +1,15 @@
 .article-label {
   text-align: left;
 }
+.ant-form-item-label {
+  padding-left: 0 !important;
+}
 .ant-form-item-control-wrapper {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+.textItem {
+  margin-bottom: 0;
 }
 .text-btn {
   position: absolute;
@@ -19,4 +25,16 @@
 }
 .text-btn span:hover {
   text-decoration: underline;
+}
+.markdown {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}
+.footerBtnCon {
+  margin-top: 10px;
+  text-align: right;
+}
+.footerBtnCon button {
+  margin-left: 12px;
 }
