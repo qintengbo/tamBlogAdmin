@@ -38,3 +38,12 @@
 .footerBtnCon button {
   margin-left: 12px;
 }
+.upload-btn {
+  border: 0;
+  height: auto;
+  padding: 0;
+  font-size: 12px;
+}
+.upload-btn:hover {
+  text-decoration: underline;
+}

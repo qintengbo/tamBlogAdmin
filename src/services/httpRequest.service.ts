@@ -4,7 +4,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
@@ -37,20 +37,28 @@ export class HttpRequestService {
   loginUrl = `${PATH}/login`;
   // 获取用户信息接口
   userInfo = `${PATH}/userInfo`;
+  // 上传文件
+  uploadFile = `${PATH}/uploadFile`;
 
   /**
    * request
    */
   // 登录请求
-  loginRequest (data: LoginFrom): Observable<Response> {
+  loginRequest(data: LoginFrom): Observable<Response> {
     return this.http.post<Reponse>(this.loginUrl, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
     );
   }
   // 获取用户信息请求
-  userInfoRequest (): Observable<Response> {
+  userInfoRequest(): Observable<Response> {
     return this.http.get<any>(this.userInfo).pipe(
       catchError(this.handleError<any>('userInfoRequest'))
+    );
+  }
+  // 上传文件
+  uploadFileRequest(data): Observable<HttpEvent<{}>> {
+    return this.http.post<HttpEvent<{}>>(this.uploadFile, data, { reportProgress : true }).pipe(
+      catchError(this.handleError<any>('uploadFileRequest'))
     );
   }
 
