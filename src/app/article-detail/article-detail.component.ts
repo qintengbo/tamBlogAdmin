@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpRequest, HttpClient, HttpEventType, HttpEvent, HttpResponse } from '@angular/common/http';
 import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
 
@@ -24,8 +23,16 @@ export class ArticleDetailComponent implements OnInit {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
-    this.http.uploadFileRequest(formData).subscribe((event: HttpEvent<{}>) => {
-      console.log(event, HttpEventType.UploadProgress);
+    this.http.uploadFileRequest(formData).subscribe((res) => {
+      if (res['code'] === 0) {
+        let textValue = this.validateForm.value['text'];
+        this.validateForm.patchValue({
+          text: textValue + res['data'].imgUrl
+        });
+        this.message.create('success', '插入图片成功');
+      } else {
+        this.message.create('error', res['msg']);
+      }
     });
   }
   // 提交表单
@@ -46,7 +53,7 @@ export class ArticleDetailComponent implements OnInit {
     this.validateForm = this.fb.group({
       title: [ null, [ Validators.required ] ],
       classification: [ null, [ Validators.required ] ],
-      text: [ null, [ Validators.required ] ]
+      text: [ '', [ Validators.required ] ]
     });
   }
 
