@@ -4,7 +4,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
@@ -56,8 +56,8 @@ export class HttpRequestService {
     );
   }
   // 上传文件
-  uploadFileRequest(data): Observable<HttpEvent<{}>> {
-    return this.http.post<HttpEvent<{}>>(this.uploadFile, data, { reportProgress : true }).pipe(
+  uploadFileRequest(data): Observable<Response> {
+    return this.http.post<Response>(this.uploadFile, data, { reportProgress : true }).pipe(
       catchError(this.handleError<any>('uploadFileRequest'))
     );
   }
@@ -71,7 +71,7 @@ export class HttpRequestService {
       // 打印错误信息
       console.error(error);
       // 打印error.message
-      this.message.create('error', `${operation} failed: ${error.status + ' ' + error.statusText}`);
+      this.message.error(`${operation} failed: ${error.status + ' ' + error.statusText}`);
       // 通过返回空结果让应用继续运行
       return of(result as T);
     };

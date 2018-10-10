@@ -22,8 +22,8 @@
           <nz-form-label [nzSpan]="6" nzRequired>分类</nz-form-label>
           <nz-form-control [nzSpan]="18">
             <nz-select formControlName="classification" nzPlaceHolder="选择文章分类">
-              <nz-option nzValue="male" nzLabel="前端"></nz-option>
-              <nz-option nzValue="female" nzLabel="数据库"></nz-option>
+              <nz-option nzValue="web" nzLabel="前端"></nz-option>
+              <nz-option nzValue="db" nzLabel="数据库"></nz-option>
             </nz-select>
             <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
               请选择文章分类
@@ -38,6 +38,7 @@
           <nz-upload
             [nzShowUploadList]="false"
             [nzCustomRequest]="handleUpload"
+            [nzBeforeUpload]="beforeUpload"
           >
             <button type="button" class="upload-btn" nz-button>
               <span>插入图片</span>
@@ -50,7 +51,7 @@
         <nz-form-item class="textItem">
           <nz-form-label [nzSpan]="24" nzRequired>正文</nz-form-label>
           <nz-form-control [nzSpan]="24" *ngIf="!previewState">
-            <textarea formControlName="text" nz-input [nzAutosize]="{ minRows: 18 }" placeholder="编写文章内容"></textarea>
+            <textarea formControlName="text" nz-input [nzAutosize]="{ minRows: 16 }" placeholder="编写文章内容"></textarea>
             <nz-form-explain *ngIf="validateForm.get('text').dirty && validateForm.get('text').hasError('required')">
               请输入正文
             </nz-form-explain>
