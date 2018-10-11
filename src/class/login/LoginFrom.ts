@@ -1,4 +1,4 @@
-// 登录请求参数
+// 登录类
 export class LoginFrom {
   username: string;
   password: string;

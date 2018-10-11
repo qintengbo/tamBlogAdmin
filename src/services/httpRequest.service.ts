@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
-import { Reponse } from 'class/common/reponse';
+import { Reponse } from 'class/common/Reponse';
+import { ArticleForm } from 'class/article/ArticleForm';
 import { NzMessageService } from 'ng-zorro-antd';
 
 // 拦截器配置
@@ -39,6 +40,8 @@ export class HttpRequestService {
   userInfo = `${PATH}/userInfo`;
   // 上传文件
   uploadFile = `${PATH}/uploadFile`;
+  // 新增文章
+  addArticle = `${PATH}/addArticle`;
 
   /**
    * request
@@ -59,6 +62,12 @@ export class HttpRequestService {
   uploadFileRequest(data): Observable<Response> {
     return this.http.post<Response>(this.uploadFile, data, { reportProgress : true }).pipe(
       catchError(this.handleError<any>('uploadFileRequest'))
+    );
+  }
+  // 新增文章
+  addArticleRequest(data: ArticleForm): Observable<Response> {
+    return this.http.post<Response>(this.addArticle, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addArticleRequest'))
     );
   }
 

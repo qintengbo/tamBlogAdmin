@@ -14,7 +14,7 @@ export class ArticleDetailComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpRequestService,
+    private httpRequestService: HttpRequestService,
     private message: NzMessageService
   ) { }
 
@@ -38,11 +38,12 @@ export class ArticleDetailComponent implements OnInit {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
-    this.http.uploadFileRequest(formData).subscribe(res => {
+    this.httpRequestService.uploadFileRequest(formData)
+    .subscribe(res => {
       if (res['code'] === 0) {
-        let textValue = this.validateForm.value['text'];
+        let textValue = this.validateForm.value['content'];
         this.validateForm.patchValue({
-          text: textValue + `![alt text](${res['data'].imgUrl})`
+          content: textValue + `![alt text](${res['data'].imgUrl})`
         });
         this.message.success('插入图片成功');
       } else {
@@ -53,11 +54,17 @@ export class ArticleDetailComponent implements OnInit {
   // 提交表单
   submitForm = ($event, validateForm) => {
     $event.preventDefault();
+    console.log($event);
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    console.log(validateForm);
+    if (validateForm.valid) {
+      this.httpRequestService.addArticleRequest(validateForm.value)
+      .subscribe(res => {
+        console.log(res);
+      });
+    }
   }
   // 预览md文件
   preview(): void {
@@ -68,7 +75,8 @@ export class ArticleDetailComponent implements OnInit {
     this.validateForm = this.fb.group({
       title: [ null, [ Validators.required ] ],
       classification: [ null, [ Validators.required ] ],
-      text: [ '', [ Validators.required ] ]
+      tag: [ null, [ Validators.required ] ],
+      content: [ '', [ Validators.required ] ]
     });
   }
 
