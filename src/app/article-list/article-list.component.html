@@ -17,7 +17,7 @@
       <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
     </ng-template>
   </div>
-  <nz-table #basicTable [nzData]="dataSet">
+  <nz-table #articleListTable [nzData]="articleList">
     <thead>
       <tr>
         <th>序号</th>
@@ -31,16 +31,16 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let data of basicTable.data">
-        <td>{{data.name}}</td>
-        <td>{{data.age}}</td>
-        <td>{{data.address}}</td>
-        <td>
-          <a>Action 一 {{data.name}}</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a>Delete</a>
-        </td>
-      </tr> -->
+      <tr *ngFor="let data of articleListTable.data; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.classification }}</td>
+        <td>{{ data.tag }}</td>
+        <td>{{ data.status == 0 ? '未发布' : '已发布' }}</td>
+        <td>{{ data.laudNum }}</td>
+        <td>{{ data.date | date: "y-MM-dd HH:mm:ss" }}</td>
+        <td>编辑</td>
+      </tr>
     </tbody>
   </nz-table>
 </nz-content>

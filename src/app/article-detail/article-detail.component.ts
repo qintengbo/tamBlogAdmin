@@ -52,9 +52,7 @@ export class ArticleDetailComponent implements OnInit {
     });
   }
   // 提交表单
-  submitForm = ($event, validateForm) => {
-    $event.preventDefault();
-    console.log($event);
+  submitForm = (validateForm) => {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -70,13 +68,18 @@ export class ArticleDetailComponent implements OnInit {
   preview(): void {
     this.previewState = !this.previewState;
   }
+  // 保存文章
+  save = () => {
+    this.validateForm.patchValue({ status: 0 });
+  }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
       title: [ null, [ Validators.required ] ],
       classification: [ null, [ Validators.required ] ],
       tag: [ null, [ Validators.required ] ],
-      content: [ '', [ Validators.required ] ]
+      content: [ '', [ Validators.required ] ],
+      status: [ 1 ]
     });
   }
 

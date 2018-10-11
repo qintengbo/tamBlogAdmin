@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
-import { Reponse } from 'class/common/Reponse';
+import { Reponse } from 'class/common/reponse';
 import { ArticleForm } from 'class/article/ArticleForm';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -40,8 +40,10 @@ export class HttpRequestService {
   userInfo = `${PATH}/userInfo`;
   // 上传文件
   uploadFile = `${PATH}/uploadFile`;
-  // 新增文章
+  // 新增文件
   addArticle = `${PATH}/addArticle`;
+  // 文章列表
+  articleList = `${PATH}/articleList`;
 
   /**
    * request
@@ -60,14 +62,20 @@ export class HttpRequestService {
   }
   // 上传文件
   uploadFileRequest(data): Observable<Response> {
-    return this.http.post<Response>(this.uploadFile, data, { reportProgress : true }).pipe(
+    return this.http.post<Response>(this.uploadFile, data).pipe(
       catchError(this.handleError<any>('uploadFileRequest'))
     );
   }
-  // 新增文章
+  // 新增文件
   addArticleRequest(data: ArticleForm): Observable<Response> {
     return this.http.post<Response>(this.addArticle, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('addArticleRequest'))
+    );
+  }
+  // 文章列表
+  articleListRequest(): Observable<Response> {
+    return this.http.get<Response>(this.articleList).pipe(
+      catchError(this.handleError<any>('articleListRequest'))
     );
   }
 
@@ -80,7 +88,7 @@ export class HttpRequestService {
       // 打印错误信息
       console.error(error);
       // 打印error.message
-      this.message.error(`${operation} failed: ${error.status + ' ' + error.statusText}`);
+      this.message.create('error', `${operation} failed: ${error.status + ' ' + error.statusText}`);
       // 通过返回空结果让应用继续运行
       return of(result as T);
     };
