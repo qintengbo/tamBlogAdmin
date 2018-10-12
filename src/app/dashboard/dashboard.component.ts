@@ -26,8 +26,6 @@ export class DashboardComponent implements OnInit {
       if (res['code'] === 0) {
         this.username = res['username'];
         this.avatarText = res['username'][0];
-      } else {
-        this.message.error(res['msg']);
       }
     });
   }
