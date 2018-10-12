@@ -1,6 +1,17 @@
 .search-input {
   display: inline-block;
-  width: 240px;
+  width: 220px;
+}
+.search-select {
+  display: inline-block;
+  width: 140px;
+}
+.inlineBlock {
+  display: inline-block;
+  margin-right: 20px;
+}
+.inlineBlock:last-child {
+  margin-right: 0;
 }
 .addBtn {
   position: absolute;

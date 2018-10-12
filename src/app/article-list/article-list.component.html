@@ -9,13 +9,28 @@
     <nz-tab nzTitle="已发布"></nz-tab>
     <nz-tab nzTitle="未发布"></nz-tab>
   </nz-tabset>
-  <div>按标题搜索：
-    <nz-input-group class="search-input" nzSearch [nzSuffix]="suffixIconButton">
-      <input type="text" nz-input placeholder="请输入文章标题">
-    </nz-input-group>
-    <ng-template #suffixIconButton>
-      <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
-    </ng-template>
+  <div>
+    <div class="inlineBlock">标题：
+      <input nz-input class="search-input" placeholder="请输入文章标题" [(ngModel)]="params.keyWord">
+    </div>
+    <div class="inlineBlock">分类：
+      <nz-select class="search-select" nzPlaceHolder="选择文章分类" [(ngModel)]="params.classification">
+        <nz-option nzValue="web" nzLabel="前端"></nz-option>
+        <nz-option nzValue="db" nzLabel="数据库"></nz-option>
+      </nz-select>
+    </div>
+    <div class="inlineBlock">标签：
+      <nz-select class="search-select" nzPlaceHolder="选择文章标签" [(ngModel)]="params.tag">
+        <nz-option nzValue="js" nzLabel="javascript"></nz-option>
+        <nz-option nzValue="node" nzLabel="nodeJs"></nz-option>
+      </nz-select>
+    </div>
+    <div class="inlineBlock">日期：
+      <nz-range-picker class="search-input" [(ngModel)]="params.date" (ngModelChange)="onChange($event)"></nz-range-picker>
+    </div>
+    <div class="inlineBlock">
+      <button nz-button nzType="primary">筛选</button>
+    </div>
   </div>
   <nz-table #articleListTable [nzData]="articleList">
     <thead>
