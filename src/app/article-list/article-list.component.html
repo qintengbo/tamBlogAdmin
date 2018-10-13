@@ -4,7 +4,7 @@
 </nz-breadcrumb>
 <nz-content class="indexContent">
   <button class="addBtn" nz-button nzType="primary" routerLink="/admin/articleDetail"><i class="anticon anticon-file-add"></i>新建文章</button>
-  <nz-tabset>
+  <nz-tabset (nzSelectChange)="changTabs($event)">
     <nz-tab nzTitle="全部"></nz-tab>
     <nz-tab nzTitle="已发布"></nz-tab>
     <nz-tab nzTitle="未发布"></nz-tab>
@@ -29,7 +29,8 @@
       <nz-range-picker class="search-input" [(ngModel)]="params.date" (ngModelChange)="onChange($event)"></nz-range-picker>
     </div>
     <div class="inlineBlock">
-      <button nz-button nzType="primary">筛选</button>
+      <button nz-button nzType="primary" (click)="getArticleList()">筛选</button>
+      <button nz-button nzType="default" class="resetBtn">重置</button>
     </div>
   </div>
   <nz-table #articleListTable [nzData]="articleList">

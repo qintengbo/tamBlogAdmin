@@ -70,7 +70,7 @@ export class ArticleDetailComponent implements OnInit {
   }
   // 保存文章
   save = () => {
-    this.validateForm.patchValue({ status: 0 });
+    this.validateForm.patchValue({ status: 2 });
   }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class ArticleDetailComponent implements OnInit {
       classification: [ null, [ Validators.required ] ],
       tag: [ null, [ Validators.required ] ],
       content: [ '', [ Validators.required ] ],
-      status: [ 1 ]
+      status: [ 1 ] // 状态， 2-未发布，1-已发布
     });
   }
 

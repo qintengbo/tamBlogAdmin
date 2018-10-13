@@ -14,11 +14,10 @@ export class ArticleListComponent implements OnInit {
     keyWord: '',
     classification: null,
     tag: null,
-    status: null, // 状态，0-未发布，1-已发布
+    status: 0, // 状态，2-未发布，1-已发布，0-全部
     date: '',
     pag: 1,
-    size: 10,
-    total: 0
+    size: 10
   };
 
   constructor(
@@ -28,7 +27,7 @@ export class ArticleListComponent implements OnInit {
 
   // 查询文章列表
   getArticleList(): void {
-    this.httpRequestService.articleListRequest()
+    this.httpRequestService.articleListRequest(this.params)
     .subscribe(res => {
       if (res['code'] === 0) {
         this.articleList = res['data'].list;
@@ -36,6 +35,11 @@ export class ArticleListComponent implements OnInit {
         this.message.error(res['msg']);
       }
     });
+  }
+  // 选择tab标签页回调函数
+  changTabs = ($event) => {
+    this.params.status = $event.index;
+    this.getArticleList();
   }
 
   ngOnInit() {

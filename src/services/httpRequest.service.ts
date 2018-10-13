@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
 import { Reponse } from 'class/common/reponse';
 import { ArticleForm } from 'class/article/ArticleForm';
+import { ArticleParams } from 'class/article/ArticleParams';
 import { NzMessageService } from 'ng-zorro-antd';
 
 // 拦截器配置
@@ -73,8 +74,8 @@ export class HttpRequestService {
     );
   }
   // 文章列表
-  articleListRequest(): Observable<Response> {
-    return this.http.get<Response>(this.articleList).pipe(
+  articleListRequest(data): Observable<Response> {
+    return this.http.get<Response>(this.articleList, { params: data }).pipe(
       catchError(this.handleError<any>('articleListRequest'))
     );
   }
