@@ -5,6 +5,6 @@ export class ArticleParams {
   tag: string;
   status: number;
   date: string;
-  pag: number;
+  page: number;
   size: number;
 }
