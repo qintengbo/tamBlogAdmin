@@ -28,7 +28,7 @@
       </nz-select>
     </div>
     <div class="inlineBlock">日期：
-      <nz-range-picker class="search-input" [(ngModel)]="params.date" (ngModelChange)="onChange($event)"></nz-range-picker>
+      <nz-range-picker class="search-input" [(ngModel)]="params.date" [nzAllowClear]="false"></nz-range-picker>
     </div>
     <div class="inlineBlock">
       <button nz-button nzType="primary" (click)="getArticleList()">筛选</button>
