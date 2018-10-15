@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators';
 import { LoginFrom } from 'class/login/LoginFrom';
 import { Reponse } from 'class/common/reponse';
 import { ArticleForm } from 'class/article/ArticleForm';
-import { ArticleParams } from 'class/article/ArticleParams';
 import { NzMessageService } from 'ng-zorro-antd';
 
 // 拦截器配置
@@ -45,6 +44,10 @@ export class HttpRequestService {
   addArticle = `${PATH}/addArticle`;
   // 文章列表
   articleList = `${PATH}/articleList`;
+  // 更新文章状态
+  updateArticle = `${PATH}/updateArticle`;
+  // 删除文章
+  deleteArticle = `${PATH}/deleteArticle`;
 
   /**
    * request
@@ -77,6 +80,18 @@ export class HttpRequestService {
   articleListRequest(data): Observable<Response> {
     return this.http.get<Response>(this.articleList, { params: data }).pipe(
       catchError(this.handleError<any>('articleListRequest'))
+    );
+  }
+  // 更新文章状态
+  updateArticleRequest(data): Observable<Response> {
+    return this.http.put<Response>(this.updateArticle, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateArticleRequest'))
+    );
+  }
+  // 删除文章
+  deleteArticleRequest(id): Observable<Response> {
+    return this.http.delete<Response>(this.deleteArticle, { params: { id: id } }).pipe(
+      catchError(this.handleError<any>('deleteArticleRequest'))
     );
   }
 

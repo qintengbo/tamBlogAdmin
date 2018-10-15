@@ -10,6 +10,7 @@ import { ArticleParams } from 'class/article/ArticleParams';
 })
 export class ArticleListComponent implements OnInit {
   articleList: Array<any>; // 文章列表
+  total: number; // 数据总条数
   params: ArticleParams = { // 筛选列表请求参数
     keyWord: '',
     classification: null,
@@ -31,6 +32,7 @@ export class ArticleListComponent implements OnInit {
     .subscribe(res => {
       if (res['code'] === 0) {
         this.articleList = res['data'].list;
+        this.total = res['data'].total;
       } else {
         this.message.error(res['msg']);
       }
@@ -48,6 +50,37 @@ export class ArticleListComponent implements OnInit {
     this.params.tag = null;
     this.params.date = '';
     this.getArticleList();
+  }
+  // 分页
+  pageIndexChange(num): void {
+    this.params.page = num;
+    this.getArticleList();
+  }
+  // 更新文章状态
+  updateStatus(id: string, status: number): void {
+    let updateParams = {
+      id: id,
+      status: status === 2 ? 1 : 2
+    };
+    this.httpRequestService.updateArticleRequest(updateParams).subscribe(res => {
+      if (res['code'] === 0) {
+        this.message.success(res['msg']);
+        this.getArticleList();
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
+  // 删除文章
+  deleteArticle(id: string): void {
+    this.httpRequestService.deleteArticleRequest(id).subscribe(res => {
+      if (res['code'] === 0) {
+        this.message.success(res['msg']);
+        this.getArticleList();
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
   }
 
   ngOnInit() {
