@@ -11,6 +11,7 @@ import { HttpRequestService } from 'services/httpRequest.service';
 export class ArticleDetailComponent implements OnInit {
   validateForm: FormGroup;
   previewState = false; // 预览状态
+  classificationList: Array<any>; // 分类列表
 
   constructor(
     private fb: FormBuilder,
@@ -72,6 +73,16 @@ export class ArticleDetailComponent implements OnInit {
   save = () => {
     this.validateForm.patchValue({ status: 2 });
   }
+  // 查询分类列表
+  getClassificationList(): void {
+    this.httpRequestService.classificationListReuqest().subscribe(res => {
+      if (res['code'] === 0) {
+        this.classificationList = res['data'].list;
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -81,6 +92,7 @@ export class ArticleDetailComponent implements OnInit {
       content: [ '', [ Validators.required ] ],
       status: [ 1 ] // 状态， 2-未发布，1-已发布
     });
+    this.getClassificationList();
   }
 
 }

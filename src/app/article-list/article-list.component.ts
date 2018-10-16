@@ -10,6 +10,7 @@ import { ArticleParams } from 'class/article/ArticleParams';
 })
 export class ArticleListComponent implements OnInit {
   articleList: Array<any>; // 文章列表
+  classificationList: Array<any>; // 分类列表
   total: number; // 数据总条数
   params: ArticleParams = { // 筛选列表请求参数
     keyWord: '',
@@ -33,6 +34,16 @@ export class ArticleListComponent implements OnInit {
       if (res['code'] === 0) {
         this.articleList = res['data'].list;
         this.total = res['data'].total;
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
+  // 查询分类列表
+  getClassificationList(): void {
+    this.httpRequestService.classificationListReuqest().subscribe(res => {
+      if (res['code'] === 0) {
+        this.classificationList = res['data'].list;
       } else {
         this.message.error(res['msg']);
       }
@@ -85,6 +96,7 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.getArticleList();
+    this.getClassificationList();
   }
 
 }

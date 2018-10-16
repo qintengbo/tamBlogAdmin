@@ -1,0 +1,70 @@
+<nz-breadcrumb class="breadCon" nzSeparator=">">
+  <nz-breadcrumb-item>分类管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>分类列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-content class="indexContent">
+  <div class="clearfix">
+    分类名称：
+    <nz-input-group class="search-input" nzSearch [nzSuffix]="suffixIconButton">
+      <input type="text" nz-input placeholder="请输入分类名称">
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
+    </ng-template>
+    <button class="addBtn" nz-button nzType="primary" (click)="this.isVisible = true">
+      <i class="anticon anticon-switcher"></i>新增分类
+    </button>
+    <!-- 新增分类模态框 -->
+    <nz-modal 
+      [(nzVisible)]="isVisible" 
+      nzWidth="460" 
+      nzTitle="新增分类" 
+      (nzOnCancel)="modelCancel()" 
+      (nzOnOk)="submitForm(validateForm)"
+    >
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
+          <nz-form-control [nzSpan]="18">
+            <input nz-input formControlName="name" placeholder="填写分类名称">
+            <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">
+              请输入分类名称
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>缩写名</nz-form-label>
+          <nz-form-control [nzSpan]="18">
+            <input nz-input formControlName="abbreviationName" placeholder="填写缩写名">
+            <nz-form-explain *ngIf="validateForm.get('abbreviationName').dirty && validateForm.get('abbreviationName').errors">
+              请输入缩写名
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-modal>
+  </div>
+  <nz-table #classificationTable [nzData]="classificationList">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>名称</th>
+        <th>缩写名</th>
+        <th>文章数</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of classificationTable.data; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.abbreviationName }}</td>
+        <td>0</td>
+        <td class="operation">
+          <span (click)="detailClassification(data)">编辑</span>
+          <span>删除</span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-content>

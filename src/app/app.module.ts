@@ -21,6 +21,7 @@ import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ClassificationListComponent } from './classification-list/classification-list.component';
 
 registerLocaleData(zh);
 
@@ -31,6 +32,7 @@ registerLocaleData(zh);
     DashboardComponent,
     ArticleListComponent,
     ArticleDetailComponent,
+    ClassificationListComponent,
     LoginComponent
   ],
   imports: [ // 导入该应用的其他模块

@@ -48,6 +48,10 @@ export class HttpRequestService {
   updateArticle = `${PATH}/updateArticle`;
   // 删除文章
   deleteArticle = `${PATH}/deleteArticle`;
+  // 新增分类
+  addClassification = `${PATH}/addClassification`;
+  // 分类列表
+  classificationList = `${PATH}/classificationList`;
 
   /**
    * request
@@ -92,6 +96,18 @@ export class HttpRequestService {
   deleteArticleRequest(id): Observable<Response> {
     return this.http.delete<Response>(this.deleteArticle, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteArticleRequest'))
+    );
+  }
+  // 新增分类
+  addClassificationRequest(data): Observable<Response> {
+    return this.http.post<Response>(this.addClassification, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addClassificationRequest'))
+    );
+  }
+  // 分类列表
+  classificationListReuqest(): Observable<Response> {
+    return this.http.get<Response>(this.classificationList).pipe(
+      catchError(this.handleError<any>('classificationListRequest'))
     );
   }
 

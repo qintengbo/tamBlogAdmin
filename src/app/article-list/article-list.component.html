@@ -17,8 +17,12 @@
     </div>
     <div class="inlineBlock">分类：
       <nz-select class="search-select" nzPlaceHolder="选择文章分类" [(ngModel)]="params.classification">
-        <nz-option nzValue="web" nzLabel="前端"></nz-option>
-        <nz-option nzValue="db" nzLabel="数据库"></nz-option>
+        <nz-option 
+          *ngFor="let item of classificationList" 
+          nzValue="{{ item._id }}" 
+          nzLabel="{{ item.name }}"
+        >
+        </nz-option>
       </nz-select>
     </div>
     <div class="inlineBlock">标签：

@@ -22,8 +22,12 @@
           <nz-form-label [nzSpan]="6" nzRequired>分类</nz-form-label>
           <nz-form-control [nzSpan]="18">
             <nz-select formControlName="classification" nzPlaceHolder="选择文章分类">
-              <nz-option nzValue="web" nzLabel="前端"></nz-option>
-              <nz-option nzValue="db" nzLabel="数据库"></nz-option>
+              <nz-option 
+                *ngFor="let item of classificationList" 
+                nzValue="{{ item._id }}" 
+                nzLabel="{{ item.name }}"
+              >
+              </nz-option>
             </nz-select>
             <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
               请选择文章分类

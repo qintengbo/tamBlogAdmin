@@ -4,6 +4,7 @@ import { IndexComponent } from '@/index/index.component';
 import { DashboardComponent } from '@/dashboard/dashboard.component';
 import { ArticleListComponent } from '@/article-list/article-list.component';
 import { ArticleDetailComponent } from '@/article-detail/article-detail.component';
+import { ClassificationListComponent } from '@/classification-list/classification-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { LoginAuthService } from 'services/login-auth.service';
@@ -26,6 +27,10 @@ const dashboardRoutes: Routes = [
       {
         path: 'articleDetail',
         component: ArticleDetailComponent
+      },
+      {
+        path: 'classificationList',
+        component: ClassificationListComponent
       }
     ]
   },
