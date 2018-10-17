@@ -75,7 +75,7 @@ export class ArticleDetailComponent implements OnInit {
   }
   // 查询分类列表
   getClassificationList(): void {
-    this.httpRequestService.classificationListReuqest().subscribe(res => {
+    this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
       if (res['code'] === 0) {
         this.classificationList = res['data'].list;
       } else {

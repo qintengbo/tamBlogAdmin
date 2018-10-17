@@ -6,20 +6,20 @@
   <div class="clearfix">
     分类名称：
     <nz-input-group class="search-input" nzSearch [nzSuffix]="suffixIconButton">
-      <input type="text" nz-input placeholder="请输入分类名称">
+      <input type="text" nz-input placeholder="请输入分类名称" [(ngModel)]="params.keyWord">
     </nz-input-group>
     <ng-template #suffixIconButton>
       <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
     </ng-template>
-    <button class="addBtn" nz-button nzType="primary" (click)="this.isVisible = true">
+    <button class="addBtn" nz-button nzType="primary" (click)="addClassification()">
       <i class="anticon anticon-switcher"></i>新增分类
     </button>
     <!-- 新增分类模态框 -->
     <nz-modal 
       [(nzVisible)]="isVisible" 
       nzWidth="460" 
-      nzTitle="新增分类" 
-      (nzOnCancel)="modelCancel()" 
+      nzTitle="{{ status ? '编辑分类' : '新增分类' }}" 
+      (nzOnCancel)="modalCancel()" 
       (nzOnOk)="submitForm(validateForm)"
     >
       <form nz-form [formGroup]="validateForm">
@@ -59,7 +59,7 @@
         <td>{{ i + 1 }}</td>
         <td>{{ data.name }}</td>
         <td>{{ data.abbreviationName }}</td>
-        <td>0</td>
+        <td>{{ data.articleNum }}</td>
         <td class="operation">
           <span (click)="detailClassification(data)">编辑</span>
           <span>删除</span>

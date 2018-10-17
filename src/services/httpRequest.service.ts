@@ -52,6 +52,8 @@ export class HttpRequestService {
   addClassification = `${PATH}/addClassification`;
   // 分类列表
   classificationList = `${PATH}/classificationList`;
+  // 编辑分类
+  detailClassification = `${PATH}/detailClassification`;
 
   /**
    * request
@@ -105,9 +107,15 @@ export class HttpRequestService {
     );
   }
   // 分类列表
-  classificationListReuqest(): Observable<Response> {
-    return this.http.get<Response>(this.classificationList).pipe(
+  classificationListReuqest(data): Observable<Response> {
+    return this.http.get<Response>(this.classificationList, { params: data }).pipe(
       catchError(this.handleError<any>('classificationListRequest'))
+    );
+  }
+  // 编辑分类
+  detailClassificationRequest(data): Observable<Response> {
+    return this.http.put<Response>(this.detailClassification, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('detailClassificationRequest'))
     );
   }
 

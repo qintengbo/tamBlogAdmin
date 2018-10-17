@@ -21,6 +21,7 @@ export class ArticleListComponent implements OnInit {
     page: 1,
     size: 10
   };
+  classificationKeyWord = ''; // 查询分类
 
   constructor(
     private httpRequestService: HttpRequestService,
@@ -41,7 +42,7 @@ export class ArticleListComponent implements OnInit {
   }
   // 查询分类列表
   getClassificationList(): void {
-    this.httpRequestService.classificationListReuqest().subscribe(res => {
+    this.httpRequestService.classificationListReuqest({ keyWord: this.classificationKeyWord }).subscribe(res => {
       if (res['code'] === 0) {
         this.classificationList = res['data'].list;
       } else {

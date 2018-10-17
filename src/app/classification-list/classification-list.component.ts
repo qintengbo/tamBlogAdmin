@@ -12,7 +12,9 @@ export class ClassificationListComponent implements OnInit {
   validateForm: FormGroup;
   classificationList: Array<any>; // 分类列表数据
   isVisible = false; // 新增分类模态框状态
-  params: { // 筛选列表请求参数
+  status = false; // 是否编辑状态
+  id: string; // 编辑分类的id
+  params = { // 筛选列表请求参数
     keyWord: '',
   };
 
@@ -22,29 +24,47 @@ export class ClassificationListComponent implements OnInit {
     private httpRequestService: HttpRequestService
   ) { }
 
-  // 新增分类
+  // 提交表单
   submitForm = (validateForm) => {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
     if (validateForm.valid) {
-      this.httpRequestService.addClassificationRequest(validateForm.value)
-      .subscribe(res => {
-        if (res['code'] === 0) {
-          this.message.success(res['msg']);
-          this.isVisible = false;
-          this.validateForm.reset();
-          this.getClassificationList();
-        } else {
-          this.message.error(res['msg']);
-        }
-      });
+      // 判断编辑还是新增
+      if (!this.status) {
+        this.httpRequestService.addClassificationRequest(validateForm.value).subscribe(res => {
+          if (res['code'] === 0) {
+            this.message.success(res['msg']);
+            this.isVisible = false;
+            this.validateForm.reset();
+            this.getClassificationList();
+          } else {
+            this.message.error(res['msg']);
+          }
+        });
+      } else {
+        let params = {
+          id: this.id,
+          name: validateForm.value.name,
+          abbreviationName: validateForm.value.abbreviationName
+        };
+        this.httpRequestService.detailClassificationRequest(params).subscribe(res => {
+          if (res['code'] === 0) {
+            this.message.success(res['msg']);
+            this.isVisible = false;
+            this.validateForm.reset();
+            this.getClassificationList();
+          } else {
+            this.message.error(res['msg']);
+          }
+        });
+      }
     }
   }
   // 查询分类列表
   getClassificationList(): void {
-    this.httpRequestService.classificationListReuqest().subscribe(res => {
+    this.httpRequestService.classificationListReuqest(this.params).subscribe(res => {
       if (res['code'] === 0) {
         this.classificationList = res['data'].list;
       } else {
@@ -52,16 +72,23 @@ export class ClassificationListComponent implements OnInit {
       }
     });
   }
-  // 新增或编辑分类
+  // 新增分类
+  addClassification(): void {
+    this.isVisible = true;
+    this.status = false;
+  }
+  // 编辑分类
   detailClassification(data): void {
     this.isVisible = true;
+    this.status = true;
+    this.id = data._id;
     this.validateForm.patchValue({
       name: data.name,
       abbreviationName: data.abbreviationName
     });
   }
   // 关闭模态框
-  modelCancel(): void {
+  modalCancel(): void {
     this.isVisible = false;
     this.validateForm.reset();
   }
