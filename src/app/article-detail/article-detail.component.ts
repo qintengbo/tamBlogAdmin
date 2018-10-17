@@ -12,6 +12,7 @@ export class ArticleDetailComponent implements OnInit {
   validateForm: FormGroup;
   previewState = false; // 预览状态
   classificationList: Array<any>; // 分类列表
+  tagList: Array<any>; // 标签列表
 
   constructor(
     private fb: FormBuilder,
@@ -83,6 +84,16 @@ export class ArticleDetailComponent implements OnInit {
       }
     });
   }
+  // 查询标签列表
+  getTagList(): void {
+    this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
+      if (res['code'] === 0) {
+        this.tagList = res['data'].list;
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -93,6 +104,7 @@ export class ArticleDetailComponent implements OnInit {
       status: [ 1 ] // 状态， 2-未发布，1-已发布
     });
     this.getClassificationList();
+    this.getTagList();
   }
 
 }

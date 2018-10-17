@@ -22,18 +22,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ClassificationListComponent } from './classification-list/classification-list.component';
+import { TagListComponent } from './tag-list/tag-list.component';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [ // 导入该应用的组件、管道、指令
     AppComponent,
+    LoginComponent,
     IndexComponent,
     DashboardComponent,
     ArticleListComponent,
     ArticleDetailComponent,
     ClassificationListComponent,
-    LoginComponent
+    TagListComponent
   ],
   imports: [ // 导入该应用的其他模块
     BrowserModule,

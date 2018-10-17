@@ -4,16 +4,16 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
 
 @Component({
-  selector: 'app-classification-list',
-  templateUrl: './classification-list.component.html',
-  styleUrls: ['./classification-list.component.css']
+  selector: 'app-tag-list',
+  templateUrl: './tag-list.component.html',
+  styleUrls: ['./tag-list.component.css']
 })
-export class ClassificationListComponent implements OnInit {
+export class TagListComponent implements OnInit {
   validateForm: FormGroup;
-  classificationList: Array<any>; // 分类列表数据
-  isVisible = false; // 新增分类模态框状态
+  tagList: Array<any>; // 标签列表数据
+  isVisible = false; // 新增标签模态框状态
   status = false; // 是否编辑状态
-  id: string; // 编辑分类的id
+  id: string; // 编辑标签的id
   params = { // 筛选列表请求参数
     keyWord: '',
   };
@@ -33,12 +33,12 @@ export class ClassificationListComponent implements OnInit {
     if (validateForm.valid) {
       // 判断编辑还是新增
       if (!this.status) {
-        this.httpRequestService.addClassificationRequest(validateForm.value).subscribe(res => {
+        this.httpRequestService.addTagRequest(validateForm.value).subscribe(res => {
           if (res['code'] === 0) {
             this.message.success(res['msg']);
             this.isVisible = false;
             this.validateForm.reset();
-            this.getClassificationList();
+            this.getTagList();
           } else {
             this.message.error(res['msg']);
           }
@@ -49,12 +49,12 @@ export class ClassificationListComponent implements OnInit {
           name: validateForm.value.name,
           abbreviationName: validateForm.value.abbreviationName
         };
-        this.httpRequestService.detailClassificationRequest(params).subscribe(res => {
+        this.httpRequestService.detailTagRequest(params).subscribe(res => {
           if (res['code'] === 0) {
             this.message.success(res['msg']);
             this.isVisible = false;
             this.validateForm.reset();
-            this.getClassificationList();
+            this.getTagList();
           } else {
             this.message.error(res['msg']);
           }
@@ -62,23 +62,23 @@ export class ClassificationListComponent implements OnInit {
       }
     }
   }
-  // 查询分类列表
-  getClassificationList(): void {
-    this.httpRequestService.classificationListReuqest(this.params).subscribe(res => {
+  // 查询标签列表
+  getTagList(): void {
+    this.httpRequestService.tagListReuqest(this.params).subscribe(res => {
       if (res['code'] === 0) {
-        this.classificationList = res['data'].list;
+        this.tagList = res['data'].list;
       } else {
         this.message.error(res['msg']);
       }
     });
   }
-  // 新增分类
-  addClassification(): void {
+  // 新增标签
+  addTag(): void {
     this.isVisible = true;
     this.status = false;
   }
-  // 编辑分类
-  detailClassification(data): void {
+  // 编辑标签
+  detailTag(data): void {
     this.isVisible = true;
     this.status = true;
     this.id = data._id;
@@ -87,12 +87,12 @@ export class ClassificationListComponent implements OnInit {
       abbreviationName: data.abbreviationName
     });
   }
-  // 删除分类
-  deleteClassification(id): void {
-    this.httpRequestService.deleteClassificationRequest(id).subscribe(res => {
+  // 删除标签
+  deleteTag(id): void {
+    this.httpRequestService.deleteTagRequest(id).subscribe(res => {
       if (res['code'] === 0) {
         this.message.success(res['msg']);
-        this.getClassificationList();
+        this.getTagList();
       } else {
         this.message.error(res['msg']);
       }
@@ -109,7 +109,7 @@ export class ClassificationListComponent implements OnInit {
       name: [ null, [ Validators.required ] ],
       abbreviationName: [ null, [ Validators.required ] ]
     });
-    this.getClassificationList();
+    this.getTagList();
   }
 
 }

@@ -21,7 +21,7 @@
         <nz-form-item nzFlex>
           <nz-form-label [nzSpan]="6" nzRequired>分类</nz-form-label>
           <nz-form-control [nzSpan]="18">
-            <nz-select formControlName="classification" nzPlaceHolder="选择文章分类">
+            <nz-select nzShowSearch formControlName="classification" nzPlaceHolder="选择文章分类">
               <nz-option 
                 *ngFor="let item of classificationList" 
                 nzValue="{{ item._id }}" 
@@ -40,8 +40,12 @@
           <nz-form-label [nzSpan]="6" nzRequired>标签</nz-form-label>
           <nz-form-control [nzSpan]="18">
             <nz-select formControlName="tag" nzPlaceHolder="选择文章标签">
-              <nz-option nzValue="js" nzLabel="javascript"></nz-option>
-              <nz-option nzValue="node" nzLabel="nodeJs"></nz-option>
+              <nz-option 
+                *ngFor="let item of tagList" 
+                nzValue="{{ item._id }}" 
+                nzLabel="{{ item.name }}"
+              >
+              </nz-option>
             </nz-select>
             <nz-form-explain *ngIf="validateForm.get('tag').dirty && validateForm.get('tag').errors">
               请选择文章标签

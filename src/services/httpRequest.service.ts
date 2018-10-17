@@ -54,6 +54,16 @@ export class HttpRequestService {
   classificationList = `${PATH}/classificationList`;
   // 编辑分类
   detailClassification = `${PATH}/detailClassification`;
+  // 删除分类
+  deleteClassification = `${PATH}/deleteClassification`;
+  // 新增标签
+  addTag = `${PATH}/addTag`;
+  // 标签列表
+  tagList = `${PATH}/tagList`;
+  // 编辑标签
+  detailTag = `${PATH}/detailTag`;
+  // 删除标签
+  deleteTag = `${PATH}/deleteTag`;
 
   /**
    * request
@@ -116,6 +126,36 @@ export class HttpRequestService {
   detailClassificationRequest(data): Observable<Response> {
     return this.http.put<Response>(this.detailClassification, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('detailClassificationRequest'))
+    );
+  }
+  // 删除分类
+  deleteClassificationRequest(id): Observable<Response> {
+    return this.http.delete<Response>(this.deleteClassification, { params: { id: id } }).pipe(
+      catchError(this.handleError<any>('deleteClassificationRequest'))
+    );
+  }
+  // 新增标签
+  addTagRequest(data): Observable<Response> {
+    return this.http.post<Response>(this.addTag, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addTagRequest'))
+    );
+  }
+  // 标签列表
+  tagListReuqest(data): Observable<Response> {
+    return this.http.get<Response>(this.tagList, { params: data }).pipe(
+      catchError(this.handleError<any>('tagListRequest'))
+    );
+  }
+  // 编辑标签
+  detailTagRequest(data): Observable<Response> {
+    return this.http.put<Response>(this.detailTag, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('detailTagRequest'))
+    );
+  }
+  // 删除标签
+  deleteTagRequest(id): Observable<Response> {
+    return this.http.delete<Response>(this.deleteTag, { params: { id: id } }).pipe(
+      catchError(this.handleError<any>('deleteTagRequest'))
     );
   }
 

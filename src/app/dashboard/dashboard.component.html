@@ -55,13 +55,13 @@
             <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/admin/classificationList">分类列表</li>
           </ul>
         </li>
-        <li nz-submenu>
+        <li nz-submenu [nzOpen]="activeIndex == 'tagList'">
           <span title>
             <i class="anticon anticon-tags-o"></i>
             <span>标签管理</span>
           </span>
           <ul>
-            <li nz-menu-item>标签列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/admin/tagList">标签列表</li>
           </ul>
         </li>
       </ul>

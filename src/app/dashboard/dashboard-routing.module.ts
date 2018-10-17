@@ -5,32 +5,36 @@ import { DashboardComponent } from '@/dashboard/dashboard.component';
 import { ArticleListComponent } from '@/article-list/article-list.component';
 import { ArticleDetailComponent } from '@/article-detail/article-detail.component';
 import { ClassificationListComponent } from '@/classification-list/classification-list.component';
+import { TagListComponent } from '@/tag-list/tag-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { LoginAuthService } from 'services/login-auth.service';
 
 const dashboardRoutes: Routes = [
-  // 页头和菜单
   {
-    path: 'admin',
+    path: 'admin', // 页头和菜单
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'index',
+        path: 'index', // 首页
         component: IndexComponent
       },
       {
-        path: 'articleList',
+        path: 'articleList', // 文章列表
         component: ArticleListComponent
       },
       {
-        path: 'articleDetail',
+        path: 'articleDetail', // 编辑文章
         component: ArticleDetailComponent
       },
       {
-        path: 'classificationList',
+        path: 'classificationList', // 分类列表
         component: ClassificationListComponent
+      },
+      {
+        path: 'tagList', // 标签列表
+        component: TagListComponent
       }
     ]
   },
