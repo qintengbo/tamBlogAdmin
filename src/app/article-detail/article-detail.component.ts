@@ -99,7 +99,7 @@ export class ArticleDetailComponent implements OnInit {
     this.validateForm = this.fb.group({
       title: [ null, [ Validators.required ] ],
       classification: [ null, [ Validators.required ] ],
-      tag: [ null, [ Validators.required ] ],
+      tag: [ [], [ Validators.required ] ],
       content: [ '', [ Validators.required ] ],
       status: [ 1 ] // 状态， 2-未发布，1-已发布
     });

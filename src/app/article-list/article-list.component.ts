@@ -11,6 +11,7 @@ import { ArticleParams } from 'class/article/ArticleParams';
 export class ArticleListComponent implements OnInit {
   articleList: Array<any>; // 文章列表
   classificationList: Array<any>; // 分类列表
+  tagList: Array<any>; // 标签列表
   total: number; // 数据总条数
   params: ArticleParams = { // 筛选列表请求参数
     keyWord: '',
@@ -21,7 +22,6 @@ export class ArticleListComponent implements OnInit {
     page: 1,
     size: 10
   };
-  classificationKeyWord = ''; // 查询分类
 
   constructor(
     private httpRequestService: HttpRequestService,
@@ -42,9 +42,19 @@ export class ArticleListComponent implements OnInit {
   }
   // 查询分类列表
   getClassificationList(): void {
-    this.httpRequestService.classificationListReuqest({ keyWord: this.classificationKeyWord }).subscribe(res => {
+    this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
       if (res['code'] === 0) {
         this.classificationList = res['data'].list;
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
+  // 查询标签列表
+  getTagList(): void {
+    this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
+      if (res['code'] === 0) {
+        this.tagList = res['data'].list;
       } else {
         this.message.error(res['msg']);
       }
@@ -96,8 +106,9 @@ export class ArticleListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getArticleList();
     this.getClassificationList();
+    this.getTagList();
+    this.getArticleList();
   }
 
 }

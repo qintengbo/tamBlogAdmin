@@ -27,8 +27,12 @@
     </div>
     <div class="inlineBlock">标签：
       <nz-select class="search-select" nzPlaceHolder="选择文章标签" [(ngModel)]="params.tag">
-        <nz-option nzValue="js" nzLabel="javascript"></nz-option>
-        <nz-option nzValue="node" nzLabel="nodeJs"></nz-option>
+        <nz-option 
+          *ngFor="let item of tagList" 
+          nzValue="{{ item._id }}" 
+          nzLabel="{{ item.name }}"
+        >
+        </nz-option>
       </nz-select>
     </div>
     <div class="inlineBlock">日期：
