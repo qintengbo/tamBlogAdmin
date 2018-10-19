@@ -16,7 +16,7 @@
       <input nz-input class="search-input" placeholder="请输入文章标题" [(ngModel)]="params.keyWord">
     </div>
     <div class="inlineBlock">分类：
-      <nz-select class="search-select" nzPlaceHolder="选择文章分类" [(ngModel)]="params.classification">
+      <nz-select nzShowSearch class="search-select" nzPlaceHolder="选择文章分类" [(ngModel)]="params.classification">
         <nz-option 
           *ngFor="let item of classificationList" 
           nzValue="{{ item._id }}" 
@@ -68,8 +68,10 @@
       <tr *ngFor="let data of articleListTable.data; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ data.title }}</td>
-        <td>{{ data.classification }}</td>
-        <td>{{ data.tag }}</td>
+        <td>{{ data.classification.name }}</td>
+        <td>
+          <nz-tag [nzColor]="'green'" *ngFor="let item of data.tag">{{ item.name }}</nz-tag>
+        </td>
         <td>{{ data.status == 2 ? '未发布' : '已发布' }}</td>
         <td>{{ data.laudNum }}</td>
         <td>{{ data.date | date: "y-MM-dd HH:mm:ss" }}</td>

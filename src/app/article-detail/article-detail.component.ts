@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
@@ -17,7 +18,8 @@ export class ArticleDetailComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private httpRequestService: HttpRequestService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) { }
 
   // 上传图片前的回调函数
@@ -60,9 +62,13 @@ export class ArticleDetailComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     if (validateForm.valid) {
-      this.httpRequestService.addArticleRequest(validateForm.value)
-      .subscribe(res => {
-        console.log(res);
+      this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
+        if (res['code'] === 0) {
+          this.message.success(res['msg']);
+          this.router.navigate(['/admin/articleList']);
+        } else {
+          this.message.error(res['msg']);
+        }
       });
     }
   }
