@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
@@ -14,12 +16,14 @@ export class ArticleDetailComponent implements OnInit {
   previewState = false; // 预览状态
   classificationList: Array<any>; // 分类列表
   tagList: Array<any>; // 标签列表
+  articleId: string; // 文章id
 
   constructor(
     private fb: FormBuilder,
     private httpRequestService: HttpRequestService,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   // 上传图片前的回调函数
@@ -62,14 +66,33 @@ export class ArticleDetailComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     if (validateForm.valid) {
-      this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
-        if (res['code'] === 0) {
-          this.message.success(res['msg']);
-          this.router.navigate(['/admin/articleList']);
-        } else {
-          this.message.error(res['msg']);
-        }
-      });
+      if (this.articleId) {
+        let params = {
+          id: this.articleId,
+          title: validateForm.value.title,
+          classification: validateForm.value.classification,
+          tag: validateForm.value.tag,
+          content: validateForm.value.content,
+          status: validateForm.value.status
+        };
+        this.httpRequestService.detailArticleRequest(params).subscribe(res => {
+          if (res['code'] === 0) {
+            this.message.success(res['msg']);
+            this.router.navigate(['/admin/articleList']);
+          } else {
+            this.message.error(res['msg']);
+          }
+        });
+      } else {
+        this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
+          if (res['code'] === 0) {
+            this.message.success(res['msg']);
+            this.router.navigate(['/admin/articleList']);
+          } else {
+            this.message.error(res['msg']);
+          }
+        });
+      }
     }
   }
   // 预览md文件
@@ -111,6 +134,25 @@ export class ArticleDetailComponent implements OnInit {
     });
     this.getClassificationList();
     this.getTagList();
+    // 获取参数Id, 如果存在则请求文章详细信息
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.articleId = params.get('id');
+      if (this.articleId) {
+        this.httpRequestService.articleInfoRequest(this.articleId).subscribe(res => {
+          if (res['code'] === 0) {
+            // 展示文章详细信息
+            this.validateForm.patchValue({
+              title: res['data'].title,
+              classification: res['data'].classification,
+              tag: res['data'].tag,
+              content: res['data'].content
+            });
+          } else {
+            this.message.error(res['msg']);
+          }
+        });
+      }
+    });
   }
 
 }

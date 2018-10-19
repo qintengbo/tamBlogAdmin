@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
 import { ArticleParams } from 'class/article/ArticleParams';
@@ -25,7 +26,8 @@ export class ArticleListComponent implements OnInit {
 
   constructor(
     private httpRequestService: HttpRequestService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) { }
 
   // 查询文章列表
@@ -103,6 +105,10 @@ export class ArticleListComponent implements OnInit {
         this.message.error(res['msg']);
       }
     });
+  }
+  // 编辑文章
+  detailArticle(id: string): void {
+    this.router.navigate(['/admin/articleDetail', { id: id }]);
   }
 
   ngOnInit() {

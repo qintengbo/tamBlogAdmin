@@ -83,7 +83,7 @@
           >
             {{ data.status == 2 ? '上线' : '下线' }}
           </span>
-          <span>编辑</span>
+          <span (click)="detailArticle(data._id)">编辑</span>
           <span nz-popconfirm nzTitle="你确定要删除此文章吗？" (nzOnConfirm)="deleteArticle(data._id)">删除</span>
         </td>
       </tr>

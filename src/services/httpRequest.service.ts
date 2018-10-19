@@ -48,6 +48,10 @@ export class HttpRequestService {
   updateArticle = `${PATH}/updateArticle`;
   // 删除文章
   deleteArticle = `${PATH}/deleteArticle`;
+  // 查询文章详细信息
+  articleInfo = `${PATH}/articleInfo`;
+  // 编辑文章
+  detailArticle = `${PATH}/detailArticle`;
   // 新增分类
   addClassification = `${PATH}/addClassification`;
   // 分类列表
@@ -108,6 +112,18 @@ export class HttpRequestService {
   deleteArticleRequest(id): Observable<Response> {
     return this.http.delete<Response>(this.deleteArticle, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteArticleRequest'))
+    );
+  }
+  // 查询文章详细信息
+  articleInfoRequest(id): Observable<Response> {
+    return this.http.get<Response>(this.articleInfo, { params: { id: id } }).pipe(
+      catchError(this.handleError<any>('articleInfoRequest'))
+    );
+  }
+  // 编辑文章
+  detailArticleRequest(data): Observable<Response> {
+    return this.http.put<Response>(this.detailArticle, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('detailArticleRequest'))
     );
   }
   // 新增分类
