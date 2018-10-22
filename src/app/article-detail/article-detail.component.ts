@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
@@ -154,5 +152,4 @@ export class ArticleDetailComponent implements OnInit {
       }
     });
   }
-
 }
