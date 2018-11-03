@@ -3,14 +3,21 @@
   overflow: hidden;
 }
 .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255,255,255,.2);
-  margin: 16px 28px 16px 0;
   float: left;
 }
+.title {
+  float: left;
+  font-size: 18px;
+  color: #000;
+}
+.logo img {
+  width: 184px;
+  margin-bottom: 6px;
+}
 .page-header {
-  background: #002140;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  z-index: 99;
 }
 .index-icon {
   margin-right: 8px;
@@ -19,7 +26,7 @@
   line-height: 64px; 
   float: right;
   background: transparent;
-  color: #fff;
+  color: #000;
   border-bottom: 0;
 }
 .layoutUl > .ant-menu-item {
@@ -37,7 +44,7 @@
   color: #1890ff;
 }
 .layoutUl > .ant-menu-item-selected {
-  color: #fff;
+  color: #000;
 }
 .header-userpannel {
   float: right;
@@ -54,7 +61,7 @@
   margin-left: 12px;
 }
 .userProfile .ant-dropdown-link {
-  color: #fff;
+  color: #000;
 }
 .userProfile .ant-dropdown-link:hover {
   color: #1890ff;

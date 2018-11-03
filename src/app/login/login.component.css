@@ -45,6 +45,9 @@
   top: -60px; 
   right: 140px;
 }
+.login-logo img {
+  width: 84px;
+}
 .login-name {
   width: 100%; 
   float: left; 
