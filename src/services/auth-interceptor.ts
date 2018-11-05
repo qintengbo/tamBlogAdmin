@@ -28,13 +28,11 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authReq).pipe(
         map((event: HttpEvent<any>) => {
           // 如果账号已过期，则跳转到登录页面
-          if (event instanceof HttpResponse) {
-            if (event['body']['expired']) {
-              // TODO: 这里不用setTimeout跳转页面会报错
-              setTimeout(() => {
-                this.router.navigate(['/login']);
-              }, 1000);
-            }
+          if (event instanceof HttpResponse && event['body']['expired']) {
+            // TODO: 这里不用setTimeout跳转页面会报错
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 1000);
           }
           return event;
         })
