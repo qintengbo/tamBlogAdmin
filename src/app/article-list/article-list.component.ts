@@ -108,7 +108,7 @@ export class ArticleListComponent implements OnInit {
   }
   // 编辑文章
   detailArticle(id: string): void {
-    this.router.navigate(['/admin/articleDetail', { id: id }]);
+    this.router.navigate(['/dashboard/articleDetail', { id: id }]);
   }
 
   ngOnInit() {

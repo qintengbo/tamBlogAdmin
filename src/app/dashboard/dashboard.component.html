@@ -32,7 +32,7 @@
         <i class="anticon" [class.anticon-left]="isCollapsed" [class.anticon-right]="!isCollapsed"></i>
       </div>
       <ul class="menu-ul" nz-menu [nzMode]="'inline'" [nzTheme]="'light'" [nzInlineCollapsed]="isCollapsed" (nzClick)="menuLight()">
-        <li nz-menu-item [nzSelected]="activeIndex == 'index'" routerLink="/admin/index">
+        <li nz-menu-item [nzSelected]="activeIndex == 'index'" routerLink="/dashboard/index">
           <span title>
             <i class="anticon anticon-home"></i>
             <span>首页</span>
@@ -44,7 +44,7 @@
             <span>文章管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'articleList' || activeIndex == 'articleDetail'" routerLink="/admin/articleList">文章列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'articleList' || activeIndex == 'articleDetail'" routerLink="/dashboard/articleList">文章列表</li>
           </ul>
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'classificationList'">
@@ -53,7 +53,7 @@
             <span>分类管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/admin/classificationList">分类列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/dashboard/classificationList">分类列表</li>
           </ul>
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'tagList'">
@@ -62,7 +62,7 @@
             <span>标签管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/admin/tagList">标签列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/dashboard/tagList">标签列表</li>
           </ul>
         </li>
       </ul>

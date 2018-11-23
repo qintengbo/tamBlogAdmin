@@ -12,7 +12,7 @@ import { LoginAuthService } from 'services/login-auth.service';
 
 const dashboardRoutes: Routes = [
   {
-    path: 'admin', // 页头和菜单
+    path: 'dashboard', // 页头和菜单
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [

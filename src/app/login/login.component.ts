@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
           // 存储token
           sessionStorage['token'] = res['token'];
           // 从我们的身份验证服务获取重定向URL，如果没有则跳转到默认页面
-          let redirect = this.loginAuthService.redirectUrl ? this.loginAuthService.redirectUrl : '/admin/index';
+          let redirect = this.loginAuthService.redirectUrl ? this.loginAuthService.redirectUrl : '/dashboard/index';
           this.router.navigate([redirect]);
         } else {
           this.message.error(res['msg']);

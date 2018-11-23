@@ -76,7 +76,7 @@ export class ArticleDetailComponent implements OnInit {
         this.httpRequestService.detailArticleRequest(params).subscribe(res => {
           if (res['code'] === 0) {
             this.message.success(res['msg']);
-            this.router.navigate(['/admin/articleList']);
+            this.router.navigate(['/dashboard/articleList']);
           } else {
             this.message.error(res['msg']);
           }
@@ -85,7 +85,7 @@ export class ArticleDetailComponent implements OnInit {
         this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
           if (res['code'] === 0) {
             this.message.success(res['msg']);
-            this.router.navigate(['/admin/articleList']);
+            this.router.navigate(['/dashboard/articleList']);
           } else {
             this.message.error(res['msg']);
           }
