@@ -46,8 +46,7 @@ export class TagListComponent implements OnInit {
       } else {
         let params = {
           id: this.id,
-          name: validateForm.value.name,
-          abbreviationName: validateForm.value.abbreviationName
+          ...validateForm.value
         };
         this.httpRequestService.detailTagRequest(params).subscribe(res => {
           if (res['code'] === 0) {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
+import { NzMessageService, UploadXHRArgs, NzModalService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-article-detail',
@@ -21,7 +22,8 @@ export class ArticleDetailComponent implements OnInit {
     private httpRequestService: HttpRequestService,
     private message: NzMessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NzModalService
   ) { }
 
   // 上传图片前的回调函数
@@ -67,11 +69,7 @@ export class ArticleDetailComponent implements OnInit {
       if (this.articleId) {
         let params = {
           id: this.articleId,
-          title: validateForm.value.title,
-          classification: validateForm.value.classification,
-          tag: validateForm.value.tag,
-          content: validateForm.value.content,
-          status: validateForm.value.status
+          ...validateForm.value
         };
         this.httpRequestService.detailArticleRequest(params).subscribe(res => {
           if (res['code'] === 0) {
@@ -119,6 +117,16 @@ export class ArticleDetailComponent implements OnInit {
       } else {
         this.message.error(res['msg']);
       }
+    });
+  }
+  // 未保存离开时提示是否保存
+  canDeactivate(): Promise<boolean> | boolean {
+    return new Promise(resolve => {
+      this.modalService.confirm({
+        nzTitle: '您还有未保存的文章，确定离开？',
+        nzOnOk: () => { resolve(true); },
+        nzOnCancel: () => { resolve(false); }
+      });
     });
   }
 

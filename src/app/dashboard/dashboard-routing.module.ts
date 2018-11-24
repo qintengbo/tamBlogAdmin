@@ -9,6 +9,7 @@ import { TagListComponent } from '@/tag-list/tag-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { LoginAuthService } from 'services/login-auth.service';
+import { CanDeactivateGuard } from 'services/can-deactivate.guard';
 
 const dashboardRoutes: Routes = [
   {
@@ -26,7 +27,8 @@ const dashboardRoutes: Routes = [
       },
       {
         path: 'articleDetail', // 编辑文章
-        component: ArticleDetailComponent
+        component: ArticleDetailComponent,
+        canDeactivate: [CanDeactivateGuard]
       },
       {
         path: 'classificationList', // 分类列表
