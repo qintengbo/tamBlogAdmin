@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService, UploadXHRArgs, NzModalService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-article-detail',
