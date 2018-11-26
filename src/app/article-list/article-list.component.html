@@ -60,7 +60,7 @@
         <th>标签</th>
         <th>状态</th>
         <th>点赞数</th>
-        <th>{{ params.status === 2 ? '创建时间' : '发布时间' }}</th>
+        <th>{{ params.status === 2 ? '更新时间' : '发布时间' }}</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -74,7 +74,7 @@
         </td>
         <td>{{ data.status == 2 ? '未发布' : '已发布' }}</td>
         <td>{{ data.laudNum }}</td>
-        <td>{{ data.date | date: "y-MM-dd HH:mm:ss" }}</td>
+        <td>{{ data.updateDate | date: "y-MM-dd HH:mm:ss" }}</td>
         <td class="operation">
           <span 
             nz-popconfirm 
