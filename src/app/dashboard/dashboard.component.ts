@@ -15,6 +15,13 @@ export class DashboardComponent implements OnInit {
   isCollapsed = false; // 菜单是否折叠
   activeIndex: string; // 当前路由路径
 
+  constructor(
+    private httpRequestService: HttpRequestService,
+    private message: NzMessageService,
+    private loginAuthService: LoginAuthService,
+    private route: ActivatedRoute
+  ) { }
+
   // 菜单展开折叠
   toggleCollapsed (): void {
     this.isCollapsed = !this.isCollapsed;
@@ -42,13 +49,6 @@ export class DashboardComponent implements OnInit {
   logout (): void {
     this.loginAuthService.logout();
   }
-
-  constructor(
-    private httpRequestService: HttpRequestService,
-    private message: NzMessageService,
-    private loginAuthService: LoginAuthService,
-    private route: ActivatedRoute
-  ) { }
 
   ngOnInit(): void {
     this.getUserInfo();

@@ -15,6 +15,7 @@ export class ArticleDetailComponent implements OnInit {
   classificationList: Array<any>; // 分类列表
   tagList: Array<any>; // 标签列表
   articleId: string; // 文章id
+  isSubmit = false; // 是否提交状态
 
   constructor(
     private fb: FormBuilder,
@@ -72,6 +73,7 @@ export class ArticleDetailComponent implements OnInit {
         };
         this.httpRequestService.detailArticleRequest(params).subscribe(res => {
           if (res['code'] === 0) {
+            this.isSubmit = true;
             this.message.success(res['msg']);
             this.router.navigate(['/dashboard/articleList']);
           } else {
@@ -81,6 +83,7 @@ export class ArticleDetailComponent implements OnInit {
       } else {
         this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
           if (res['code'] === 0) {
+            this.isSubmit = true;
             this.message.success(res['msg']);
             this.router.navigate(['/dashboard/articleList']);
           } else {
@@ -120,13 +123,17 @@ export class ArticleDetailComponent implements OnInit {
   }
   // 未保存离开时提示是否保存
   canDeactivate(): Promise<boolean> | boolean {
-    return new Promise(resolve => {
-      this.modalService.confirm({
-        nzTitle: '您还有未保存的文章，确定离开？',
-        nzOnOk: () => { resolve(true); },
-        nzOnCancel: () => { resolve(false); }
+    if (!this.isSubmit && !this.validateForm.pristine) {
+      return new Promise(resolve => {
+        this.modalService.confirm({
+          nzTitle: '您还有未保存的文章，确定离开？',
+          nzOnOk: () => { resolve(true); },
+          nzOnCancel: () => { resolve(false); }
+        });
       });
-    });
+    } else {
+      return true;
+    }
   }
 
   ngOnInit() {

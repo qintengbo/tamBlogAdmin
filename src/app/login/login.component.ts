@@ -13,6 +13,14 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
+  constructor(
+    private fb: FormBuilder,
+    private loginAuthService: LoginAuthService,
+    private httpRequestService: HttpRequestService,
+    private router: Router,
+    private message: NzMessageService
+    ) { }
+
   // 提交登录表单
   submitForm (validateForm): void {
     for (const i of Object.keys(this.validateForm.controls)) {
@@ -35,14 +43,6 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
-  constructor(
-    private fb: FormBuilder,
-    private loginAuthService: LoginAuthService,
-    private httpRequestService: HttpRequestService,
-    private router: Router,
-    private message: NzMessageService
-    ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
