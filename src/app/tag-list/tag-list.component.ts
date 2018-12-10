@@ -6,7 +6,7 @@ import { HttpRequestService } from 'services/httpRequest.service';
 @Component({
   selector: 'app-tag-list',
   templateUrl: './tag-list.component.html',
-  styleUrls: ['./tag-list.component.css']
+  styleUrls: ['./tag-list.component.less']
 })
 export class TagListComponent implements OnInit {
   validateForm: FormGroup;

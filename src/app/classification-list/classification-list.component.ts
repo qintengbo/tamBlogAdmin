@@ -6,7 +6,7 @@ import { HttpRequestService } from 'services/httpRequest.service';
 @Component({
   selector: 'app-classification-list',
   templateUrl: './classification-list.component.html',
-  styleUrls: ['./classification-list.component.css']
+  styleUrls: ['./classification-list.component.less']
 })
 export class ClassificationListComponent implements OnInit {
   validateForm: FormGroup;

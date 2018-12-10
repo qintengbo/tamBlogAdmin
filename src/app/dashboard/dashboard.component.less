@@ -1,0 +1,90 @@
+.layout {
+  height: 100%;
+  overflow: hidden;
+  .page-header {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    z-index: 99;
+    .logo {
+      float: left;
+      img {
+        width: 184px;
+        margin-bottom: 6px;
+      }
+    }
+    .title {
+      float: left;
+      font-size: 18px;
+      color: #000;
+    }
+    .header-userpannel {
+      float: right;
+      display: flex;
+      align-items: center;
+      margin-left: 12px;
+      cursor: pointer;
+      .userProfile {
+        margin-left: 12px;
+        .ant-dropdown-link {
+          color: #000;
+        }
+        .ant-dropdown-link:hover {
+          color: #1890ff;
+        }
+      }
+      & > .ant-avatar {
+        color: #fff;
+        background: #87d068;
+      }
+    }
+    .layoutUl {
+      line-height: 64px; 
+      float: right;
+      background: transparent;
+      color: #000;
+      border-bottom: 0;
+      & > .ant-menu-item {
+        border-bottom: 0;
+      }
+      & > .ant-menu-item:focus {
+        outline: 0
+      }
+      & > .ant-menu-item:hover, .ant-menu-item:active {
+        border-bottom: 0;
+        color: #1890ff;
+      }
+      & > .ant-menu-item-selected:hover {
+        color: #1890ff;
+      }
+      & > .ant-menu-item-selected {
+        color: #000;
+      }
+    }
+    .index-icon {
+      margin-right: 8px;
+    }
+  }
+  .menu {
+    background: #fff;
+    .menu-ul {
+      height: calc(100% - 60px);
+      border-right: 0;
+    }
+    .collapsed {
+      width: 100%;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: 700;
+      color: #1890ff;
+      cursor: pointer;
+    }
+  }
+  .content-layout {
+    padding: 0 24px;
+    .copyright {
+      width: 100%;
+      padding: 15px 50px;
+      text-align: center;
+    }
+  }
+}

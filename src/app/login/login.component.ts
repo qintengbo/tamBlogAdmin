@@ -8,7 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
