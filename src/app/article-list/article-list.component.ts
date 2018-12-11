@@ -10,7 +10,7 @@ import { ArticleParams } from 'class/article/ArticleParams';
   styleUrls: ['./article-list.component.less']
 })
 export class ArticleListComponent implements OnInit {
-  articleList: Array<any>; // 文章列表
+  articleList: Array<any> = []; // 文章列表
   classificationList: Array<any>; // 分类列表
   tagList: Array<any>; // 标签列表
   total: number; // 数据总条数

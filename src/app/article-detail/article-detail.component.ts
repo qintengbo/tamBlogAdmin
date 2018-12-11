@@ -124,6 +124,8 @@ export class ArticleDetailComponent implements OnInit {
   // 未保存离开时提示是否保存
   canDeactivate(): Promise<boolean> | boolean {
     if (!this.isSubmit && !this.validateForm.pristine) {
+      // 改变控件的焦点状态，防止浏览器回退按钮点击时报错
+      this.validateForm.get('content').markAsTouched();
       return new Promise(resolve => {
         this.modalService.confirm({
           nzTitle: '您还有未保存的文章，确定离开？',
