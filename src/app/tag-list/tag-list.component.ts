@@ -10,7 +10,7 @@ import { HttpRequestService } from 'services/httpRequest.service';
 })
 export class TagListComponent implements OnInit {
   validateForm: FormGroup;
-  tagList: Array<any>; // 标签列表数据
+  tagList: Array<any> = []; // 标签列表数据
   isVisible = false; // 新增标签模态框状态
   status = false; // 是否编辑状态
   id: string; // 编辑标签的id

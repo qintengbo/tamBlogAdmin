@@ -10,7 +10,7 @@ import { HttpRequestService } from 'services/httpRequest.service';
 })
 export class ClassificationListComponent implements OnInit {
   validateForm: FormGroup;
-  classificationList: Array<any>; // 分类列表数据
+  classificationList: Array<any> = []; // 分类列表数据
   isVisible = false; // 新增分类模态框状态
   status = false; // 是否编辑状态
   id: string; // 编辑分类的id

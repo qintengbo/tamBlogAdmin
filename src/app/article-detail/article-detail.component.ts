@@ -12,8 +12,8 @@ import { HttpRequestService } from 'services/httpRequest.service';
 export class ArticleDetailComponent implements OnInit {
   validateForm: FormGroup;
   previewState = false; // 预览状态
-  classificationList: Array<any>; // 分类列表
-  tagList: Array<any>; // 标签列表
+  classificationList: Array<any> = []; // 分类列表
+  tagList: Array<any> = []; // 标签列表
   articleId: string; // 文章id
   isSubmit = false; // 是否提交状态
 
