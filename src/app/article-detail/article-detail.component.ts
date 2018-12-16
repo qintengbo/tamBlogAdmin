@@ -41,6 +41,7 @@ export class ArticleDetailComponent implements OnInit {
     }
     return isImg && isLt4M;
   }
+
   // 插入图片
   handleUpload = (item: UploadXHRArgs) => {
     // 构建一个 FormData 对象，用于存储文件或其他参数
@@ -60,6 +61,7 @@ export class ArticleDetailComponent implements OnInit {
       }
     });
   }
+
   // 提交表单
   submitForm = (validateForm) => {
     for (const i of Object.keys(this.validateForm.controls)) {
@@ -94,14 +96,17 @@ export class ArticleDetailComponent implements OnInit {
       }
     }
   }
+
   // 预览md文件
   preview(): void {
     this.previewState = !this.previewState;
   }
+
   // 保存文章
   save = () => {
     this.validateForm.patchValue({ status: 2 });
   }
+
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
@@ -112,6 +117,7 @@ export class ArticleDetailComponent implements OnInit {
       }
     });
   }
+
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
@@ -122,6 +128,7 @@ export class ArticleDetailComponent implements OnInit {
       }
     });
   }
+
   // 未保存离开时提示是否保存
   canDeactivate(): Promise<boolean> | boolean {
     if (!this.isSubmit && !this.validateForm.pristine) {
