@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   toggleCollapsed (): void {
     this.isCollapsed = !this.isCollapsed;
   }
+
   // 获取用户信息
   getUserInfo (): void {
     this.httpRequestService.userInfoRequest()
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
   // 菜单高亮
   menuLight (): void {
     // TODO: 这里暂时不知道为什么要使用setTimeout才能拿到正确的path，否则path在菜单跳转后不会改变
@@ -45,6 +47,7 @@ export class DashboardComponent implements OnInit {
       this.activeIndex = this.route.firstChild.url['value'][0].path;
     }, 0);
   }
+
   // 退出登录
   logout (): void {
     this.loginAuthService.logout();

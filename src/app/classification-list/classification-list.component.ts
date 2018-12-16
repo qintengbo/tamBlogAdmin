@@ -61,6 +61,7 @@ export class ClassificationListComponent implements OnInit {
       }
     }
   }
+
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest(this.params).subscribe(res => {
@@ -71,11 +72,13 @@ export class ClassificationListComponent implements OnInit {
       }
     });
   }
+
   // 新增分类
   addClassification(): void {
     this.isVisible = true;
     this.status = false;
   }
+
   // 编辑分类
   detailClassification(data): void {
     this.isVisible = true;
@@ -86,6 +89,7 @@ export class ClassificationListComponent implements OnInit {
       abbreviationName: data.abbreviationName
     });
   }
+
   // 删除分类
   deleteClassification(id): void {
     this.httpRequestService.deleteClassificationRequest(id).subscribe(res => {
@@ -97,6 +101,7 @@ export class ClassificationListComponent implements OnInit {
       }
     });
   }
+
   // 关闭模态框
   modalCancel(): void {
     this.isVisible = false;

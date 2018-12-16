@@ -11,11 +11,11 @@ import { HttpRequestService } from 'services/httpRequest.service';
 })
 export class ArticleDetailComponent implements OnInit {
   validateForm: FormGroup;
-  previewState = false; // 预览状态
+  previewState: Boolean = false; // 预览状态
   classificationList: Array<any> = []; // 分类列表
   tagList: Array<any> = []; // 标签列表
   articleId: string; // 文章id
-  isSubmit = false; // 是否提交状态
+  isSubmit: Boolean = false; // 是否提交状态
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +46,8 @@ export class ArticleDetailComponent implements OnInit {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
-    this.httpRequestService.uploadFileRequest(formData)
+    // 返回自定义上传方法
+    return this.httpRequestService.uploadFileRequest(formData)
     .subscribe(res => {
       if (res['code'] === 0) {
         let textValue = this.validateForm.value['content'];

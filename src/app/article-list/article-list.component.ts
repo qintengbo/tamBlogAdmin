@@ -42,6 +42,7 @@ export class ArticleListComponent implements OnInit {
       }
     });
   }
+
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
@@ -52,6 +53,7 @@ export class ArticleListComponent implements OnInit {
       }
     });
   }
+
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
@@ -62,11 +64,13 @@ export class ArticleListComponent implements OnInit {
       }
     });
   }
+
   // 选择tab标签页回调函数
   changTabs = ($event) => {
     this.params.status = $event.index;
     this.getArticleList();
   }
+
   // 重置
   reset(): void {
     this.params.keyWord = '';
@@ -75,11 +79,13 @@ export class ArticleListComponent implements OnInit {
     this.params.date = '';
     this.getArticleList();
   }
+
   // 分页
   pageIndexChange(num): void {
     this.params.page = num;
     this.getArticleList();
   }
+
   // 更新文章状态
   updateStatus(id: string, status: number): void {
     let updateParams = {
@@ -95,6 +101,7 @@ export class ArticleListComponent implements OnInit {
       }
     });
   }
+
   // 删除文章
   deleteArticle(id: string): void {
     this.httpRequestService.deleteArticleRequest(id).subscribe(res => {
@@ -106,6 +113,7 @@ export class ArticleListComponent implements OnInit {
       }
     });
   }
+
   // 编辑文章
   detailArticle(id: string): void {
     this.router.navigate(['/dashboard/articleDetail', { id: id }]);

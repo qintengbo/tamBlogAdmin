@@ -61,6 +61,7 @@ export class TagListComponent implements OnInit {
       }
     }
   }
+
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest(this.params).subscribe(res => {
@@ -71,11 +72,13 @@ export class TagListComponent implements OnInit {
       }
     });
   }
+
   // 新增标签
   addTag(): void {
     this.isVisible = true;
     this.status = false;
   }
+
   // 编辑标签
   detailTag(data): void {
     this.isVisible = true;
@@ -86,6 +89,7 @@ export class TagListComponent implements OnInit {
       abbreviationName: data.abbreviationName
     });
   }
+
   // 删除标签
   deleteTag(id): void {
     this.httpRequestService.deleteTagRequest(id).subscribe(res => {
@@ -97,6 +101,7 @@ export class TagListComponent implements OnInit {
       }
     });
   }
+
   // 关闭模态框
   modalCancel(): void {
     this.isVisible = false;
