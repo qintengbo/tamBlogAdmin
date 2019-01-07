@@ -1,8 +1,3 @@
-/**
- * Created by tam on 2018/09/15.
- * httpRequest Service
- */
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -85,91 +80,91 @@ export class HttpRequestService {
     );
   }
   // 上传文件
-  uploadFileRequest(data): Observable<Response> {
+  uploadFileRequest(data: {}): Observable<Response> {
     return this.http.post<Response>(this.uploadFile, data).pipe(
       catchError(this.handleError<any>('uploadFileRequest'))
     );
   }
-  // 新增文件
+  // 新增文章
   addArticleRequest(data: ArticleForm): Observable<Response> {
     return this.http.post<Response>(this.addArticle, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('addArticleRequest'))
     );
   }
   // 文章列表
-  articleListRequest(data): Observable<Response> {
+  articleListRequest(data: {}): Observable<Response> {
     return this.http.get<Response>(this.articleList, { params: data }).pipe(
       catchError(this.handleError<any>('articleListRequest'))
     );
   }
   // 更新文章状态
-  updateArticleRequest(data): Observable<Response> {
+  updateArticleRequest(data: {}): Observable<Response> {
     return this.http.put<Response>(this.updateArticle, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateArticleRequest'))
     );
   }
   // 删除文章
-  deleteArticleRequest(id): Observable<Response> {
+  deleteArticleRequest(id: string): Observable<Response> {
     return this.http.delete<Response>(this.deleteArticle, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteArticleRequest'))
     );
   }
   // 查询文章详细信息
-  articleInfoRequest(id): Observable<Response> {
+  articleInfoRequest(id: string): Observable<Response> {
     return this.http.get<Response>(this.articleInfo, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('articleInfoRequest'))
     );
   }
   // 编辑文章
-  detailArticleRequest(data): Observable<Response> {
+  detailArticleRequest(data: {}): Observable<Response> {
     return this.http.put<Response>(this.detailArticle, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('detailArticleRequest'))
     );
   }
   // 新增分类
-  addClassificationRequest(data): Observable<Response> {
+  addClassificationRequest(data: {}): Observable<Response> {
     return this.http.post<Response>(this.addClassification, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('addClassificationRequest'))
     );
   }
   // 分类列表
-  classificationListReuqest(data): Observable<Response> {
+  classificationListReuqest(data: {}): Observable<Response> {
     return this.http.get<Response>(this.classificationList, { params: data }).pipe(
       catchError(this.handleError<any>('classificationListRequest'))
     );
   }
   // 编辑分类
-  detailClassificationRequest(data): Observable<Response> {
+  detailClassificationRequest(data: {}): Observable<Response> {
     return this.http.put<Response>(this.detailClassification, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('detailClassificationRequest'))
     );
   }
   // 删除分类
-  deleteClassificationRequest(id): Observable<Response> {
+  deleteClassificationRequest(id: string): Observable<Response> {
     return this.http.delete<Response>(this.deleteClassification, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteClassificationRequest'))
     );
   }
   // 新增标签
-  addTagRequest(data): Observable<Response> {
+  addTagRequest(data: {}): Observable<Response> {
     return this.http.post<Response>(this.addTag, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('addTagRequest'))
     );
   }
   // 标签列表
-  tagListReuqest(data): Observable<Response> {
+  tagListReuqest(data: {}): Observable<Response> {
     return this.http.get<Response>(this.tagList, { params: data }).pipe(
       catchError(this.handleError<any>('tagListRequest'))
     );
   }
   // 编辑标签
-  detailTagRequest(data): Observable<Response> {
+  detailTagRequest(data: {}): Observable<Response> {
     return this.http.put<Response>(this.detailTag, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('detailTagRequest'))
     );
   }
   // 删除标签
-  deleteTagRequest(id): Observable<Response> {
+  deleteTagRequest(id: string): Observable<Response> {
     return this.http.delete<Response>(this.deleteTag, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteTagRequest'))
     );

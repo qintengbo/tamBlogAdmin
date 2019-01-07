@@ -23,6 +23,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ClassificationListComponent } from './classification-list/classification-list.component';
 import { TagListComponent } from './tag-list/tag-list.component';
+import { BannerListComponent } from './banner-list/banner-list.component';
 
 registerLocaleData(zh);
 
@@ -35,6 +36,7 @@ registerLocaleData(zh);
     ArticleListComponent,
     ArticleDetailComponent,
     ClassificationListComponent,
+    BannerListComponent,
     TagListComponent
   ],
   imports: [ // 导入该应用的其他模块

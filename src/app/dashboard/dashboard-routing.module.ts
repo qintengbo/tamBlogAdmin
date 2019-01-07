@@ -6,6 +6,7 @@ import { ArticleListComponent } from '@/article-list/article-list.component';
 import { ArticleDetailComponent } from '@/article-detail/article-detail.component';
 import { ClassificationListComponent } from '@/classification-list/classification-list.component';
 import { TagListComponent } from '@/tag-list/tag-list.component';
+import { BannerListComponent } from '@/banner-list/banner-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { LoginAuthService } from 'services/login-auth.service';
@@ -37,6 +38,10 @@ const dashboardRoutes: Routes = [
       {
         path: 'tagList', // 标签列表
         component: TagListComponent
+      },
+      {
+        path: 'bannerList', // 轮播图列表
+        component: BannerListComponent
       }
     ]
   },

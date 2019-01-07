@@ -1,0 +1,40 @@
+<nz-breadcrumb class="breadCon" nzSeparator=">">
+  <nz-breadcrumb-item>轮播管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>轮播列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-content class="indexContent">
+  <button class="addBtn" nz-button nzType="primary" routerLink="/dashboard/bannerDetail">
+    <i class="anticon anticon-picture"></i>新增轮播图
+  </button>
+  <div>
+    <div class="inlineBlock">轮播状态：
+      <nz-select nzShowSearch [nzAllowClear]="true" class="search-select" nzPlaceHolder="选择轮播状态" [(ngModel)]="params.status">
+        <nz-option nzValue="1" nzLabel="已上播"></nz-option>
+        <nz-option nzValue="2" nzLabel="未上播"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <nz-table #bannerTable [nzData]="bannerList">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>缩略图</th>
+        <th>主标题</th>
+        <th>副标题</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of bannerTable.data; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.abbreviationName }}</td>
+        <td>{{ data.articleNum }}</td>
+        <td class="operation">
+          <span>上播</span>
+          <span nz-popconfirm nzTitle="你确定要删除此轮播图吗？" (nzOnConfirm)="deleteClassification(data._id)">删除</span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-content>

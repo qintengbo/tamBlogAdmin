@@ -65,6 +65,15 @@
             <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/dashboard/tagList">标签列表</li>
           </ul>
         </li>
+        <li nz-submenu [nzOpen]="activeIndex == 'bannerList'">
+          <span title>
+            <i class="anticon anticon-picture"></i>
+            <span>轮播管理</span>
+          </span>
+          <ul>
+            <li nz-menu-item [nzSelected]="activeIndex == 'bannerList'" routerLink="/dashboard/bannerList">轮播列表</li>
+          </ul>
+        </li>
       </ul>
     </nz-sider>
     <nz-layout class="content-layout">

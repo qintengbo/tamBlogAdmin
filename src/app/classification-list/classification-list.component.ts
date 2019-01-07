@@ -14,7 +14,7 @@ export class ClassificationListComponent implements OnInit {
   isVisible = false; // 新增分类模态框状态
   status = false; // 是否编辑状态
   id: string; // 编辑分类的id
-  params = { // 筛选列表请求参数
+  params: {} = { // 筛选列表请求参数
     keyWord: '',
   };
 

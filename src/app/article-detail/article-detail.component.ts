@@ -63,7 +63,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   // 提交表单
-  submitForm = (validateForm) => {
+  submitForm = (validateForm: any) => {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
