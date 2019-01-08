@@ -42,7 +42,7 @@ const dashboardRoutes: Routes = [
       {
         path: 'bannerList', // 轮播图列表
         component: BannerListComponent
-      }
+      },
     ]
   },
 ];

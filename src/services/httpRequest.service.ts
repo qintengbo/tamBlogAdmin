@@ -63,6 +63,16 @@ export class HttpRequestService {
   detailTag = `${PATH}/detailTag`;
   // 删除标签
   deleteTag = `${PATH}/deleteTag`;
+  // 新增轮播图
+  addBanner = `${PATH}/addBanner`;
+  // 轮播图列表
+  bannerList = `${PATH}/bannerList`;
+  // 更新轮播图状态
+  updateBannerStatus = `${PATH}/updateBanner`;
+  // 删除轮播图
+  deleteBanner = `${PATH}/deleteBanner`;
+  // 编辑轮播图
+  detailBanner = `${PATH}/detailBanner`;
 
   /**
    * request
@@ -167,6 +177,36 @@ export class HttpRequestService {
   deleteTagRequest(id: string): Observable<Response> {
     return this.http.delete<Response>(this.deleteTag, { params: { id: id } }).pipe(
       catchError(this.handleError<any>('deleteTagRequest'))
+    );
+  }
+  // 新增轮播图
+  addBannerRequest(data: {}): Observable<Response> {
+    return this.http.post<Response>(this.addBanner, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addBannerRequest'))
+    );
+  }
+  // 轮播图列表
+  bannerListRequest(data: {}): Observable<Response> {
+    return this.http.get<Response>(this.bannerList, { params: data }).pipe(
+      catchError(this.handleError<any>('bannerListRequest'))
+    );
+  }
+  // 更新轮播图状态
+  updateBannerStatusRequest(data: {}): Observable<Response> {
+    return this.http.put<Response>(this.updateBannerStatus, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updataBannerStatusRequest'))
+    );
+  }
+  // 删除轮播图
+  deleteBannerRequest(id: string): Observable<Response> {
+    return this.http.delete<Response>(this.deleteBanner, { params: { id: id } }).pipe(
+      catchError(this.handleError<any>('deleteBannerRequest'))
+    );
+  }
+  // 编辑轮播图
+  detailBannerRequest(data: {}): Observable<Response> {
+    return this.http.put<Response>(this.detailBanner, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('detailBannerRequest'))
     );
   }
 
