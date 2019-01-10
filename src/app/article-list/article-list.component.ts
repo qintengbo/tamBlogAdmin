@@ -20,6 +20,7 @@ export class ArticleListComponent implements OnInit {
     tag: null,
     status: 0, // 状态，2-未发布，1-已发布，0-全部
     date: '',
+    sort: null,
     page: 1,
     size: 10
   };
@@ -77,6 +78,7 @@ export class ArticleListComponent implements OnInit {
     this.params.classification = null;
     this.params.tag = null;
     this.params.date = '';
+    this.params.sort = null;
     this.getArticleList();
   }
 
@@ -117,6 +119,12 @@ export class ArticleListComponent implements OnInit {
   // 编辑文章
   detailArticle(id: string): void {
     this.router.navigate(['/dashboard/articleDetail', { id: id }]);
+  }
+
+  // 点赞数排序
+  sort(sort: string): void {
+    this.params.sort = sort;
+    this.getArticleList();
   }
 
   ngOnInit() {

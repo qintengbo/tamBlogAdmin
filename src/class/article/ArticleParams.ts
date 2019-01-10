@@ -7,4 +7,5 @@ export class ArticleParams {
   date: string;
   page: number;
   size: number;
+  sort: string;
 }

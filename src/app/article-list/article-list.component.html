@@ -59,7 +59,7 @@
         <th>分类</th>
         <th>标签</th>
         <th>状态</th>
-        <th>点赞数</th>
+        <th nzShowSort [(nzSort)]="params.sort" (nzSortChange)="sort($event)">点赞数</th>
         <th>{{ params.status === 2 ? '更新时间' : '发布时间' }}</th>
         <th>操作</th>
       </tr>

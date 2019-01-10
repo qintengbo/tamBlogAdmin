@@ -49,9 +49,15 @@
           </nz-form-explain>
         </nz-form-control>
         <nz-form-control class="uploadControl" [nzSpan]="5">
-          <button nz-button nzType="primary" (click)="uploadImg()">
-            <i class="anticon anticon-upload"></i>上传
-          </button>
+          <nz-upload
+            [nzShowUploadList]="false"
+            [nzCustomRequest]="handleUpload"
+            [nzBeforeUpload]="beforeUpload"
+          >
+            <button type="button" nz-button nzType="primary">
+              <i class="anticon anticon-upload"></i>上传
+            </button>
+          </nz-upload>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -102,7 +108,7 @@
     <tbody>
       <tr *ngFor="let data of bannerTable.data; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ data.imgUrl }}</td>
+        <td><img class="thumbnailImg" src="{{ data.imgUrl }}" alt="轮播图" /></td>
         <td>{{ data.mainTitle }}</td>
         <td>{{ data.subtitle }}</td>
         <td>{{ data.status == 2 ? '未上播' : '已上播' }}</td>
