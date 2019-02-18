@@ -62,6 +62,25 @@ export class ArticleDetailComponent implements OnInit {
     });
   }
 
+  // 封面图片上传
+  coverImgUpload = (item: UploadXHRArgs) => {
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    formData.append(item.name, item.file as any);
+    // 返回自定义上传方法
+    return this.httpRequestService.uploadFileRequest(formData)
+    .subscribe(res => {
+      if (res['code'] === 0) {
+        this.validateForm.patchValue({
+          coverImg: res['data'].imgUrl
+        });
+        this.message.success('上传图片成功');
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+  }
+
   // 提交表单
   submitForm = (validateForm: any) => {
     for (const i of Object.keys(this.validateForm.controls)) {
@@ -152,7 +171,9 @@ export class ArticleDetailComponent implements OnInit {
       classification: [ null, [ Validators.required ] ],
       tag: [ [], [ Validators.required ] ],
       content: [ '', [ Validators.required ] ],
-      status: [ 1 ] // 状态， 2-未发布，1-已发布
+      status: [ 1 ], // 状态， 2-未发布，1-已发布
+      coverImg: [ '', [ Validators.required ] ],
+      lead: [ '', [ Validators.required ] ] // 导语
     });
     this.getClassificationList();
     this.getTagList();

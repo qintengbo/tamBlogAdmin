@@ -1,5 +1,6 @@
 .article-label {
-  text-align: left;
+  width: 52px;
+  float: left;
 }
 .ant-form-item-label {
   padding-left: 0 !important;
@@ -46,4 +47,15 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.preWrap {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 25%;
+}
+
+::ng-deep .ant-input-affix-wrapper .ant-input-suffix {
+  right: 0;
 }

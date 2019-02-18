@@ -4,56 +4,85 @@
   <nz-breadcrumb-item>{{ articleId ? '编辑文章' : '新建文章' }}</nz-breadcrumb-item>
 </nz-breadcrumb>
 <nz-content class="indexContent">
+  <div *ngIf="validateForm.get('coverImg').value" class="preWrap">
+    <p>封面图预览：</p>
+    <div><img src="{{ validateForm.get('coverImg').value }}" alt="封面图"></div>
+  </div>
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
-    <div nz-row [nzGutter]="24">
-      <div nz-col [nzSpan]="8">
-        <nz-form-item nzFlex>
-          <nz-form-label class="article-label" [nzSpan]="4.5" nzRequired>标题</nz-form-label>
-          <nz-form-control [nzSpan]="18">
-            <input nz-input formControlName="title" placeholder="填写文章标题">
-            <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
-              请输入文章标题
-            </nz-form-explain>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col [nzSpan]="7">
-        <nz-form-item nzFlex>
-          <nz-form-label [nzSpan]="6" nzRequired>分类</nz-form-label>
-          <nz-form-control [nzSpan]="18">
-            <nz-select nzShowSearch formControlName="classification" nzPlaceHolder="选择文章分类">
-              <nz-option 
-                *ngFor="let item of classificationList" 
-                nzValue="{{ item._id }}" 
-                nzLabel="{{ item.name }}"
-              >
-              </nz-option>
-            </nz-select>
-            <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
-              请选择文章分类
-            </nz-form-explain>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div nz-col [nzSpan]="9">
-        <nz-form-item nzFlex>
-          <nz-form-label [nzSpan]="6" nzRequired>标签</nz-form-label>
-          <nz-form-control [nzSpan]="18">
-            <nz-select [nzMaxMultipleCount]="3" nzMode="multiple" formControlName="tag" nzPlaceHolder="选择文章标签">
-              <nz-option 
-                *ngFor="let item of tagList" 
-                nzValue="{{ item._id }}" 
-                nzLabel="{{ item.name }}"
-              >
-              </nz-option>
-            </nz-select>
-            <nz-form-explain *ngIf="validateForm.get('tag').dirty && validateForm.get('tag').errors">
-              请选择文章标签
-            </nz-form-explain>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
+    <nz-form-item>
+      <nz-form-label class="article-label" nzRequired>标题</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <input nz-input formControlName="title" placeholder="填写文章标题">
+        <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
+          请输入文章标题
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="article-label" nzRequired>分类</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-select nzShowSearch formControlName="classification" nzPlaceHolder="选择文章分类">
+          <nz-option 
+            *ngFor="let item of classificationList" 
+            nzValue="{{ item._id }}" 
+            nzLabel="{{ item.name }}"
+          >
+          </nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
+          请选择文章分类
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="article-label" nzRequired>标签</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-select [nzMaxMultipleCount]="3" nzMode="multiple" formControlName="tag" nzPlaceHolder="选择文章标签">
+          <nz-option 
+            *ngFor="let item of tagList" 
+            nzValue="{{ item._id }}" 
+            nzLabel="{{ item.name }}"
+          >
+          </nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('tag').dirty && validateForm.get('tag').errors">
+          请选择文章标签
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="article-label" nzRequired>封面</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-input-group [nzSuffix]="suffixIconButton">
+          <input nz-input formControlName="coverImg" placeholder="填写图片地址">
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+          <nz-upload
+            [nzShowUploadList]="false"
+            [nzCustomRequest]="coverImgUpload"
+            [nzBeforeUpload]="beforeUpload"
+          >
+            <button type="button" nz-button nzType="primary">
+              <i class="anticon anticon-upload"></i>
+            </button>
+          </nz-upload>
+        </ng-template>
+        <nz-form-explain *ngIf="validateForm.get('coverImg').dirty && validateForm.get('coverImg').errors">
+          <ng-container *ngIf="validateForm.get('coverImg').hasError('required')">
+            请输入图片地址
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="article-label" nzRequired>导语</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <textarea formControlName="lead" nz-input [nzAutosize]="{ minRows: 3 }" placeholder="填写文章导语"></textarea>
+        <nz-form-explain *ngIf="validateForm.get('lead').dirty && validateForm.get('lead').errors">
+          请输入文章导语
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
     <div nz-row [nzGutter]="24">
       <div class="text-btn">
         <span>
@@ -71,7 +100,7 @@
       </div>
       <div nz-col [nzSpan]="24">
         <nz-form-item class="textItem">
-          <nz-form-label [nzSpan]="24" nzRequired>正文</nz-form-label>
+          <nz-form-label [nzSpan]="24" nzRequired>正文：</nz-form-label>
           <nz-form-control [nzSpan]="24" *ngIf="!previewState">
             <textarea formControlName="content" nz-input [nzAutosize]="{ minRows: 16 }" placeholder="编写文章内容"></textarea>
             <nz-form-explain *ngIf="validateForm.get('content').dirty && validateForm.get('content').hasError('required')">
