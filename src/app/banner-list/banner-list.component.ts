@@ -14,7 +14,7 @@ export class BannerListComponent implements OnInit {
   isEdit = false; // 是否编辑状态
   bannerList: Array<any> = []; // 轮播图列表数据
   id: string; // 编辑轮播图的id
-  params: {} = { // 筛选列表请求参数
+  params = { // 筛选列表请求参数
     status: null,
   };
 
