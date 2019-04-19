@@ -8,7 +8,8 @@ import { ArticleForm } from 'class/article/ArticleForm';
 import { NzMessageService } from 'ng-zorro-antd';
 
 // 拦截器配置
-const PATH = '/api';
+// const PATH = '/api'; // 开发环境
+const PATH = '/admin'; // 生产环境
 
 @Injectable({
   providedIn: 'root'
