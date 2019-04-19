@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   // 提交登录表单
-  submitForm (validateForm): void {
+  submitForm (validateForm: any): void {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();

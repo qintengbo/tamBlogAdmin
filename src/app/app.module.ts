@@ -9,12 +9,10 @@ import { AppRoutingModule } from './/app-routing.module';
 import { LoginRoutingModule } from '@/login/login-routing.module';
 import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'services/auth-interceptor';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
@@ -60,6 +58,10 @@ registerLocaleData(zh);
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent] // 启动应用根组件

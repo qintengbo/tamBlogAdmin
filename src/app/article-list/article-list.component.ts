@@ -67,7 +67,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   // 选择tab标签页回调函数
-  changTabs = ($event) => {
+  changTabs = ($event: any) => {
     this.params.status = $event.index;
     this.getArticleList();
   }
@@ -83,7 +83,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   // 分页
-  pageIndexChange(num): void {
+  pageIndexChange(num: number): void {
     this.params.page = num;
     this.getArticleList();
   }

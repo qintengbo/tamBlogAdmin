@@ -6,7 +6,7 @@ export class LoginAuthService {
 
   constructor(
     private router: Router
-  ) {}
+  ) { }
 
   isLoggedIn: Boolean = false;
 

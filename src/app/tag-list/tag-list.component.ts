@@ -25,7 +25,7 @@ export class TagListComponent implements OnInit {
   ) { }
 
   // 提交表单
-  submitForm = (validateForm) => {
+  submitForm = (validateForm: any) => {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -80,7 +80,7 @@ export class TagListComponent implements OnInit {
   }
 
   // 编辑标签
-  detailTag(data): void {
+  detailTag(data: any): void {
     this.isVisible = true;
     this.status = true;
     this.id = data._id;
@@ -91,7 +91,7 @@ export class TagListComponent implements OnInit {
   }
 
   // 删除标签
-  deleteTag(id): void {
+  deleteTag(id: string): void {
     this.httpRequestService.deleteTagRequest(id).subscribe(res => {
       if (res['code'] === 0) {
         this.message.success(res['msg']);
