@@ -59,10 +59,11 @@ registerLocaleData(zh);
       useClass: AuthInterceptor,
       multi: true
     },
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    }
+    // hash路由
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: HashLocationStrategy
+    // }
   ],
   bootstrap: [AppComponent] // 启动应用根组件
 })
