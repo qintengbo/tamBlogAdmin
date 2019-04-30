@@ -9,12 +9,11 @@ import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
-import { LoginAuthService } from 'services/login-auth.service';
 import { CanDeactivateGuard } from 'services/can-deactivate.guard';
 
 const dashboardRoutes: Routes = [
   {
-    path: 'dashboard', // 页头和菜单
+    path: '', // 页头和菜单
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
@@ -55,8 +54,7 @@ const dashboardRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    AuthGuard,
-    LoginAuthService
+    AuthGuard
   ]
 })
 

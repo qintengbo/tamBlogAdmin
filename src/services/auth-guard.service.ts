@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
+  CanLoad,
   Router,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  RouterStateSnapshot,
+  Route
 } from '@angular/router';
 import { LoginAuthService } from './login-auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private loginAuthService: LoginAuthService,
     private router: Router
@@ -17,6 +19,12 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // 将要访问的路由地址
     let url: string = state.url;
+
+    return this.checkLogin(url);
+  }
+
+  canLoad(route: Route): boolean {
+    let url = `/${route.path}`;
 
     return this.checkLogin(url);
   }
