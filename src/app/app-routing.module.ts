@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'services/auth-guard.service';
 
 const appRoutes: Routes = [
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
+  },
   // 路由重定向
   {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
-  },
-  {
-    path: 'dashboard',
-    loadChildren: '@/dashboard/dashboard.module#DashboardModule',
-    canLoad: [AuthGuard]
   },
   // 通用路由，跳转至404页面等
   // { path: '**', component: '' }
@@ -27,9 +25,6 @@ const appRoutes: Routes = [
       }
     )
   ],
-  exports: [ RouterModule ],
-  providers: [
-    AuthGuard
-  ]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
