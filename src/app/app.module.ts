@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { NzDatePickerModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginModule } from '@/login/login.module';
@@ -21,6 +21,7 @@ registerLocaleData(zh);
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NzDatePickerModule,
     LoginModule,
     AppRoutingModule,
   ],
