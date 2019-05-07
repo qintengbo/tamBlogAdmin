@@ -1,5 +1,5 @@
 // 登录类
-export class LoginFrom {
+export class LoginForm {
   username: string;
   password: string;
 }

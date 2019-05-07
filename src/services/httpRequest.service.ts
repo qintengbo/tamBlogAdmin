@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginFrom } from 'class/login/LoginFrom';
-import { Reponse } from 'class/common/reponse';
+import { LoginForm } from 'class/login/LoginForm';
+import { Response } from 'class/common/Response';
 import { ArticleForm } from 'class/article/ArticleForm';
 import { NzMessageService } from 'ng-zorro-antd';
 import { environment } from 'environments/environment';
@@ -23,19 +23,19 @@ export class HttpRequestService {
     private http: HttpClient,
     private message: NzMessageService
   ) {
-    console.log(environment); // Logs false for default environment
+    console.log(environment);
     this.path = environment['path'];
   }
 
   // 登录请求
-  loginRequest(data: LoginFrom): Observable<Response> {
-    return this.http.post<Reponse>(`${this.path}/login`, data, this.httpOptions).pipe(
+  loginRequest(data: LoginForm): Observable<Response> {
+    return this.http.post<Response>(`${this.path}/login`, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
     );
   }
   // 获取用户信息请求
   userInfoRequest(): Observable<Response> {
-    return this.http.get<any>(`${this.path}/userInfo`).pipe(
+    return this.http.get<Response>(`${this.path}/userInfo`).pipe(
       catchError(this.handleError<any>('userInfoRequest'))
     );
   }

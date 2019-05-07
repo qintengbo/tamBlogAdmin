@@ -80,7 +80,7 @@ export class ClassificationListComponent implements OnInit {
   }
 
   // 编辑分类
-  detailClassification(data): void {
+  detailClassification(data: any): void {
     this.isVisible = true;
     this.status = true;
     this.id = data._id;
@@ -91,7 +91,7 @@ export class ClassificationListComponent implements OnInit {
   }
 
   // 删除分类
-  deleteClassification(id): void {
+  deleteClassification(id: string): void {
     this.httpRequestService.deleteClassificationRequest(id).subscribe(res => {
       if (res['code'] === 0) {
         this.message.success(res['msg']);
