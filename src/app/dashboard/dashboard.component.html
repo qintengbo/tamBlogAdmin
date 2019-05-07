@@ -8,39 +8,39 @@
       <nz-avatar nzSize="large" [nzText]="avatarText | uppercase"></nz-avatar>
       <nz-dropdown class="userProfile">
         <a nz-dropdown>
-          {{ username }} <i class="anticon anticon-down"></i>
+          {{ username }} <i nz-icon nzType="down" nzTheme="outline"></i>
         </a>
         <ul nz-menu nzSelectable>
           <li nz-menu-item>
-            <a><i class="anticon anticon-setting"></i> 个人设置</a>
+            <a><i nz-icon nzType="setting" nzTheme="outline"></i> 个人设置</a>
           </li>
           <li nz-menu-item (click)="logout()">
-            <a><i class="anticon anticon-poweroff"></i> 退出登录</a>
+            <a><i nz-icon nzType="poweroff" nzTheme="outline"></i> 退出登录</a>
           </li>
         </ul>
       </nz-dropdown>
     </div>
     <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
       <li nz-menu-item>
-        <i class="anticon anticon-home index-icon"></i>首页
+        <i nz-icon class="index-icon" nzType="home" nzTheme="outline"></i>首页
       </li>
     </ul>
   </nz-header>
   <nz-layout>
     <nz-sider [nzWidth]="220" class="menu" [nzCollapsed]="isCollapsed">
       <div class="collapsed" (click)="toggleCollapsed()">
-        <i class="anticon" [class.anticon-left]="isCollapsed" [class.anticon-right]="!isCollapsed"></i>
+        <i nz-icon nzType="{{ isCollapsed ? 'left' : 'right' }}" nzTheme="outline"></i>
       </div>
       <ul class="menu-ul" nz-menu [nzMode]="'inline'" [nzTheme]="'light'" [nzInlineCollapsed]="isCollapsed" (nzClick)="menuLight()">
         <li nz-menu-item [nzSelected]="activeIndex == 'index'" routerLink="/dashboard/index">
           <span title>
-            <i class="anticon anticon-home"></i>
+            <i nz-icon nzType="home" nzTheme="outline"></i>
             <span>首页</span>
           </span>
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'articleList' || activeIndex == 'articleDetail'">
           <span title>
-            <i class="anticon anticon-file-text"></i>
+            <i nz-icon nzType="file-text" nzTheme="outline"></i>
             <span>文章管理</span>
           </span>
           <ul>
@@ -49,7 +49,7 @@
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'classificationList'">
           <span title>
-            <i class="anticon anticon-appstore-o"></i>
+            <i nz-icon nzType="appstore" nzTheme="outline"></i>
             <span>分类管理</span>
           </span>
           <ul>
@@ -58,7 +58,7 @@
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'tagList'">
           <span title>
-            <i class="anticon anticon-tags-o"></i>
+            <i nz-icon nzType="tag" nzTheme="outline"></i>
             <span>标签管理</span>
           </span>
           <ul>
@@ -67,7 +67,7 @@
         </li>
         <li nz-submenu [nzOpen]="activeIndex == 'bannerList'">
           <span title>
-            <i class="anticon anticon-picture"></i>
+            <i nz-icon nzType="picture" nzTheme="outline"></i>
             <span>轮播管理</span>
           </span>
           <ul>
