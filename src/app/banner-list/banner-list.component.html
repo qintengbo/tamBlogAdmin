@@ -4,7 +4,7 @@
 </nz-breadcrumb>
 <nz-content class="indexContent">
   <button class="addBtn" nz-button nzType="primary" (click)="addBanner()">
-    <i class="anticon anticon-picture"></i>新增轮播图
+    <i nz-icon nzType="picture" nzTheme="outline"></i>新增轮播图
   </button>
 
   <!-- 新增分类模态框 -->
@@ -41,7 +41,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>图片地址</nz-form-label>
         <nz-form-control [nzSpan]="13">
-          <input nz-input formControlName="imgUrl" placeholder="填写图片地址">
+          <input type="text" nz-input formControlName="imgUrl" placeholder="填写图片地址">
           <nz-form-explain *ngIf="validateForm.get('imgUrl').dirty && validateForm.get('imgUrl').errors">
             <ng-container *ngIf="validateForm.get('imgUrl').hasError('required')">
               请输入图片地址
@@ -55,7 +55,7 @@
             [nzBeforeUpload]="beforeUpload"
           >
             <button type="button" nz-button nzType="primary">
-              <i class="anticon anticon-upload"></i>上传
+              <i nz-icon nzType="upload" nzTheme="outline"></i>上传
             </button>
           </nz-upload>
         </nz-form-control>
