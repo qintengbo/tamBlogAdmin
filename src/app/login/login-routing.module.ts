@@ -6,7 +6,8 @@ import { LoginAuthService } from 'services/login-auth.service';
 const loginRoutes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: { title: '登录' }
   }
 ];
 

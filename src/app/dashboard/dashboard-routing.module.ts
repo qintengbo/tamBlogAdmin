@@ -13,34 +13,40 @@ import { CanDeactivateGuard } from 'services/can-deactivate.guard';
 
 const dashboardRoutes: Routes = [
   {
-    path: '', // 页头和菜单
+    path: '', // 页头和导航栏
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'index', // 首页
-        component: IndexComponent
+        path: 'index',
+        component: IndexComponent,
+        data: { title: '首页' }
       },
       {
-        path: 'articleList', // 文章列表
-        component: ArticleListComponent
+        path: 'articleList',
+        component: ArticleListComponent,
+        data: { title: '文章列表' }
       },
       {
-        path: 'articleDetail', // 编辑文章
+        path: 'articleDetail',
         component: ArticleDetailComponent,
-        canDeactivate: [CanDeactivateGuard]
+        canDeactivate: [CanDeactivateGuard],
+        data: { title: '编辑文章' }
       },
       {
-        path: 'classificationList', // 分类列表
-        component: ClassificationListComponent
+        path: 'classificationList',
+        component: ClassificationListComponent,
+        data: { title: '分类列表' }
       },
       {
-        path: 'tagList', // 标签列表
-        component: TagListComponent
+        path: 'tagList',
+        component: TagListComponent,
+        data: { title: '标签列表' }
       },
       {
-        path: 'bannerList', // 轮播图列表
-        component: BannerListComponent
+        path: 'bannerList',
+        component: BannerListComponent,
+        data: { title: '轮播列表' }
       },
     ]
   },
