@@ -5,4 +5,6 @@ export class ArticleForm {
   tag: string;
   content: string;
   status: number;
+  coverImg: string;
+  lead: string;
 }

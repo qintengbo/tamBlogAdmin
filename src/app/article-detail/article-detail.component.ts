@@ -188,7 +188,9 @@ export class ArticleDetailComponent implements OnInit {
               title: res['data'].title,
               classification: res['data'].classification,
               tag: res['data'].tag,
-              content: res['data'].content
+              content: res['data'].content,
+              coverImg: res['data'].coverImg,
+              lead: res['data'].lead
             });
           } else {
             this.message.error(res['msg']);
