@@ -182,18 +182,12 @@ export class ArticleDetailComponent implements OnInit {
       this.articleId = params.get('id');
       if (this.articleId) {
         this.httpRequestService.articleInfoRequest(this.articleId).subscribe(res => {
-          if (res['code'] === 0) {
+          const { code, data, msg } = res;
+          if (code === 0) {
             // 展示文章详细信息
-            this.validateForm.patchValue({
-              title: res['data'].title,
-              classification: res['data'].classification,
-              tag: res['data'].tag,
-              content: res['data'].content,
-              coverImg: res['data'].coverImg,
-              lead: res['data'].lead
-            });
+            this.validateForm.patchValue({...data});
           } else {
-            this.message.error(res['msg']);
+            this.message.error(msg);
           }
         });
       }
