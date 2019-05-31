@@ -23,7 +23,6 @@ export class HttpRequestService {
     private http: HttpClient,
     private message: NzMessageService
   ) {
-    console.log(environment);
     this.path = environment['path'];
   }
 
