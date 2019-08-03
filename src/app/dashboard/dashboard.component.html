@@ -1,14 +1,14 @@
 <nz-layout class="layout">
   <nz-header class="page-header">
     <div class="logo">
-      <img src="./../../assets/images/login_logo.png" alt>
+      <img src="./../../assets/images/login_logo.png" alt />
     </div>
     <div class="title">博客后台管理系统</div>
     <div class="header-userpannel">
-      <nz-avatar nzSize="large" [nzText]="avatarText | uppercase"></nz-avatar>
+      <nz-avatar nzSize="large" [nzText]="'覃'"></nz-avatar>
       <nz-dropdown class="userProfile">
         <a nz-dropdown>
-          {{ username }} <i nz-icon nzType="down" nzTheme="outline"></i>
+          管理员 <i nz-icon nzType="down" nzTheme="outline"></i>
         </a>
         <ul nz-menu nzSelectable>
           <li nz-menu-item>
@@ -21,7 +21,7 @@
       </nz-dropdown>
     </div>
     <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
-      <li nz-menu-item>
+      <li nz-menu-item routerLink="/dashboard/index">
         <i nz-icon class="index-icon" nzType="home" nzTheme="outline"></i>首页
       </li>
     </ul>
@@ -31,47 +31,84 @@
       <div class="collapsed" (click)="toggleCollapsed()">
         <i nz-icon nzType="{{ isCollapsed ? 'left' : 'right' }}" nzTheme="outline"></i>
       </div>
-      <ul class="menu-ul" nz-menu [nzMode]="'inline'" [nzTheme]="'light'" [nzInlineCollapsed]="isCollapsed" (nzClick)="menuLight()">
-        <li nz-menu-item [nzSelected]="activeIndex == 'index'" routerLink="/dashboard/index">
+      <ul 
+        class="menu-ul" 
+        nz-menu 
+        [nzMode]="'inline'" 
+        [nzTheme]="'light'" 
+        [nzInlineCollapsed]="isCollapsed" 
+        (nzClick)="menuLight()"
+      >
+        <li 
+          nz-menu-item 
+          [nzSelected]="activeIndex == 'index'"
+          routerLink="/dashboard/index"
+        >
           <span title>
             <i nz-icon nzType="home" nzTheme="outline"></i>
             <span>首页</span>
           </span>
         </li>
-        <li nz-submenu [nzOpen]="activeIndex == 'articleList' || activeIndex == 'articleDetail'">
+        <li 
+          nz-submenu 
+          [nzOpen]="activeIndex == 'articleList' || activeIndex == 'articleDetail'"
+        >
           <span title>
             <i nz-icon nzType="file-text" nzTheme="outline"></i>
             <span>文章管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'articleList' || activeIndex == 'articleDetail'" routerLink="/dashboard/articleList">文章列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'articleList'" routerLink="/dashboard/articleList">文章列表</li>
           </ul>
         </li>
-        <li nz-submenu [nzOpen]="activeIndex == 'classificationList'">
+        <li 
+          nz-submenu 
+          [nzOpen]="activeIndex == 'steppingPitList'"
+        >
           <span title>
             <i nz-icon nzType="appstore" nzTheme="outline"></i>
-            <span>分类管理</span>
+            <span>踩坑管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/dashboard/classificationList">分类列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'steppingPitList'" routerLink="/dashboard/steppingPitList">踩坑列表</li>
           </ul>
         </li>
-        <li nz-submenu [nzOpen]="activeIndex == 'tagList'">
-          <span title>
-            <i nz-icon nzType="tag" nzTheme="outline"></i>
-            <span>标签管理</span>
-          </span>
-          <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/dashboard/tagList">标签列表</li>
-          </ul>
-        </li>
-        <li nz-submenu [nzOpen]="activeIndex == 'bannerList'">
+        <li 
+          nz-submenu 
+          [nzOpen]="activeIndex == 'photographyList'"
+        >
           <span title>
             <i nz-icon nzType="picture" nzTheme="outline"></i>
-            <span>轮播管理</span>
+            <span>摄影管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'bannerList'" routerLink="/dashboard/bannerList">轮播列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'photographyList'" routerLink="/dashboard/photographyList">摄影集</li>
+          </ul>
+        </li>
+        <li 
+          nz-submenu 
+          [nzOpen]="activeIndex == 'classificationList' || activeIndex == 'tagList' || activeIndex == 'bannerList'"
+        >
+          <span title>
+            <i nz-icon nzType="block" nzTheme="outline"></i>
+            <span>通用管理</span>
+          </span>
+          <ul>
+            <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/dashboard/classificationList">分类管理</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/dashboard/tagList">标签管理</li>
+            <li nz-menu-item [nzSelected]="activeIndex == 'bannerList'" routerLink="/dashboard/bannerList">轮播管理</li>
+          </ul>
+        </li>
+        <li 
+          nz-submenu 
+          [nzOpen]="activeIndex == 'myInfo'"
+        >
+          <span title>
+            <i nz-icon nzType="idcard" nzTheme="outline"></i>
+            <span>个人设置</span>
+          </span>
+          <ul>
+            <li nz-menu-item [nzSelected]="activeIndex == 'myInfo'" routerLink="/dashboard/myInfo">个人信息</li>
           </ul>
         </li>
       </ul>

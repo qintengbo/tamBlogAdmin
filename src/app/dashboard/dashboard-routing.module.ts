@@ -7,6 +7,7 @@ import { ArticleDetailComponent } from '@/article-detail/article-detail.componen
 import { ClassificationListComponent } from '@/classification-list/classification-list.component';
 import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
+import { SteppingPitListComponent } from '@/steppingPit-list/steppingPit-list.component';
 
 import { AuthGuard } from 'services/auth-guard.service';
 import { CanDeactivateGuard } from 'services/can-deactivate.guard';
@@ -48,6 +49,11 @@ const dashboardRoutes: Routes = [
         component: BannerListComponent,
         data: { title: '轮播列表' }
       },
+      {
+        path: 'steppingPitList',
+        component: SteppingPitListComponent,
+        data: { title: '踩坑列表' }
+      }
     ]
   },
 ];

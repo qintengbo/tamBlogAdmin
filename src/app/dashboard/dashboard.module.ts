@@ -11,6 +11,7 @@ import { ClassificationListComponent } from '@/classification-list/classificatio
 import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
 import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
+import { SteppingPitListComponent } from '@/steppingPit-list/steppingPit-list.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
     ArticleDetailComponent,
     ClassificationListComponent,
     TagListComponent,
-    BannerListComponent
+    BannerListComponent,
+    SteppingPitListComponent
   ]
 })
 export class DashboardModule { }
