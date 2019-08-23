@@ -12,6 +12,7 @@ import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
 import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
 import { SteppingPitListComponent } from '@/steppingPit-list/steppingPit-list.component';
+import { SteppingPitDetailComponent } from '@/steppingPit-detail/steppingPit-detail.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { SteppingPitListComponent } from '@/steppingPit-list/steppingPit-list.co
     ClassificationListComponent,
     TagListComponent,
     BannerListComponent,
-    SteppingPitListComponent
+    SteppingPitListComponent,
+    SteppingPitDetailComponent
   ]
 })
 export class DashboardModule { }

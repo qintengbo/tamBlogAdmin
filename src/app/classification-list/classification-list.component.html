@@ -44,7 +44,13 @@
       </form>
     </nz-modal>
   </div>
-  <nz-table #classificationTable [nzData]="classificationList">
+  <nz-table 
+    #classificationTable 
+    [nzData]="classificationList" 
+    [nzHideOnSinglePage]="true"
+    [nzPageIndex]="params.page" 
+    (nzPageIndexChange)="pageIndexChange($event)"
+  >
     <thead>
       <tr>
         <th>序号</th>
@@ -56,7 +62,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of classificationTable.data; let i = index">
-        <td>{{ i + 1 }}</td>
+        <td>{{ i + 1 + (params.page - 1) * 10 }}</td>
         <td>{{ data.name }}</td>
         <td>{{ data.abbreviationName }}</td>
         <td>{{ data.articleNum }}</td>

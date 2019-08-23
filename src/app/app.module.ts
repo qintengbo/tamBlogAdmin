@@ -15,7 +15,7 @@ registerLocaleData(zh);
 
 @NgModule({
   declarations: [ // 导入该应用的组件、管道、指令
-    AppComponent,
+    AppComponent
   ],
   imports: [ // 导入该应用的其他模块
     BrowserModule,

@@ -50,6 +50,7 @@
     [nzTotal]="total" 
     [nzPageIndex]="params.page" 
     [nzPageSize]="params.size"
+    [nzHideOnSinglePage]="true"
     (nzPageIndexChange)="pageIndexChange($event)"
   >
     <thead>
@@ -66,7 +67,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of articleListTable.data; let i = index">
-        <td>{{ i + 1 }}</td>
+        <td>{{ i + 1 + (params.page - 1) * params.size }}</td>
         <td>{{ data.title }}</td>
         <td>{{ data.classification.name }}</td>
         <td>

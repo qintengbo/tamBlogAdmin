@@ -21,7 +21,7 @@
   z-index: 10;
 }
 .indexContent {
-  padding: 8px 24px 8px;
+  padding: 8px 24px 24px;
 }
 .resetBtn {
   margin-left: 12px;
@@ -39,9 +39,15 @@
     }
   }
 }
-::ng-deep .ant-tabs-bar { 
+:host ::ng-deep .ant-tabs-bar { 
   margin: 0 0 6px 0;
 }
-::ng-deep .ant-table-thead > tr > th.ant-table-column-sort {
-  background: #fff;
+:host ::ng-deep .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
+  background: transparent;
+}
+:host ::ng-deep .ant-table-thead> tr > th .ant-table-header-column .ant-table-column-sorters:hover::before {
+  background: transparent;
+}
+:host ::ng-deep .ant-pagination {
+  margin: 16px 0 0;
 }

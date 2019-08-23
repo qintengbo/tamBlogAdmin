@@ -16,6 +16,7 @@ export class ClassificationListComponent implements OnInit {
   id: string; // 编辑分类的id
   params = { // 筛选列表请求参数
     keyWord: '',
+    page: 1
   };
 
   constructor(
@@ -100,6 +101,11 @@ export class ClassificationListComponent implements OnInit {
         this.message.error(res['msg']);
       }
     });
+  }
+
+  // 分页
+  pageIndexChange(num: number): void {
+    this.params.page = num;
   }
 
   // 关闭模态框

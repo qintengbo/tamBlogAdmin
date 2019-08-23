@@ -3,5 +3,65 @@
   <nz-breadcrumb-item>踩坑列表</nz-breadcrumb-item>
 </nz-breadcrumb>
 <nz-content class="indexContent">
-  steppingPit-list works
+  <button class="addBtn" nz-button nzType="primary" routerLink="/dashboard/steppingPitDetail">
+    <i nz-icon nzType="file-add" nzTheme="outline"></i>新增踩坑记录
+  </button>
+  <nz-tabset (nzSelectChange)="changTabs($event)">
+    <nz-tab nzTitle="全部"></nz-tab>
+    <nz-tab nzTitle="已发布"></nz-tab>
+    <nz-tab nzTitle="未发布"></nz-tab>
+  </nz-tabset>
+  <div>
+    <div class="inlineBlock">标题：
+      <input nz-input class="search-input" placeholder="请输入踩坑标题" [(ngModel)]="params.keyWord">
+    </div>
+    <div class="inlineBlock">日期：
+      <nz-range-picker class="search-input" [(ngModel)]="params.date" [nzAllowClear]="false"></nz-range-picker>
+    </div>
+    <div class="inlineBlock">
+      <button nz-button nzType="primary" (click)="getSteppingPitList()">筛选</button>
+      <button nz-button nzType="default" class="resetBtn" (click)="reset()">重置</button>
+    </div>
+  </div>
+  <nz-table 
+    #steppingPitListTable 
+    [nzData]="steppingPitList" 
+    [nzFrontPagination]="false" 
+    [nzTotal]="total" 
+    [nzPageIndex]="params.page" 
+    [nzPageSize]="params.size"
+    [nzHideOnSinglePage]="true"
+    (nzPageIndexChange)="pageIndexChange($event)"
+  >
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th [nzWidth]="'30%'">标题</th>
+        <th>状态</th>
+        <th nzShowSort [(nzSort)]="params.sort" (nzSortChange)="sort($event)">阅读数</th>
+        <th>{{ params.status === 2 ? '更新时间' : '发布时间' }}</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of steppingPitListTable.data; let i = index">
+        <td>{{ i + 1 + (params.page - 1) * params.size }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.status == 2 ? '未发布' : '已发布' }}</td>
+        <td>{{ data.readNum }}</td>
+        <td>{{ data.updateDate | date: "y-MM-dd HH:mm:ss" }}</td>
+        <td class="operation">
+          <span 
+            nz-popconfirm 
+            nzTitle="你确定要{{ data.status == 2 ? '上线' : '下线' }}此踩坑记录吗？" 
+            (nzOnConfirm)="updateStatus(data._id, data.status)"
+          >
+            {{ data.status == 2 ? '上线' : '下线' }}
+          </span>
+          <span (click)="detailSteppingPit(data._id)">编辑</span>
+          <span nz-popconfirm nzTitle="你确定要删除此踩坑记录吗？" (nzOnConfirm)="deleteSteppingPit(data._id)">删除</span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </nz-content>

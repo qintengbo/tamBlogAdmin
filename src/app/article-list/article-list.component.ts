@@ -121,7 +121,7 @@ export class ArticleListComponent implements OnInit {
     this.router.navigate(['/dashboard/articleDetail', { id: id }]);
   }
 
-  // 点赞数排序
+  // 阅读数排序
   sort(sort: string): void {
     this.params.sort = sort;
     this.getArticleList();

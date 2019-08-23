@@ -64,13 +64,13 @@ export class HttpRequestService {
   }
   // 删除文章
   deleteArticleRequest(id: string): Observable<Response> {
-    return this.http.delete<Response>(`${this.path}/deleteArticle`, { params: { id: id } }).pipe(
+    return this.http.delete<Response>(`${this.path}/deleteArticle`, { params: { id } }).pipe(
       catchError(this.handleError<any>('deleteArticleRequest'))
     );
   }
   // 查询文章详细信息
   articleInfoRequest(id: string): Observable<Response> {
-    return this.http.get<Response>(`${this.path}/articleInfo`, { params: { id: id } }).pipe(
+    return this.http.get<Response>(`${this.path}/articleInfo`, { params: { id } }).pipe(
       catchError(this.handleError<any>('articleInfoRequest'))
     );
   }
@@ -100,7 +100,7 @@ export class HttpRequestService {
   }
   // 删除分类
   deleteClassificationRequest(id: string): Observable<Response> {
-    return this.http.delete<Response>(`${this.path}/deleteClassification`, { params: { id: id } }).pipe(
+    return this.http.delete<Response>(`${this.path}/deleteClassification`, { params: { id } }).pipe(
       catchError(this.handleError<any>('deleteClassificationRequest'))
     );
   }
@@ -124,7 +124,7 @@ export class HttpRequestService {
   }
   // 删除标签
   deleteTagRequest(id: string): Observable<Response> {
-    return this.http.delete<Response>(`${this.path}/deleteTag`, { params: { id: id } }).pipe(
+    return this.http.delete<Response>(`${this.path}/deleteTag`, { params: { id } }).pipe(
       catchError(this.handleError<any>('deleteTagRequest'))
     );
   }
@@ -148,7 +148,7 @@ export class HttpRequestService {
   }
   // 删除轮播图
   deleteBannerRequest(id: string): Observable<Response> {
-    return this.http.delete<Response>(`${this.path}/deleteBanner`, { params: { id: id } }).pipe(
+    return this.http.delete<Response>(`${this.path}/deleteBanner`, { params: { id } }).pipe(
       catchError(this.handleError<any>('deleteBannerRequest'))
     );
   }
@@ -156,6 +156,42 @@ export class HttpRequestService {
   detailBannerRequest(data: {}): Observable<Response> {
     return this.http.put<Response>(`${this.path}/detailBanner`, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('detailBannerRequest'))
+    );
+  }
+  // 新增踩坑
+  addSteppingPitRequest(data: {}): Observable<Response> {
+    return this.http.post<Response>(`${this.path}/addSteppingPit`, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addSteppingPitRequest'))
+    );
+  }
+  // 踩坑列表
+  steppingPitListRequest(data: {}): Observable<Response> {
+    return this.http.get<Response>(`${this.path}/steppingPitList`, { params: data }).pipe(
+      catchError(this.handleError<any>('steppingPitListRequest'))
+    );
+  }
+  // 踩坑详情
+  steppingPitInfoRequest(id: string): Observable<Response> {
+    return this.http.get<Response>(`${this.path}/steppingPitInfo`, { params: { id } }).pipe(
+      catchError(this.handleError<any>('steppingPitInfoRequest'))
+    );
+  }
+  // 删除踩坑
+  deleteSteppingPitRequest(id: string): Observable<Response> {
+    return this.http.delete<Response>(`${this.path}/deleteSteppingPit`, { params: { id } }).pipe(
+      catchError(this.handleError<any>('deleteSteppingPitRequest'))
+    );
+  }
+  // 更新踩坑状态
+  updateSteppingPitRequest(data: {}): Observable<Response> {
+    return this.http.put<Response>(`${this.path}/updateSteppingPit`, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateSteppingPitRequest'))
+    );
+  }
+  // 编辑踩坑
+  detailSteppingPitRequest(data: {}): Observable<Response> {
+    return this.http.put<Response>(`${this.path}/detailSteppingPit`, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('detailSteppingPitRequest'))
     );
   }
 

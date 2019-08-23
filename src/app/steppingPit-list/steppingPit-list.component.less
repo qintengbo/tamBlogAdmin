@@ -1,0 +1,53 @@
+.indexContent {
+	padding: 8px 24px 24px;
+	.search-input {
+		display: inline-block;
+		width: 220px;
+	}
+	.search-select {
+		display: inline-block;
+		width: 140px;
+	}
+	.addBtn {
+		position: absolute;
+		top: 15px;
+		right: 24px;
+		z-index: 10;
+	}
+	.inlineBlock {
+		display: inline-block;
+		margin-right: 20px;
+		margin-top: 10px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	.resetBtn {
+		margin-left: 12px;
+	}
+	.operation {
+		span {
+			margin-left: 10px;
+			color: #1890ff;
+			cursor: pointer;
+			&:first-child {
+				margin-left: 0;
+			}
+			&:hover {
+				color: #40a9ff;
+			}
+		}
+	}
+	:host ::ng-deep .ant-tabs-bar { 
+		margin: 0 0 6px 0;
+	}
+	:host ::ng-deep .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
+		background: transparent;
+	}
+	:host ::ng-deep .ant-table-thead> tr > th .ant-table-header-column .ant-table-column-sorters:hover::before {
+		background: transparent;
+	}
+	:host ::ng-deep .ant-pagination {
+		margin: 16px 0 0;
+	}
+}
