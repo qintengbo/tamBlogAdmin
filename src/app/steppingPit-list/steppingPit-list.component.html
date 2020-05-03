@@ -23,7 +23,8 @@
       <button nz-button nzType="default" class="resetBtn" (click)="reset()">重置</button>
     </div>
   </div>
-  <nz-table 
+	<nz-table 
+		class="tableContainer"
     #steppingPitListTable 
     [nzData]="steppingPitList" 
     [nzFrontPagination]="false" 
@@ -38,7 +39,7 @@
         <th>序号</th>
         <th [nzWidth]="'30%'">标题</th>
         <th>状态</th>
-        <th nzShowSort [(nzSort)]="params.sort" (nzSortChange)="sort($event)">阅读数</th>
+        <th [nzSortOrder]="params.sort" [nzSortFn] (nzSortOrderChange)="sort($event)">阅读数</th>
         <th>{{ params.status === 2 ? '更新时间' : '发布时间' }}</th>
         <th>操作</th>
       </tr>

@@ -36,14 +36,20 @@
       </nz-select>
     </div>
     <div class="inlineBlock">日期：
-      <nz-range-picker class="search-input" [(ngModel)]="params.date" [nzAllowClear]="false"></nz-range-picker>
+			<nz-range-picker 
+				class="search-input" 
+				[(ngModel)]="params.date" 
+				[nzAllowClear]="false"
+				[nzSeparator]="'~'"
+			></nz-range-picker>
     </div>
     <div class="inlineBlock">
       <button nz-button nzType="primary" (click)="getArticleList()">筛选</button>
       <button nz-button nzType="default" class="resetBtn" (click)="reset()">重置</button>
     </div>
   </div>
-  <nz-table 
+	<nz-table 
+		class="tableContainer"
     #articleListTable 
     [nzData]="articleList" 
     [nzFrontPagination]="false" 
@@ -60,7 +66,7 @@
         <th>分类</th>
         <th>标签</th>
         <th>状态</th>
-        <th nzShowSort [(nzSort)]="params.sort" (nzSortChange)="sort($event)">阅读数</th>
+        <th [nzSortOrder]="params.sort" [nzSortFn] (nzSortOrderChange)="sort($event)">阅读数</th>
         <th>{{ params.status === 2 ? '更新时间' : '发布时间' }}</th>
         <th>操作</th>
       </tr>

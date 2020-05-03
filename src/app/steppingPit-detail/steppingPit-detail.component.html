@@ -7,23 +7,27 @@
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>标题</nz-form-label>
-      <nz-form-control [nzSpan]="8">
-        <input nz-input formControlName="title" placeholder="填写踩坑标题">
-        <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
-          请输入踩坑标题
-        </nz-form-explain>
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="titleErrorTpl">
+				<input nz-input formControlName="title" placeholder="填写踩坑标题">
+				<ng-template #titleErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请输入踩坑标题
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>版本</nz-form-label>
-      <nz-form-control [nzSpan]="8">
-        <input nz-input formControlName="version" placeholder="填写版本">
-        <nz-form-explain *ngIf="validateForm.get('version').dirty && validateForm.get('version').errors">
-          请输入版本
-        </nz-form-explain>
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="versionErrorTpl">
+				<input nz-input formControlName="version" placeholder="填写版本">
+				<ng-template #versionErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请输入版本
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
-    <div nz-row [nzGutter]="24">
+    <div nz-row [nzGutter]="24" class="contentWrapDiv">
       <div class="text-btn">
         <span>
           <nz-upload
@@ -42,17 +46,19 @@
       <div nz-col [nzSpan]="24">
         <nz-form-item class="textItem">
           <nz-form-label [nzSpan]="24" nzRequired>问题描述：</nz-form-label>
-          <nz-form-control [nzSpan]="24" *ngIf="!descriptionStatus">
+          <nz-form-control [nzSpan]="24" *ngIf="!descriptionStatus" [nzErrorTip]="descriptionErrorTpl">
             <textarea formControlName="description" nz-input [nzAutosize]="{ minRows: 10 }" placeholder="填写问题描述"></textarea>
-            <nz-form-explain *ngIf="validateForm.get('description').dirty && validateForm.get('description').hasError('required')">
-              请输入问题描述
-            </nz-form-explain>
+						<ng-template #descriptionErrorTpl let-control>
+							<ng-container *ngIf="control.hasError('required')">
+								请输入问题描述
+							</ng-container>
+						</ng-template>
           </nz-form-control>
         </nz-form-item>
         <div class="markdown" markdown [data]="validateForm.value.description" *ngIf="descriptionStatus"></div>
       </div>
     </div>
-    <div nz-row [nzGutter]="24">
+    <div nz-row [nzGutter]="24" class="contentWrapDiv">
       <div class="text-btn">
         <span>
           <nz-upload
@@ -71,11 +77,13 @@
       <div nz-col [nzSpan]="24">
         <nz-form-item class="textItem">
           <nz-form-label [nzSpan]="24" nzRequired>解决方案：</nz-form-label>
-          <nz-form-control [nzSpan]="24" *ngIf="!solutionStatus">
+          <nz-form-control [nzSpan]="24" *ngIf="!solutionStatus" [nzErrorTip]="solutionErrorTpl">
             <textarea formControlName="solution" nz-input [nzAutosize]="{ minRows: 16 }" placeholder="填写解决方案"></textarea>
-            <nz-form-explain *ngIf="validateForm.get('solution').dirty && validateForm.get('solution').hasError('required')">
-              请输入解决方案
-            </nz-form-explain>
+						<ng-template #solutionErrorTpl let-control>
+							<ng-container *ngIf="control.hasError('required')">
+								请输入解决方案
+							</ng-container>
+						</ng-template>
           </nz-form-control>
         </nz-form-item>
         <div class="markdown" markdown [data]="validateForm.value.solution" *ngIf="solutionStatus"></div>

@@ -25,26 +25,31 @@
       <form nz-form [formGroup]="validateForm">
         <nz-form-item>
           <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
-          <nz-form-control [nzSpan]="18">
+          <nz-form-control [nzSpan]="18" [nzErrorTip]="nameErrorTpl">
             <input nz-input formControlName="name" placeholder="填写分类名称">
-            <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">
-              请输入分类名称
-            </nz-form-explain>
+						<ng-template #nameErrorTpl let-control>
+							<ng-container *ngIf="control.hasError('required')">
+								请输入分类名称
+							</ng-container>
+						</ng-template>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-label [nzSpan]="6" nzRequired>缩写名</nz-form-label>
-          <nz-form-control [nzSpan]="18">
+          <nz-form-control [nzSpan]="18" [nzErrorTip]="abbreviationNameErrorTpl">
             <input nz-input formControlName="abbreviationName" placeholder="填写缩写名">
-            <nz-form-explain *ngIf="validateForm.get('abbreviationName').dirty && validateForm.get('abbreviationName').errors">
-              请输入缩写名
-            </nz-form-explain>
+						<ng-template #abbreviationNameErrorTpl let-control>
+							<ng-container *ngIf="control.hasError('required')">
+								请输入缩写名
+							</ng-container>
+						</ng-template>
           </nz-form-control>
         </nz-form-item>
       </form>
     </nz-modal>
   </div>
-  <nz-table 
+	<nz-table 
+		class="tableContainer"
     #classificationTable 
     [nzData]="classificationList" 
     [nzHideOnSinglePage]="true"

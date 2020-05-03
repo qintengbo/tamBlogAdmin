@@ -11,31 +11,21 @@
         <p>博客后台管理系统</p>
       </div>
       <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(validateForm)">
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group [nzPrefix]="prefixUser">
+        <nz-form-item class="loginFormItem">
+          <nz-form-control nzErrorTip="请输入用户名">
+            <nz-input-group nzPrefixIcon="user">
               <input type="text" nz-input formControlName="username" placeholder="用户名">
             </nz-input-group>
-            <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">
-              请输入用户名
-            </nz-form-explain>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group [nzPrefix]="prefixLock">
+        <nz-form-item class="loginFormItem">
+          <nz-form-control nzErrorTip="请输入密码">
+            <nz-input-group nzPrefixIcon="lock">
               <input type="password" nz-input formControlName="password" placeholder="密码">
             </nz-input-group>
-            <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
-              请输入密码
-            </nz-form-explain>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item>
-          <nz-form-control>
-            <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
-          </nz-form-control>
-        </nz-form-item>
+        <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
       </form>
     </div>
   </div>

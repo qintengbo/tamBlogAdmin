@@ -1,5 +1,4 @@
 .search-input {
-  display: inline-block;
   width: 220px;
 }
 .search-select {
@@ -44,6 +43,12 @@
 }
 :host ::ng-deep .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
   background: transparent;
+}
+:host ::ng-deep .ant-table-thead th.ant-table-column-has-sorters:hover {
+	background: #fff;
+}
+:host ::ng-deep .ant-table-thead th.ant-table-column-sort {
+	background: #fff;
 }
 :host ::ng-deep .ant-table-thead> tr > th .ant-table-header-column .ant-table-column-sorters:hover::before {
   background: transparent;

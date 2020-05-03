@@ -1,6 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import {
+  NzLayoutModule,
+  NzMessageModule,
+  NzInputModule,
+  NzButtonModule, 
+  NzFormModule, 
+  NzIconModule,
+  NzAvatarModule,
+	NzDropDownModule,
+	NzBreadCrumbModule,
+	NzTabsModule, 
+	NzTableModule,
+	NzDatePickerModule,
+	NzSelectModule,
+	NzModalModule,
+	NzUploadModule,
+	NzSwitchModule
+} from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { IndexComponent } from '@/index/index.component';
@@ -17,8 +34,23 @@ import { SteppingPitDetailComponent } from '@/steppingPit-detail/steppingPit-det
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    NgZorroAntdModule,
+		FormsModule,
+		NzLayoutModule,
+    NzMessageModule,
+    NzInputModule,
+    NzButtonModule,
+    NzFormModule,
+    NzIconModule,
+    NzAvatarModule,
+		NzDropDownModule,
+		NzBreadCrumbModule,
+		NzTabsModule,
+		NzTableModule,
+		NzDatePickerModule,
+		NzSelectModule,
+		NzModalModule,
+		NzUploadModule,
+		NzSwitchModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
     MarkdownModule.forRoot() // 导入ngx-markdown插件

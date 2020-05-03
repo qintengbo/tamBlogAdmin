@@ -18,35 +18,35 @@
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>主标题</nz-form-label>
-        <nz-form-control [nzSpan]="18">
+        <nz-form-control [nzSpan]="18" [nzErrorTip]="mainTitleErrorTpl">
           <input nz-input formControlName="mainTitle" placeholder="填写主标题">
-          <nz-form-explain *ngIf="validateForm.get('mainTitle').dirty && validateForm.get('mainTitle').errors">
-            <ng-container *ngIf="validateForm.get('mainTitle').hasError('required')">
-              请输入主标题
-            </ng-container>
-          </nz-form-explain>
+					<ng-template #mainTitleErrorTpl let-control>
+						<ng-container *ngIf="control.hasError('required')">
+							请输入主标题
+						</ng-container>
+					</ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>副标题</nz-form-label>
-        <nz-form-control [nzSpan]="18">
+        <nz-form-control [nzSpan]="18" [nzErrorTip]="subtitleErrorTpl">
           <input nz-input formControlName="subtitle" placeholder="填写副标题">
-          <nz-form-explain *ngIf="validateForm.get('subtitle').dirty && validateForm.get('subtitle').errors">
-            <ng-container *ngIf="validateForm.get('subtitle').hasError('required')">
-              请输入副标题
-            </ng-container>
-          </nz-form-explain>
+					<ng-template #subtitleErrorTpl let-control>
+						<ng-container *ngIf="control.hasError('required')">
+							请输入副标题
+						</ng-container>
+					</ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>图片地址</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-control [nzSpan]="13" [nzErrorTip]="imgUrlErrorTpl">
           <input type="text" nz-input formControlName="imgUrl" placeholder="填写图片地址">
-          <nz-form-explain *ngIf="validateForm.get('imgUrl').dirty && validateForm.get('imgUrl').errors">
-            <ng-container *ngIf="validateForm.get('imgUrl').hasError('required')">
-              请输入图片地址
-            </ng-container>
-          </nz-form-explain>
+					<ng-template #imgUrlErrorTpl let-control>
+						<ng-container *ngIf="control.hasError('required')">
+							请输入图片地址
+						</ng-container>
+					</ng-template>
         </nz-form-control>
         <nz-form-control class="uploadControl" [nzSpan]="5">
           <nz-upload
@@ -62,13 +62,13 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>顺序编号</nz-form-label>
-        <nz-form-control [nzSpan]="18">
+        <nz-form-control [nzSpan]="18" [nzErrorTip]="orderErrorTpl">
           <input nz-input formControlName="order" placeholder="填写顺序编号">
-          <nz-form-explain *ngIf="validateForm.get('order').dirty && validateForm.get('order').errors">
-            <ng-container *ngIf="validateForm.get('order').hasError('required')">
-              请输入顺序编号
-            </ng-container>
-          </nz-form-explain>
+					<ng-template #orderErrorTpl let-control>
+						<ng-container *ngIf="control.hasError('required')">
+							请输入顺序编号
+						</ng-container>
+					</ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -94,7 +94,7 @@
       </nz-select>
     </div>
   </div>
-  <nz-table #bannerTable [nzData]="bannerList">
+  <nz-table #bannerTable [nzData]="bannerList" class="tableContainer">
     <thead>
       <tr>
         <th>序号</th>

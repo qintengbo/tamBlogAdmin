@@ -11,16 +11,18 @@
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>标题</nz-form-label>
-      <nz-form-control [nzSpan]="8">
-        <input nz-input formControlName="title" placeholder="填写文章标题">
-        <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
-          请输入文章标题
-        </nz-form-explain>
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="titleErrorTpl">
+				<input nz-input formControlName="title" placeholder="填写文章标题">
+				<ng-template #titleErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请输入文章标题
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>分类</nz-form-label>
-      <nz-form-control [nzSpan]="8">
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="classificationErrorTpl">
         <nz-select nzShowSearch formControlName="classification" nzPlaceHolder="选择文章分类">
           <nz-option 
             *ngFor="let item of classificationList" 
@@ -28,15 +30,17 @@
             nzLabel="{{ item.name }}"
           >
           </nz-option>
-        </nz-select>
-        <nz-form-explain *ngIf="validateForm.get('classification').dirty && validateForm.get('classification').errors">
-          请选择文章分类
-        </nz-form-explain>
+				</nz-select>
+				<ng-template #classificationErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请选择文章分类
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>标签</nz-form-label>
-      <nz-form-control [nzSpan]="8">
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="tagErrorTpl">
         <nz-select [nzMaxMultipleCount]="3" nzMode="multiple" formControlName="tag" nzPlaceHolder="选择文章标签">
           <nz-option 
             *ngFor="let item of tagList" 
@@ -44,15 +48,17 @@
             nzLabel="{{ item.name }}"
           >
           </nz-option>
-        </nz-select>
-        <nz-form-explain *ngIf="validateForm.get('tag').dirty && validateForm.get('tag').errors">
-          请选择文章标签
-        </nz-form-explain>
+				</nz-select>
+				<ng-template #tagErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请选择文章标签
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>封面</nz-form-label>
-      <nz-form-control [nzSpan]="8">
+      <nz-form-control [nzSpan]="8" [nzErrorTip]="coverImgErrorTpl">
         <nz-input-group [nzSuffix]="suffixIconButton">
           <input type="text" nz-input formControlName="coverImg" placeholder="填写图片地址">
         </nz-input-group>
@@ -62,28 +68,30 @@
             [nzCustomRequest]="coverImgUpload"
             [nzBeforeUpload]="beforeUpload"
           >
-            <button type="button" nz-button nzType="primary">
+            <button type="button" nz-button nzType="primary" [nzSize]="small">
               <i nz-icon nzType="upload" nzTheme="outline"></i>
             </button>
           </nz-upload>
-        </ng-template>
-        <nz-form-explain *ngIf="validateForm.get('coverImg').dirty && validateForm.get('coverImg').errors">
-          <ng-container *ngIf="validateForm.get('coverImg').hasError('required')">
-            请输入图片地址
-          </ng-container>
-        </nz-form-explain>
+				</ng-template>
+				<ng-template #coverImgErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请输入图片地址
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label class="article-label" nzRequired>导语</nz-form-label>
-      <nz-form-control [nzSpan]="24">
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="leadErrorTpl">
         <textarea formControlName="lead" nz-input [nzAutosize]="{ minRows: 3 }" placeholder="填写文章导语"></textarea>
-        <nz-form-explain *ngIf="validateForm.get('lead').dirty && validateForm.get('lead').errors">
-          请输入文章导语
-        </nz-form-explain>
+				<ng-template #leadErrorTpl let-control>
+					<ng-container *ngIf="control.hasError('required')">
+						请输入文章导语
+					</ng-container>
+				</ng-template>
       </nz-form-control>
     </nz-form-item>
-    <div nz-row [nzGutter]="24">
+		<div nz-row [nzGutter]="24" class="contentWrapDiv">
       <div class="text-btn">
         <span>
           <nz-upload
@@ -101,11 +109,13 @@
       <div nz-col [nzSpan]="24">
         <nz-form-item class="textItem">
           <nz-form-label [nzSpan]="24" nzRequired>正文：</nz-form-label>
-          <nz-form-control [nzSpan]="24" *ngIf="!previewState">
+          <nz-form-control [nzSpan]="24" *ngIf="!previewState" [nzErrorTip]="contentErrorTpl">
             <textarea formControlName="content" nz-input [nzAutosize]="{ minRows: 16 }" placeholder="编写文章内容"></textarea>
-            <nz-form-explain *ngIf="validateForm.get('content').dirty && validateForm.get('content').hasError('required')">
-              请输入正文
-            </nz-form-explain>
+						<ng-template #contentErrorTpl let-control>
+							<ng-container *ngIf="control.hasError('required')">
+								请输入正文
+							</ng-container>
+						</ng-template>
           </nz-form-control>
         </nz-form-item>
         <div class="markdown" markdown [data]="validateForm.value.content" *ngIf="previewState"></div>

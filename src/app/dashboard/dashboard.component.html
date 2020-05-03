@@ -6,19 +6,19 @@
     <div class="title">博客后台管理系统</div>
     <div class="header-userpannel">
       <nz-avatar nzSize="large" [nzText]="'覃'"></nz-avatar>
-      <nz-dropdown class="userProfile">
-        <a nz-dropdown>
-          管理员 <i nz-icon nzType="down" nzTheme="outline"></i>
-        </a>
-        <ul nz-menu nzSelectable>
-          <li nz-menu-item>
-            <a><i nz-icon nzType="setting" nzTheme="outline"></i> 个人设置</a>
-          </li>
-          <li nz-menu-item (click)="logout()">
-            <a><i nz-icon nzType="poweroff" nzTheme="outline"></i> 退出登录</a>
-          </li>
-        </ul>
-      </nz-dropdown>
+			<a nz-dropdown [nzDropdownMenu]="menu" class="userProfile">
+				管理员 <i nz-icon nzType="down" nzTheme="outline"></i>
+			</a>
+			<nz-dropdown-menu #menu="nzDropdownMenu">
+				<ul nz-menu nzSelectable>
+					<li nz-menu-item>
+						<a><i nz-icon nzType="setting" nzTheme="outline"></i> 个人设置</a>
+					</li>
+					<li nz-menu-item (click)="logout()">
+						<a><i nz-icon nzType="poweroff" nzTheme="outline"></i> 退出登录</a>
+					</li>
+				</ul>
+			</nz-dropdown-menu>
     </div>
     <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
       <li nz-menu-item routerLink="/dashboard/index">
@@ -41,7 +41,7 @@
       >
         <li 
           nz-menu-item 
-          [nzSelected]="activeIndex == 'index'"
+          [nzSelected]="activeIndex === 'index'"
           routerLink="/dashboard/index"
         >
           <span title>
@@ -51,64 +51,64 @@
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex == 'articleList' || activeIndex == 'articleDetail'"
+          [nzOpen]="activeIndex === 'articleList' || activeIndex === 'articleDetail'"
         >
           <span title>
             <i nz-icon nzType="file-text" nzTheme="outline"></i>
             <span>文章管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'articleList'" routerLink="/dashboard/articleList">文章列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'articleList' || activeIndex === 'articleDetail'" routerLink="/dashboard/articleList">文章列表</li>
           </ul>
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex == 'steppingPitList'"
+          [nzOpen]="activeIndex === 'steppingPitList' || activeIndex === 'steppingPitDetail'"
         >
           <span title>
             <i nz-icon nzType="appstore" nzTheme="outline"></i>
             <span>踩坑管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'steppingPitList'" routerLink="/dashboard/steppingPitList">踩坑列表</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'steppingPitList' || activeIndex === 'steppingPitDetail'" routerLink="/dashboard/steppingPitList">踩坑列表</li>
           </ul>
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex == 'photographyList'"
+          [nzOpen]="activeIndex === 'photographyList'"
         >
           <span title>
             <i nz-icon nzType="picture" nzTheme="outline"></i>
             <span>摄影管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'photographyList'" routerLink="/dashboard/photographyList">摄影集</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'photographyList'" routerLink="/dashboard/photographyList">摄影集</li>
           </ul>
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex == 'classificationList' || activeIndex == 'tagList' || activeIndex == 'bannerList'"
+          [nzOpen]="activeIndex === 'classificationList' || activeIndex === 'tagList' || activeIndex === 'bannerList'"
         >
           <span title>
             <i nz-icon nzType="block" nzTheme="outline"></i>
             <span>通用管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'classificationList'" routerLink="/dashboard/classificationList">分类管理</li>
-            <li nz-menu-item [nzSelected]="activeIndex == 'tagList'" routerLink="/dashboard/tagList">标签管理</li>
-            <li nz-menu-item [nzSelected]="activeIndex == 'bannerList'" routerLink="/dashboard/bannerList">轮播管理</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'classificationList'" routerLink="/dashboard/classificationList">分类管理</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'tagList'" routerLink="/dashboard/tagList">标签管理</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'bannerList'" routerLink="/dashboard/bannerList">轮播管理</li>
           </ul>
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex == 'myInfo'"
+          [nzOpen]="activeIndex === 'myInfo'"
         >
           <span title>
             <i nz-icon nzType="idcard" nzTheme="outline"></i>
             <span>个人设置</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex == 'myInfo'" routerLink="/dashboard/myInfo">个人信息</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'myInfo'" routerLink="/dashboard/myInfo">个人信息</li>
           </ul>
         </li>
       </ul>
