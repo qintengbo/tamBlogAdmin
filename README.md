@@ -1,27 +1,45 @@
-# TamBlogAdmin
+# 个人博客后台管理系统
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+该项目是我个人的博客后台管理系统，采用 `Angular 9.0` + `ng-zorro-antd` 架构，本项目支持 `Markdown` 文档写作。
 
-## Development server
+## 使用方法
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+npm intall // 安装依赖
+npm start  // 启动项目
+```
 
-## Code scaffolding
+## 项目结构
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+├── tamBlog-admin                  编译结果目录
+├── e2e                            测试目录
+├── src                            源码目录
+|   ├── assets                     公共资源目录（图标、字体等）
+|   ├── services                   应用服务目录
+|   ├── app                        页面文件目录
+|   |   ├── login                  login页面目录
+|   |   |   ├── routing.modules.ts 路由文件
+|   |   |   ├── component.html     HTML文件
+|   |   |   ├── component.ts       组件文件
+|   |   |   ├── modules.ts         模块文件
+|   |   |   └── component.less     样式文件
+|   |   ├── app.routing.modules.ts 根路由
+|   |   ├── app.component.html     app HTML入口
+|   |   ├── app.component.ts       根组件
+|   |   └── app.modules.ts         根模块
+|   ├── styles.less                项目通用样式
+|   ├── theme.less                 主题样式文件
+|   └── index.html                 应用入口
+└── angular.json                   应用配置
+```
 
-## Build
+## 文档资源
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Angular官方文档：[https://angular.cn/](https://angular.cn/)
 
-## Running unit tests
+Ng-zorro官方文档：[https://ng.ant.design/docs/introduce/zh](https://ng.ant.design/docs/introduce/zh)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Rxjs官方文档：[https://cn.rx.js.org/](https://cn.rx.js.org/)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+TypeScript官方文档：[https://www.tslang.cn/docs/home.html](https://www.tslang.cn/docs/home.html)
