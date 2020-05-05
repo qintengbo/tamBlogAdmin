@@ -63,18 +63,6 @@
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex === 'steppingPitList' || activeIndex === 'steppingPitDetail'"
-        >
-          <span title>
-            <i nz-icon nzType="appstore" nzTheme="outline"></i>
-            <span>踩坑管理</span>
-          </span>
-          <ul>
-            <li nz-menu-item [nzSelected]="activeIndex === 'steppingPitList' || activeIndex === 'steppingPitDetail'" routerLink="/dashboard/steppingPitList">踩坑列表</li>
-          </ul>
-        </li>
-        <li 
-          nz-submenu 
           [nzOpen]="activeIndex === 'photographyList'"
         >
           <span title>

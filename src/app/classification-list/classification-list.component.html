@@ -73,7 +73,7 @@
         <td>{{ data.articleNum }}</td>
         <td class="operation">
           <span (click)="detailClassification(data)">编辑</span>
-          <span nz-popconfirm nzTitle="你确定要删除此分类吗？" (nzOnConfirm)="deleteClassification(data._id)">删除</span>
+          <span nz-popconfirm nzPopconfirmTitle="你确定要删除此分类吗？" (nzOnConfirm)="deleteClassification(data._id)">删除</span>
         </td>
       </tr>
     </tbody>

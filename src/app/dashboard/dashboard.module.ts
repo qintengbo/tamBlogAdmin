@@ -16,7 +16,9 @@ import {
 	NzSelectModule,
 	NzModalModule,
 	NzUploadModule,
-	NzSwitchModule
+	NzSwitchModule,
+	NzTagModule,
+	NzPopconfirmModule
 } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
@@ -28,8 +30,6 @@ import { ClassificationListComponent } from '@/classification-list/classificatio
 import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
 import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
-import { SteppingPitListComponent } from '@/steppingPit-list/steppingPit-list.component';
-import { SteppingPitDetailComponent } from '@/steppingPit-detail/steppingPit-detail.component';
 
 @NgModule({
   imports: [
@@ -51,6 +51,8 @@ import { SteppingPitDetailComponent } from '@/steppingPit-detail/steppingPit-det
 		NzModalModule,
 		NzUploadModule,
 		NzSwitchModule,
+		NzTagModule,
+		NzPopconfirmModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
     MarkdownModule.forRoot() // 导入ngx-markdown插件
@@ -63,8 +65,6 @@ import { SteppingPitDetailComponent } from '@/steppingPit-detail/steppingPit-det
     ClassificationListComponent,
     TagListComponent,
     BannerListComponent,
-    SteppingPitListComponent,
-    SteppingPitDetailComponent
   ]
 })
 export class DashboardModule { }
