@@ -1,0 +1,242 @@
+/**
+ * Markdown文档自定义样式文件
+ * @author: qintengbo
+ */
+
+@import 'fonts/fonts.css';
+
+:root {
+	--side-bar-bg-color: #fff;
+	--control-text-color: #777;
+	--font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+	--font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+div[name="markdown"] a {
+	color: #42b983;
+	font-weight: 600;
+	padding: 0 2px;
+	text-decoration: none;
+}
+
+div[name="markdown"] hr {
+	height: 2px;
+	padding: 0;
+	margin: 16px 0;
+	background-color: #e7e7e7;
+	border: 0 none;
+	overflow: hidden;
+	box-sizing: content-box;
+}
+
+div[name="markdown"] h2 {
+	line-height: 1.225;
+	margin: 35px 0 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+}
+
+div[name="markdown"] h3 {
+	line-height: 1.43;
+	margin: 20px 0 7px;
+}
+
+div[name="markdown"] h6 {
+	color: #777;
+}
+
+div[name="markdown"] p, 
+blockquote, 
+ul, 
+ol,
+dl,
+table {
+  margin: 0.8em 0;
+}
+
+div[name="markdown"] ol li {
+	padding-left: 0.5rem;
+	margin: 1rem 0;
+}
+
+div[name="markdown"] h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	position: relative;
+	font-weight: bold;
+	line-height: 1.4;
+	cursor: text;
+}
+
+div[name="markdown"] li p.first {
+	display: inline-block;
+}
+
+div[name="markdown"] li > ol,
+div[name="markdown"] li > ul {
+  margin: 0 0;
+}
+
+div[name="markdown"] blockquote {
+	border-left: 4px solid #42b983;
+	padding: 10px 15px;
+	color: #777;
+	background-color: rgba(66, 185, 131, .1);
+}
+
+div[name="markdown"] blockquote > p {
+	margin: 0;
+}
+
+div[name="markdown"] table {
+	padding: 0;
+	word-break: initial;
+}
+
+div[name="markdown"] table tr {
+	border-top: 1px solid #dfe2e5;
+	margin: 0;
+	padding: 0;
+}
+
+div[name="markdown"] table tr:nth-child(2n),
+thead {
+	background-color: #fafafa;
+}
+
+div[name="markdown"] table tr th {
+	font-weight: bold;
+	border: 1px solid #dfe2e5;
+	border-bottom: 0;
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+
+div[name="markdown"] table tr td {
+	border: 1px solid #dfe2e5;
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+
+div[name="markdown"] table tr th:first-child,
+table tr td:first-child {
+	margin-top: 0;
+}
+
+div[name="markdown"] table tr th:last-child,
+table tr td:last-child {
+	margin-bottom: 0;
+}
+
+div[name="markdown"] table thead th {
+	background-color: #f2f2f2;
+}
+
+div[name="markdown"] strong {
+	padding: 0 1px;
+}
+
+div[name="markdown"] em {
+	padding: 0 5px 0 2px;
+}
+
+div[name="markdown"] code {
+	padding: 2px 4px;
+	border-radius: 2px;
+	font-family: var(--font-monospace);
+	background-color: #f8f8f8;
+}
+
+div[name="markdown"] tt {
+	padding: 2px 4px;
+	margin: 0 2px;
+	border-radius: 2px;
+	font-family: var(--font-monospace);
+	font-size: 85%;
+	color: #e96900;
+	background-color: #f8f8f8;
+}
+
+div[name="markdown"] mark {
+	background-color: #EBFFEB;
+	border-radius: 2px;
+	padding: 2px 4px;
+	margin: 0 2px;
+	color: #222;
+	font-weight: 500;
+}
+
+div[name="markdown"] del {
+	padding: 1px 2px;
+}
+
+div[name="markdown"] pre, pre[class*='language-'] {
+	padding: 1rem;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border: 0;
+	font-size: 85%;
+	border-radius: 3px;
+	color: #666;
+	margin-top: 0 !important;
+	direction: ltr;
+	cursor: text;
+}
+ 
+p code,
+li code,
+table code {
+	margin: 0;
+	border-radius: 2px;
+	padding: 0.2em 0;
+}
+p code:before, p code:after,
+li code:before,
+li code:after,
+table code:before,
+table code:after {
+	letter-spacing: -0.2em;
+	content: '\00a0';
+}
+ 
+code,
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+	background: #f7f7f7;
+}
+
+:not(pre) > code {
+	color: #e96900;
+	font-size: 90%;
+}
+
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
+	color: #969896;
+}
+.token.punctuation, .token.string, .token.atrule, .token.attr-value {
+	color: #183691;
+}
+.token.property, .token.tag {
+	color: #63a35c;
+}
+.token.boolean, .token.number {
+	color: #0086b3;
+}
+.token.selector, .token.attr-name, .token.attr-value .punctuation:first-child, .token.keyword, .token.regex, .token.important {
+	color: #795da3;
+}
+.token.operator, .token.entity, .token.url, .language-css .token.string {
+	color: #a71d5d;
+}
+.token.entity {
+	cursor: help;
+}
+
+.namespace {
+	opacity: 0.7;
+}

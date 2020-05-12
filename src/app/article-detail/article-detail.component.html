@@ -64,7 +64,8 @@
         </nz-input-group>
         <ng-template #suffixIconButton>
           <nz-upload
-            [nzShowUploadList]="false"
+						[nzShowUploadList]="false"
+						nzAccept="image/*"
             [nzCustomRequest]="coverImgUpload"
             [nzBeforeUpload]="beforeUpload"
           >
@@ -93,9 +94,21 @@
     </nz-form-item>
 		<div nz-row [nzGutter]="24" class="contentWrapDiv">
       <div class="text-btn">
-        <span>
+				<span *ngIf="!previewState">
           <nz-upload
             [nzShowUploadList]="false"
+            [nzCustomRequest]="importFile"
+            [nzBeforeUpload]="beforeImportFile"
+          >
+            <button type="button" class="upload-btn" nz-button>
+              <span>导入文件</span>
+            </button>
+          </nz-upload>
+        </span>
+        <span *ngIf="!previewState">
+          <nz-upload
+						[nzShowUploadList]="false"
+						nzAccept="image/*"
             [nzCustomRequest]="handleUpload"
             [nzBeforeUpload]="beforeUpload"
           >
@@ -118,7 +131,7 @@
 						</ng-template>
           </nz-form-control>
         </nz-form-item>
-        <div class="markdown" markdown [data]="validateForm.value.content" *ngIf="previewState"></div>
+        <div class="markdown" name="markdown" markdown [data]="validateForm.value.content" *ngIf="previewState"></div>
       </div>
     </div>
     <nz-form-item class="textItem" *ngIf="!previewState">

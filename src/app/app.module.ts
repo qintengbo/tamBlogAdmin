@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgDompurifyDomSanitizer } from '@tinkoff/ng-dompurify';
 import { HttpClientModule } from '@angular/common/http';
 import { NzDatePickerModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +35,11 @@ registerLocaleData(zh);
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+		},
+		{ 
+			provide: DomSanitizer, 
+			useClass: NgDompurifyDomSanitizer 
+		}
   ],
   bootstrap: [AppComponent] // 启动应用根组件
 })

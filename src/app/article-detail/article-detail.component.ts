@@ -79,7 +79,44 @@ export class ArticleDetailComponent implements OnInit {
         this.message.error(res['msg']);
       }
     });
-  }
+	}
+	
+	// 导入文件前的回调函数
+	beforeImportFile = (file: File) => {
+		// 判断选择的文件类型是否为文档类型
+    let type = file.type.slice(file.type.lastIndexOf('/') + 1);
+    const isDoc = 'doc,docx,txt,md'.indexOf(type) !== -1;
+    if (!isDoc) {
+      this.message.error('只能选择文档类型的文件');
+    }
+    // 判断文件大小
+    const isLt4M = file.size / 1024 / 1024 < 4;
+    if (!isLt4M) {
+      this.message.error('文件大小超过4M');
+    }
+    return isDoc && isLt4M;
+	}
+
+	// 导入文件
+	importFile = (item: UploadXHRArgs) => {
+		// 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    formData.append(item.name, item.file as any);
+    // 返回自定义上传方法
+    return this.httpRequestService.uploadFileRequest(formData)
+    .subscribe(res => {
+			const { code, data } = res;
+      if (code === 0) {
+        let textValue = this.validateForm.value['content'];
+        this.validateForm.patchValue({
+          content: textValue + data
+        });
+        this.message.success('导入文件成功');
+      } else {
+        this.message.error(res['msg']);
+      }
+    });
+	}
 
   // 提交表单
   submitForm = (validateForm: any) => {
