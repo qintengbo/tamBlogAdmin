@@ -5,9 +5,9 @@
     </div>
     <div class="title">博客后台管理系统</div>
     <div class="header-userpannel">
-      <nz-avatar nzSize="large" [nzText]="'覃'"></nz-avatar>
 			<a nz-dropdown [nzDropdownMenu]="menu" class="userProfile">
-				管理员 <i nz-icon nzType="down" nzTheme="outline"></i>
+				<i nz-icon class="index-icon" nzType="user" nzTheme="outline"></i> 超级管理员 
+				<i nz-icon nzType="down" nzTheme="outline"></i>
 			</a>
 			<nz-dropdown-menu #menu="nzDropdownMenu">
 				<ul nz-menu nzSelectable>
@@ -51,14 +51,15 @@
         </li>
         <li 
           nz-submenu 
-          [nzOpen]="activeIndex === 'articleList' || activeIndex === 'articleDetail'"
+          [nzOpen]="activeIndex === 'articleList' || activeIndex === 'articleDetail' || activeIndex === 'commentList'"
         >
           <span title>
             <i nz-icon nzType="file-text" nzTheme="outline"></i>
             <span>文章管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex === 'articleList' || activeIndex === 'articleDetail'" routerLink="/dashboard/articleList">文章列表</li>
+						<li nz-menu-item [nzSelected]="activeIndex === 'articleList' || activeIndex === 'articleDetail'" routerLink="/dashboard/articleList">文章列表</li>
+						<li nz-menu-item [nzSelected]="activeIndex === 'commentList'" routerLink="/dashboard/commentList">评论列表</li>
           </ul>
         </li>
         <li 
@@ -70,7 +71,7 @@
             <span>摄影管理</span>
           </span>
           <ul>
-            <li nz-menu-item [nzSelected]="activeIndex === 'photographyList'" routerLink="/dashboard/photographyList">摄影集</li>
+            <li nz-menu-item [nzSelected]="activeIndex === 'photographyList'" routerLink="/dashboard/photographyList">照片列表</li>
           </ul>
         </li>
         <li 
@@ -79,7 +80,7 @@
         >
           <span title>
             <i nz-icon nzType="block" nzTheme="outline"></i>
-            <span>通用管理</span>
+            <span>其他管理</span>
           </span>
           <ul>
             <li nz-menu-item [nzSelected]="activeIndex === 'classificationList'" routerLink="/dashboard/classificationList">分类管理</li>

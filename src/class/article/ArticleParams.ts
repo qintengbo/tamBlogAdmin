@@ -4,7 +4,7 @@ export class ArticleParams {
   classification: string;
   tag: string;
   status: number;
-  date: string;
+  date: string[];
   page: number;
   size: number;
   sort: string;

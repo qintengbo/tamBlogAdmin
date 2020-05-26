@@ -19,7 +19,7 @@ export class ArticleListComponent implements OnInit {
     classification: null,
     tag: null,
     status: 0, // 状态，2-未发布，1-已发布，0-全部
-    date: '',
+    date: [],
     sort: null,
     page: 1,
     size: 10
@@ -68,16 +68,24 @@ export class ArticleListComponent implements OnInit {
 
   // 选择tab标签页回调函数
   changTabs = ($event: any) => {
-    this.params.status = $event.index;
+		this.params.status = $event.index;
+		this.params.page = 1;
     this.getArticleList();
-  }
+	}
+	
+	// 筛选
+	search(): void {
+		this.params.page = 1;
+		this.getArticleList();
+	}
 
   // 重置
   reset(): void {
-    this.params.keyWord = '';
+		this.params.keyWord = '';
+		this.params.page = 1;
     this.params.classification = null;
     this.params.tag = null;
-    this.params.date = '';
+    this.params.date = [];
     this.params.sort = null;
     this.getArticleList();
   }

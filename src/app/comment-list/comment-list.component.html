@@ -1,0 +1,158 @@
+<nz-breadcrumb class="breadCon" nzSeparator=">">
+  <nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>评论列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-content class="indexContent">
+	<nz-tabset (nzSelectChange)="changTabs($event)">
+    <nz-tab nzTitle="全部"></nz-tab>
+    <nz-tab nzTitle="已展示"></nz-tab>
+    <nz-tab nzTitle="未展示"></nz-tab>
+	</nz-tabset>
+	<div>
+    <div class="inlineBlock">关联文章：
+			<nz-input-group [nzSuffix]="titleInputClearTpl">
+				<input nz-input class="search-input" placeholder="请输入关键词" [(ngModel)]="params.titleKey">
+			</nz-input-group>
+			<ng-template #titleInputClearTpl>
+				<i 
+					nz-icon 
+					class="ant-input-clear-icon" 
+					nzTheme="fill" 
+					nzType="close-circle" 
+					*ngIf="params.titleKey" 
+					(click)="params.titleKey = ''"
+				></i>
+			</ng-template>
+		</div>
+		<div class="inlineBlock">评论人信息：
+			<nz-input-group [nzSuffix]="commenterInputClearTpl">
+				<input nz-input class="search-input" placeholder="请输入关键词" [(ngModel)]="params.commenterKey">
+			</nz-input-group>
+			<ng-template #commenterInputClearTpl>
+				<i 
+					nz-icon 
+					class="ant-input-clear-icon" 
+					nzTheme="fill" 
+					nzType="close-circle" 
+					*ngIf="params.commenterKey" 
+					(click)="params.commenterKey = ''"
+				></i>
+			</ng-template>
+    </div>
+    <div class="inlineBlock">日期：
+			<nz-range-picker 
+				class="date-input" 
+				[(ngModel)]="params.date" 
+				[nzSeparator]="'~'"
+				nzShowTime
+			></nz-range-picker>
+    </div>
+    <div class="inlineBlock">
+      <button nz-button nzType="primary" (click)="search()">筛选</button>
+      <button nz-button nzType="default" class="resetBtn" (click)="reset()">重置</button>
+    </div>
+  </div>
+	<nz-table 
+		#commentListTable 
+		class="tableContainer"
+    [nzData]="commentList" 
+    [nzFrontPagination]="false" 
+    [nzTotal]="total" 
+    [nzPageIndex]="params.page" 
+    [nzPageSize]="params.size"
+    [nzHideOnSinglePage]="true"
+    (nzPageIndexChange)="pageIndexChange($event)"
+  >
+    <thead>
+      <tr>
+				<th>序号</th>
+				<th>关联文章</th>
+        <th>评论人</th>
+				<th>邮箱</th>
+				<th>IP地址</th>
+        <th>被评论人</th>
+				<th>是否展示</th>
+				<th>评论时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of commentListTable.data; let i = index">
+        <td>{{ i + 1 + (params.page - 1) * params.size }}</td>
+        <td>{{ data.relationId.title }}</td>
+        <td>{{ data.commenter.name }}</td>
+        <td>{{ data.commenter.email }}</td>
+        <td>{{ data.commenter.visIp }}</td>
+				<td>{{ data.beCommenter ? data.beCommenter.name : '--' }}</td>
+				<td>{{ data.show ? '是' : '否' }}</td>
+        <td>{{ data.createDate | date: "y-MM-dd HH:mm:ss" }}</td>
+        <td class="operation">
+					<span (click)="view(data)">查看</span>
+          <span 
+            nz-popconfirm 
+            [nzPopconfirmTitle]="tips(data.show, data.isMain)" 
+            (nzOnConfirm)="updateStatus(data._id, data.reply, data.show)"
+          >
+            {{ data.show ? '隐藏' : '显示' }}
+					</span>
+        </td>
+      </tr>
+    </tbody>
+	</nz-table>
+	<!-- 评论详情模态框 -->
+	<nz-modal 
+		[(nzVisible)]="isVisible" 
+		nzTitle="评论详情" 
+		nzWidth="800"
+		(nzOnCancel)="modalCancel()" 
+		(nzOnOk)="submitForm()"
+	>
+		<div class="modalBody">
+			<div class="modalContainer">
+				<div class="modalItem">
+					<span>关联文章：</span>
+					<span class="itemContent">{{ commentInfo.relationId?.title }}</span>
+				</div>
+				<div class="modalItem">
+					<span>评论人：</span>
+					<span class="itemContent">{{ commentInfo.commenter?.name }}</span>
+				</div>
+				<div class="modalItem">
+					<span>被评论人：</span>
+					<span class="itemContent">{{ commentInfo.beCommenter ? commentInfo.beCommenter?.name : '--' }}</span>
+				</div>
+				<div class="modalItem">
+					<span>评论时间：</span>
+					<span class="itemContent">{{ commentInfo.createDate | date: "y-MM-dd HH:mm:ss" }}</span>
+				</div>
+			</div>
+			<div class="modalContent">评论内容：<div class="markdown" name="markdown" markdown [data]="commentInfo.content"></div></div>
+			<div class="modalContent">回复：
+				<div class="text-btn">
+					<span *ngIf="!previewState">
+						<nz-upload
+							[nzShowUploadList]="false"
+							nzAccept="image/*"
+							[nzCustomRequest]="handleUpload"
+							[nzBeforeUpload]="beforeUpload"
+						>
+							<button type="button" class="upload-btn" nz-button>
+								<span>插入图片</span>
+							</button>
+						</nz-upload>
+					</span>
+					<span (click)="preview()">{{ previewState ? '编辑' : '预览' }}</span>
+				</div>
+				<textarea 
+					class="replyContent" 
+					maxlength="1000"
+					nz-input 
+					[(ngModel)]="replyContent"
+					[nzAutosize]="{ minRows: 3 }" 
+					placeholder="填写回复内容"
+				>
+				</textarea>
+			</div>
+		</div>
+	</nz-modal>
+</nz-content>

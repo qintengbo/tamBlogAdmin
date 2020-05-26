@@ -158,42 +158,18 @@ export class HttpRequestService {
       catchError(this.handleError<any>('detailBannerRequest'))
     );
   }
-  // 新增踩坑
-  addSteppingPitRequest(data: {}): Observable<Response> {
-    return this.http.post<Response>(`${this.path}/addSteppingPit`, data, this.httpOptions).pipe(
-      catchError(this.handleError<any>('addSteppingPitRequest'))
-    );
-  }
-  // 踩坑列表
-  steppingPitListRequest(data: {}): Observable<Response> {
-    return this.http.get<Response>(`${this.path}/steppingPitList`, { params: data }).pipe(
-      catchError(this.handleError<any>('steppingPitListRequest'))
-    );
-  }
-  // 踩坑详情
-  steppingPitInfoRequest(id: string): Observable<Response> {
-    return this.http.get<Response>(`${this.path}/steppingPitInfo`, { params: { id } }).pipe(
-      catchError(this.handleError<any>('steppingPitInfoRequest'))
-    );
-  }
-  // 删除踩坑
-  deleteSteppingPitRequest(id: string): Observable<Response> {
-    return this.http.delete<Response>(`${this.path}/deleteSteppingPit`, { params: { id } }).pipe(
-      catchError(this.handleError<any>('deleteSteppingPitRequest'))
-    );
-  }
-  // 更新踩坑状态
-  updateSteppingPitRequest(data: {}): Observable<Response> {
-    return this.http.put<Response>(`${this.path}/updateSteppingPit`, data, this.httpOptions).pipe(
-      catchError(this.handleError<any>('updateSteppingPitRequest'))
-    );
-  }
-  // 编辑踩坑
-  detailSteppingPitRequest(data: {}): Observable<Response> {
-    return this.http.put<Response>(`${this.path}/detailSteppingPit`, data, this.httpOptions).pipe(
-      catchError(this.handleError<any>('detailSteppingPitRequest'))
-    );
-  }
+	// 评论列表
+	commentListRequest(params: {}): Observable<Response> {
+		return this.http.get<Response>(`${this.path}/commentList`, { params }).pipe(
+			catchError(this.handleError<any>('commentListRequest'))
+		);
+	}
+	// 更改评论接口
+	updateCommentRequest(data: {}): Observable<Response> {
+		return this.http.put<Response>(`${this.path}/updateComment`, data, this.httpOptions).pipe(
+			catchError(this.handleError<any>('updateCommentRequest'))
+		);
+	}
 
   /**
    * 处理失败的http操作

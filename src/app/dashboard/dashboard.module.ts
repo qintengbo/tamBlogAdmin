@@ -18,7 +18,8 @@ import {
 	NzUploadModule,
 	NzSwitchModule,
 	NzTagModule,
-	NzPopconfirmModule
+	NzPopconfirmModule,
+	NzDescriptionsModule
 } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
@@ -29,6 +30,7 @@ import { ArticleDetailComponent } from '@/article-detail/article-detail.componen
 import { ClassificationListComponent } from '@/classification-list/classification-list.component';
 import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
+import { CommentListComponent } from '@/comment-list/comment-list.component';
 import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
 
 @NgModule({
@@ -53,6 +55,7 @@ import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
 		NzSwitchModule,
 		NzTagModule,
 		NzPopconfirmModule,
+		NzDescriptionsModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
     MarkdownModule.forRoot() // 导入ngx-markdown插件
@@ -64,7 +67,8 @@ import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
     ArticleDetailComponent,
     ClassificationListComponent,
     TagListComponent,
-    BannerListComponent,
+		BannerListComponent,
+		CommentListComponent
   ]
 })
 export class DashboardModule { }

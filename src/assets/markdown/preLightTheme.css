@@ -46,11 +46,11 @@ div[name="markdown"] h6 {
 }
 
 div[name="markdown"] p, 
-blockquote, 
-ul, 
-ol,
-dl,
-table {
+div[name="markdown"] blockquote, 
+div[name="markdown"] ul, 
+div[name="markdown"] ol,
+div[name="markdown"] dl,
+div[name="markdown"] table {
   margin: 0.8em 0;
 }
 
@@ -60,11 +60,11 @@ div[name="markdown"] ol li {
 }
 
 div[name="markdown"] h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+div[name="markdown"] h2,
+div[name="markdown"] h3,
+div[name="markdown"] h4,
+div[name="markdown"] h5,
+div[name="markdown"] h6 {
 	position: relative;
 	font-weight: bold;
 	line-height: 1.4;
@@ -124,12 +124,12 @@ div[name="markdown"] table tr td {
 }
 
 div[name="markdown"] table tr th:first-child,
-table tr td:first-child {
+div[name="markdown"] table tr td:first-child {
 	margin-top: 0;
 }
 
 div[name="markdown"] table tr th:last-child,
-table tr td:last-child {
+div[name="markdown"] table tr td:last-child {
 	margin-bottom: 0;
 }
 

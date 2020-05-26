@@ -7,6 +7,7 @@ import { ArticleDetailComponent } from '@/article-detail/article-detail.componen
 import { ClassificationListComponent } from '@/classification-list/classification-list.component';
 import { TagListComponent } from '@/tag-list/tag-list.component';
 import { BannerListComponent } from '@/banner-list/banner-list.component';
+import { CommentListComponent } from '@/comment-list/comment-list.component';
 import { AuthGuard } from 'services/auth-guard.service';
 import { CanDeactivateGuard } from 'services/can-deactivate.guard';
 
@@ -46,7 +47,12 @@ const dashboardRoutes: Routes = [
         path: 'bannerList',
         component: BannerListComponent,
         data: { title: '轮播列表' }
-      }
+			},
+			{
+				path: 'commentList',
+				component: CommentListComponent,
+				data: { title: '评论列表' }
+			}
     ]
   },
 ];
