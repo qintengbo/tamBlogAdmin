@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpRequestService } from 'services/httpRequest.service';
-import { NzMessageService } from 'ng-zorro-antd';
 import { LoginAuthService } from 'services/login-auth.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,14 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
-  username: string; // 用户名
-  avatarText: string; // 头像字母
+  user = {
+		username: '',
+		userInfo: {}
+	}; // 用户名
   isCollapsed = false; // 菜单是否折叠
   activeIndex: string; // 当前路由路径
 
   constructor(
     private httpRequestService: HttpRequestService,
-    private message: NzMessageService,
     private loginAuthService: LoginAuthService,
     private route: ActivatedRoute
   ) { }
@@ -31,18 +31,15 @@ export class DashboardComponent implements OnInit {
   getUserInfo (): void {
     this.httpRequestService.userInfoRequest()
     .subscribe(res => {
-      if (res['code'] === 0) {
-        this.username = res['username'];
-        this.avatarText = res['username'][0];
-      } else {
-        this.message.error(res['msg']);
-      }
+			const { data } = res;
+			this.user = data;
+			sessionStorage['userInfo'] = data.userInfo;
     });
   }
 
   // 菜单高亮
   menuLight (): void {
-    // TODO: 这里暂时不知道为什么要使用setTimeout才能拿到正确的path，否则path在菜单跳转后不会改变
+    // 这里暂时不知道为什么要使用setTimeout才能拿到正确的path，否则path在菜单跳转后不会改变
     setTimeout(() => {
       this.activeIndex = this.route.firstChild.url['value'][0].path;
     }, 0);
@@ -50,7 +47,8 @@ export class DashboardComponent implements OnInit {
 
   // 退出登录
   logout (): void {
-    this.loginAuthService.logout();
+		const { username } = this.user;
+    this.loginAuthService.logout(username);
   }
 
   ngOnInit(): void {

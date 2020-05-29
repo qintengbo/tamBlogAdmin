@@ -54,14 +54,10 @@ export class BannerListComponent implements OnInit {
           status: val.status ? 1 : 2
         };
         this.httpRequestService.addBannerRequest(params).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getBannerList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getBannerList();
         });
       } else {
         const val = validateForm.value;
@@ -74,14 +70,10 @@ export class BannerListComponent implements OnInit {
           status: val.status ? 1 : 2
         };
         this.httpRequestService.detailBannerRequest(params).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getBannerList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getBannerList();
         });
       }
     }
@@ -90,11 +82,7 @@ export class BannerListComponent implements OnInit {
   // 查询轮播图列表
   getBannerList(): void {
     this.httpRequestService.bannerListRequest(this.params).subscribe(res => {
-      if (res['code'] === 0) {
-        this.bannerList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.bannerList = res['data'].list;
     });
   }
 
@@ -105,13 +93,9 @@ export class BannerListComponent implements OnInit {
       status: status === 2 ? 1 : 2
     };
     this.httpRequestService.updateBannerStatusRequest(updateParams).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getBannerList();
-      } else {
-        this.message.error(res['msg']);
-      }
-    });
+			this.message.success(res['msg']);
+			this.getBannerList();
+		});
   }
 
   // 编辑轮播图
@@ -131,12 +115,8 @@ export class BannerListComponent implements OnInit {
   // 删除轮播图
   deleteBanner(id: string): void {
     this.httpRequestService.deleteBannerRequest(id).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getBannerList();
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.message.success(res['msg']);
+			this.getBannerList();
     });
   }
 
@@ -164,14 +144,10 @@ export class BannerListComponent implements OnInit {
     // 返回自定义上传方法
     return this.httpRequestService.uploadFileRequest(formData)
     .subscribe(res => {
-      if (res['code'] === 0) {
-        this.validateForm.patchValue({
-          imgUrl: res['data'].imgUrl
-        });
-        this.message.success('上传图片成功');
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.validateForm.patchValue({
+				imgUrl: res['data'].imgUrl
+			});
+			this.message.success('上传图片成功');
     });
   }
 

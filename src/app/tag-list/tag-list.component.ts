@@ -35,14 +35,10 @@ export class TagListComponent implements OnInit {
       // 判断编辑还是新增
       if (!this.status) {
         this.httpRequestService.addTagRequest(validateForm.value).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getTagList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getTagList();
         });
       } else {
         let params = {
@@ -50,14 +46,10 @@ export class TagListComponent implements OnInit {
           ...validateForm.value
         };
         this.httpRequestService.detailTagRequest(params).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getTagList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getTagList();
         });
       }
     }
@@ -66,11 +58,7 @@ export class TagListComponent implements OnInit {
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest(this.params).subscribe(res => {
-      if (res['code'] === 0) {
-        this.tagList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.tagList = res['data'].list;
     });
   }
 
@@ -94,12 +82,8 @@ export class TagListComponent implements OnInit {
   // 删除标签
   deleteTag(id: string): void {
     this.httpRequestService.deleteTagRequest(id).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getTagList();
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.message.success(res['msg']);
+			this.getTagList();
     });
   }
 

@@ -35,14 +35,10 @@ export class ClassificationListComponent implements OnInit {
       // 判断编辑还是新增
       if (!this.status) {
         this.httpRequestService.addClassificationRequest(validateForm.value).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getClassificationList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getClassificationList();
         });
       } else {
         let params = {
@@ -50,14 +46,10 @@ export class ClassificationListComponent implements OnInit {
           ...validateForm.value
         };
         this.httpRequestService.detailClassificationRequest(params).subscribe(res => {
-          if (res['code'] === 0) {
-            this.message.success(res['msg']);
-            this.isVisible = false;
-            this.validateForm.reset();
-            this.getClassificationList();
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.message.success(res['msg']);
+					this.isVisible = false;
+					this.validateForm.reset();
+					this.getClassificationList();
         });
       }
     }
@@ -66,11 +58,7 @@ export class ClassificationListComponent implements OnInit {
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest(this.params).subscribe(res => {
-      if (res['code'] === 0) {
-        this.classificationList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.classificationList = res['data'].list;
     });
   }
 
@@ -94,12 +82,8 @@ export class ClassificationListComponent implements OnInit {
   // 删除分类
   deleteClassification(id: string): void {
     this.httpRequestService.deleteClassificationRequest(id).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getClassificationList();
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.message.success(res['msg']);
+			this.getClassificationList();
     });
   }
 

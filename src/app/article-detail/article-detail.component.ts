@@ -50,15 +50,11 @@ export class ArticleDetailComponent implements OnInit {
     // 返回自定义上传方法
     return this.httpRequestService.uploadFileRequest(formData)
     .subscribe(res => {
-      if (res['code'] === 0) {
-        let textValue = this.validateForm.value['content'];
-        this.validateForm.patchValue({
-          content: textValue + `![alt text](${res['data'].imgUrl})`
-        });
-        this.message.success('插入图片成功');
-      } else {
-        this.message.error(res['msg']);
-      }
+			let textValue = this.validateForm.value['content'];
+			this.validateForm.patchValue({
+				content: textValue + `![alt text](${res['data'].imgUrl})`
+			});
+			this.message.success('插入图片成功');
     });
   }
 
@@ -70,14 +66,10 @@ export class ArticleDetailComponent implements OnInit {
     // 返回自定义上传方法
     return this.httpRequestService.uploadFileRequest(formData)
     .subscribe(res => {
-      if (res['code'] === 0) {
-        this.validateForm.patchValue({
-          coverImg: res['data'].imgUrl
-        });
-        this.message.success('上传图片成功');
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.validateForm.patchValue({
+				coverImg: res['data'].imgUrl
+			});
+			this.message.success('上传图片成功');
     });
 	}
 	
@@ -105,16 +97,12 @@ export class ArticleDetailComponent implements OnInit {
     // 返回自定义上传方法
     return this.httpRequestService.uploadFileRequest(formData)
     .subscribe(res => {
-			const { code, data } = res;
-      if (code === 0) {
-        let textValue = this.validateForm.value['content'];
-        this.validateForm.patchValue({
-          content: textValue + data
-        });
-        this.message.success('导入文件成功');
-      } else {
-        this.message.error(res['msg']);
-      }
+			const { data } = res;
+			let textValue = this.validateForm.value['content'];
+			this.validateForm.patchValue({
+				content: textValue + data
+			});
+			this.message.success('导入文件成功');
     });
 	}
 
@@ -131,23 +119,15 @@ export class ArticleDetailComponent implements OnInit {
           ...validateForm.value
         };
         this.httpRequestService.detailArticleRequest(params).subscribe(res => {
-          if (res['code'] === 0) {
-            this.isSubmit = true;
-            this.message.success(res['msg']);
-            this.router.navigate(['/dashboard/articleList']);
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.isSubmit = true;
+					this.message.success(res['msg']);
+					this.router.navigate(['/dashboard/articleList']);
         });
       } else {
         this.httpRequestService.addArticleRequest(validateForm.value).subscribe(res => {
-          if (res['code'] === 0) {
-            this.isSubmit = true;
-            this.message.success(res['msg']);
-            this.router.navigate(['/dashboard/articleList']);
-          } else {
-            this.message.error(res['msg']);
-          }
+					this.isSubmit = true;
+					this.message.success(res['msg']);
+					this.router.navigate(['/dashboard/articleList']);
         });
       }
     }
@@ -166,22 +146,14 @@ export class ArticleDetailComponent implements OnInit {
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
-      if (res['code'] === 0) {
-        this.classificationList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.classificationList = res['data'].list;
     });
   }
 
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
-      if (res['code'] === 0) {
-        this.tagList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.tagList = res['data'].list;
     });
   }
 
@@ -219,13 +191,9 @@ export class ArticleDetailComponent implements OnInit {
       this.articleId = params.get('id');
       if (this.articleId) {
         this.httpRequestService.articleInfoRequest(this.articleId).subscribe(res => {
-          const { code, data, msg } = res;
-          if (code === 0) {
-            // 展示文章详细信息
-            this.validateForm.patchValue({...data});
-          } else {
-            this.message.error(msg);
-          }
+          const { data } = res;
+					// 展示文章详细信息
+					this.validateForm.patchValue({...data});
         });
       }
     });

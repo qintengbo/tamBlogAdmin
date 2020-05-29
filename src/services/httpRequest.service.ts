@@ -31,7 +31,13 @@ export class HttpRequestService {
     return this.http.post<Response>(`${this.path}/login`, data, this.httpOptions).pipe(
       catchError(this.handleError<any>('loginRequest'))
     );
-  }
+	}
+	// 退出登录
+	logoutRequest(data: {}): Observable<Response> {
+		return this.http.post<Response>(`${this.path}/logout`, data, this.httpOptions).pipe(
+			catchError(this.handleError<any>('logoutRequest'))
+		);
+	}
   // 获取用户信息请求
   userInfoRequest(): Observable<Response> {
     return this.http.get<Response>(`${this.path}/userInfo`).pipe(

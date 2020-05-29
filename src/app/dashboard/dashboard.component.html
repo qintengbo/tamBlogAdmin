@@ -6,7 +6,7 @@
     <div class="title">博客后台管理系统</div>
     <div class="header-userpannel">
 			<a nz-dropdown [nzDropdownMenu]="menu" class="userProfile">
-				<i nz-icon class="index-icon" nzType="user" nzTheme="outline"></i> 超级管理员 
+				<nz-avatar nzIcon="user" [nzSrc]="user.userInfo?.avatar"></nz-avatar> {{ user.userInfo?.name }} 
 				<i nz-icon nzType="down" nzTheme="outline"></i>
 			</a>
 			<nz-dropdown-menu #menu="nzDropdownMenu">

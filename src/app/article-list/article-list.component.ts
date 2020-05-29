@@ -35,34 +35,22 @@ export class ArticleListComponent implements OnInit {
   getArticleList(): void {
     this.httpRequestService.articleListRequest(this.params)
     .subscribe(res => {
-      if (res['code'] === 0) {
-        this.articleList = res['data'].list;
-        this.total = res['data'].total;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.articleList = res['data'].list;
+			this.total = res['data'].total;
     });
   }
 
   // 查询分类列表
   getClassificationList(): void {
     this.httpRequestService.classificationListReuqest({ keyWord: '' }).subscribe(res => {
-      if (res['code'] === 0) {
-        this.classificationList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.classificationList = res['data'].list;
     });
   }
 
   // 查询标签列表
   getTagList(): void {
     this.httpRequestService.tagListReuqest({ keyWord: '' }).subscribe(res => {
-      if (res['code'] === 0) {
-        this.tagList = res['data'].list;
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.tagList = res['data'].list;
     });
   }
 
@@ -103,24 +91,16 @@ export class ArticleListComponent implements OnInit {
       status: status === 2 ? 1 : 2
     };
     this.httpRequestService.updateArticleRequest(updateParams).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getArticleList();
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.message.success(res['msg']);
+			this.getArticleList();
     });
   }
 
   // 删除文章
   deleteArticle(id: string): void {
     this.httpRequestService.deleteArticleRequest(id).subscribe(res => {
-      if (res['code'] === 0) {
-        this.message.success(res['msg']);
-        this.getArticleList();
-      } else {
-        this.message.error(res['msg']);
-      }
+			this.message.success(res['msg']);
+			this.getArticleList();
     });
   }
 

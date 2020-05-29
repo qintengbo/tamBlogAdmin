@@ -33,13 +33,9 @@ export class CommentListComponent implements OnInit {
 	// 获取评论列表
 	getCommentList(): void {
 		this.httpRequestService.commentListRequest(this.params).subscribe(res => {
-			const { code, msg, data: { list, total } } = res;
-			if (code === 0) {
-				this.commentList = list;
-				this.total = total;
-			} else {
-				this.message.error(msg);
-			}
+			const { data: { list, total } } = res;
+			this.commentList = list;
+			this.total = total;
 		});
 	}
 
@@ -83,13 +79,9 @@ export class CommentListComponent implements OnInit {
       show
     };
     this.httpRequestService.updateCommentRequest(updateParams).subscribe(res => {
-			const { code, msg } = res;
-      if (code === 0) {
-        this.message.success(msg);
-        this.getCommentList();
-      } else {
-        this.message.error(msg);
-      }
+			const { msg } = res;
+			this.message.success(msg);
+			this.getCommentList();
     });
 	}
 	
