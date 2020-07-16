@@ -36,6 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
 						setTimeout(() => {
 							this.router.navigate(['/login']);
 							sessionStorage.removeItem('token');
+							sessionStorage.removeItem('userInfo');
 						}, 1000);
 					}
 				}),

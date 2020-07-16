@@ -170,12 +170,18 @@ export class HttpRequestService {
 			catchError(this.handleError<any>('commentListRequest'))
 		);
 	}
-	// 更改评论接口
+	// 更改评论
 	updateCommentRequest(data: {}): Observable<Response> {
 		return this.http.put<Response>(`${this.path}/updateComment`, data, this.httpOptions).pipe(
 			catchError(this.handleError<any>('updateCommentRequest'))
 		);
-	}
+  }
+  // 新增评论
+  addCommentRequest(data: {}): Observable<Response> {
+    return this.http.post<Response>(`${this.path}/addComment`, data, this.httpOptions).pipe(
+      catchError(this.handleError<any>('addCommentRequest'))
+    );
+  }
 
   /**
    * 处理失败的http操作

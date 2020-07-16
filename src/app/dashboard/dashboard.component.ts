@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     .subscribe(res => {
 			const { data } = res;
 			this.user = data;
-			sessionStorage['userInfo'] = data.userInfo;
+			sessionStorage['userInfo'] = JSON.stringify(data.userInfo);
     });
   }
 

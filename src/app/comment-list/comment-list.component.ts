@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
-import { CommentListParams } from './data';
+import { CommentListParams, CommentInfo } from './data';
 
 @Component({
   selector: 'app-comment-list',
@@ -18,7 +18,12 @@ export class CommentListComponent implements OnInit {
 	commentList: any[] = [];
 	total = 0;
 	isVisible = false; // 模态框开关
-	commentInfo = {};
+	commentInfo: CommentInfo = {
+    _id: '',
+    isMain: false,
+    relationId: {},
+    commenter: {}
+  };
 	replyContent = ''; // 回复内容
 	previewState = false; // 预览状态
 	params: CommentListParams = {
@@ -93,12 +98,43 @@ export class CommentListComponent implements OnInit {
 	// 查看评论
 	view(data: any): void {
 		this.isVisible = true;
-		this.commentInfo = data;
+    this.commentInfo = data;
+    this.replyContent = '';
 	}
 
 	// 关闭模态框
   modalCancel(): void {
     this.isVisible = false;
+	}
+	
+	// 预览md文件
+  preview(): void {
+    this.previewState = !this.previewState;
+  }
+
+  // 回复评论
+  submitForm(): void {
+    if (!this.replyContent || this.replyContent.match(/^\s*$/)) {
+      this.message.error('回复内容不能为空');
+      return;
+    }
+    const { _id, isMain, commenter, relationId } = this.commentInfo;
+    const userInfo = JSON.parse(sessionStorage['userInfo']);
+    const data = {
+      id: _id,
+      isMain,
+      relationId: relationId._id,
+      type: false,
+      beCommenterId: commenter._id,
+      content: this.replyContent,
+      commenterId: userInfo._id
+    };
+    this.httpRequestService.addCommentRequest(data).subscribe(res => {
+      const { msg } = res;
+      this.message.success(msg);
+      this.reset();
+      this.modalCancel();
+    });
   }
 
   ngOnInit(): void {

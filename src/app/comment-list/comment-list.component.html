@@ -106,53 +106,54 @@
 		nzWidth="800"
 		(nzOnCancel)="modalCancel()" 
 		(nzOnOk)="submitForm()"
+		[nzBodyStyle]="{ maxHeight: '400px', overflowY: 'auto' }"
 	>
-		<div class="modalBody">
-			<div class="modalContainer">
-				<div class="modalItem">
-					<span>关联文章：</span>
-					<span class="itemContent">{{ commentInfo.relationId?.title }}</span>
-				</div>
-				<div class="modalItem">
-					<span>评论人：</span>
-					<span class="itemContent">{{ commentInfo.commenter?.name }}</span>
-				</div>
-				<div class="modalItem">
-					<span>被评论人：</span>
-					<span class="itemContent">{{ commentInfo.beCommenter ? commentInfo.beCommenter?.name : '--' }}</span>
-				</div>
-				<div class="modalItem">
-					<span>评论时间：</span>
-					<span class="itemContent">{{ commentInfo.createDate | date: "y-MM-dd HH:mm:ss" }}</span>
-				</div>
+		<div class="modalContainer">
+			<div class="modalItem">
+				<span>关联文章：</span>
+				<span class="itemContent">{{ commentInfo.relationId?.title }}</span>
 			</div>
-			<div class="modalContent">评论内容：<div class="markdown" name="markdown" markdown [data]="commentInfo.content"></div></div>
-			<div class="modalContent">回复：
-				<div class="text-btn">
-					<span *ngIf="!previewState">
-						<nz-upload
-							[nzShowUploadList]="false"
-							nzAccept="image/*"
-							[nzCustomRequest]="handleUpload"
-							[nzBeforeUpload]="beforeUpload"
-						>
-							<button type="button" class="upload-btn" nz-button>
-								<span>插入图片</span>
-							</button>
-						</nz-upload>
-					</span>
-					<span (click)="preview()">{{ previewState ? '编辑' : '预览' }}</span>
-				</div>
-				<textarea 
-					class="replyContent" 
-					maxlength="1000"
-					nz-input 
-					[(ngModel)]="replyContent"
-					[nzAutosize]="{ minRows: 3 }" 
-					placeholder="填写回复内容"
-				>
-				</textarea>
+			<div class="modalItem">
+				<span>评论人：</span>
+				<span class="itemContent">{{ commentInfo.commenter?.name }}</span>
 			</div>
+			<div class="modalItem">
+				<span>被评论人：</span>
+				<span class="itemContent">{{ commentInfo.beCommenter ? commentInfo.beCommenter?.name : '--' }}</span>
+			</div>
+			<div class="modalItem">
+				<span>评论时间：</span>
+				<span class="itemContent">{{ commentInfo.createDate | date: "y-MM-dd HH:mm:ss" }}</span>
+			</div>
+		</div>
+		<div class="modalContent">评论内容：<div class="markdown" name="markdown" markdown [data]="commentInfo.content"></div></div>
+		<div class="modalContent">回复：
+			<div class="text-btn">
+				<span *ngIf="!previewState">
+					<nz-upload
+						[nzShowUploadList]="false"
+						nzAccept="image/*"
+						[nzCustomRequest]="handleUpload"
+						[nzBeforeUpload]="beforeUpload"
+					>
+						<button type="button" class="upload-btn" nz-button>
+							<span>插入图片</span>
+						</button>
+					</nz-upload>
+				</span>
+				<span (click)="preview()">{{ previewState ? '编辑' : '预览' }}</span>
+			</div>
+			<textarea 
+				class="replyContent" 
+				*ngIf="!previewState"
+				maxlength="1000" 
+				nz-input 
+				[(ngModel)]="replyContent"
+				[nzAutosize]="{ minRows: 3 }" 
+				placeholder="填写回复内容"
+			>
+			</textarea>
+			<div class="markdown" name="markdown" markdown [data]="replyContent" *ngIf="previewState"></div>
 		</div>
 	</nz-modal>
 </nz-content>
