@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { HttpRequestService } from 'services/httpRequest.service';
+import { NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { CommentListParams, CommentInfo } from './data';
 
 @Component({
@@ -33,7 +34,37 @@ export class CommentListComponent implements OnInit {
 		titleKey: '', // 文章标题关键词
 		commenterKey: '', // 评论人信息关键词
 		date: []
-	};
+  };
+  
+  // 上传图片前的回调函数
+  beforeUpload = (file: File) => {
+    // 判断选择的文件类型是否为图片
+    let type = file.type.slice(file.type.lastIndexOf('/') + 1);
+    const isImg = 'jpg,png,jpeg,gif'.indexOf(type) !== -1;
+    if (!isImg) {
+      this.message.error('只能选择图片');
+    }
+    // 判断图片大小
+    const isLt4M = file.size / 1024 / 1024 < 4;
+    if (!isLt4M) {
+      this.message.error('图片大小超过4M');
+    }
+    return isImg && isLt4M;
+  }
+
+  // 插入图片
+  handleUpload = (item: NzUploadXHRArgs) => {
+    // 构建一个 FormData 对象，用于存储文件或其他参数
+    const formData = new FormData();
+    formData.append(item.name, item.file as any);
+    // 返回自定义上传方法
+    return this.httpRequestService.uploadFileRequest(formData)
+    .subscribe(res => {
+      const { data: { imgUrl } } = res;
+      this.replyContent += `![alt text](${imgUrl})`;
+			this.message.success('插入图片成功');
+    });
+  }
 
 	// 获取评论列表
 	getCommentList(): void {
@@ -140,5 +171,4 @@ export class CommentListComponent implements OnInit {
   ngOnInit(): void {
 		this.getCommentList();
   }
-
 }

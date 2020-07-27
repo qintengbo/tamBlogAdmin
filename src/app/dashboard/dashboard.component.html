@@ -6,7 +6,7 @@
     <div class="title">博客后台管理系统</div>
     <div class="header-userpannel">
 			<a nz-dropdown [nzDropdownMenu]="menu" class="userProfile">
-				<nz-avatar nzIcon="user" [nzSrc]="user.userInfo?.avatar"></nz-avatar> {{ user.userInfo?.name }} 
+				<nz-avatar nzIcon="user" nzSrc="user.userInfo?.avatar"></nz-avatar> {{ user.userInfo?.name }} 
 				<i nz-icon nzType="down" nzTheme="outline"></i>
 			</a>
 			<nz-dropdown-menu #menu="nzDropdownMenu">
@@ -20,11 +20,6 @@
 				</ul>
 			</nz-dropdown-menu>
     </div>
-    <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" class="layoutUl">
-      <li nz-menu-item routerLink="/dashboard/index">
-        <i nz-icon class="index-icon" nzType="home" nzTheme="outline"></i>首页
-      </li>
-    </ul>
   </nz-header>
   <nz-layout>
     <nz-sider [nzWidth]="220" class="menu" [nzCollapsed]="isCollapsed">

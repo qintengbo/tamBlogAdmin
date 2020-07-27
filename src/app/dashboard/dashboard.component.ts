@@ -11,7 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 export class DashboardComponent implements OnInit {
   user = {
 		username: '',
-		userInfo: {}
+		userInfo: {
+      name: '',
+      avatar: ''
+    }
 	}; // 用户名
   isCollapsed = false; // 菜单是否折叠
   activeIndex: string; // 当前路由路径

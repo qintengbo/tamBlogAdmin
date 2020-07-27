@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService, UploadXHRArgs, NzModalService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { HttpRequestService } from 'services/httpRequest.service';
 
 @Component({
@@ -43,7 +44,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   // 插入图片
-  handleUpload = (item: UploadXHRArgs) => {
+  handleUpload = (item: NzUploadXHRArgs) => {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
@@ -59,7 +60,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   // 封面图片上传
-  coverImgUpload = (item: UploadXHRArgs) => {
+  coverImgUpload = (item: NzUploadXHRArgs) => {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
@@ -90,7 +91,7 @@ export class ArticleDetailComponent implements OnInit {
 	}
 
 	// 导入文件
-	importFile = (item: UploadXHRArgs) => {
+	importFile = (item: NzUploadXHRArgs) => {
 		// 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
