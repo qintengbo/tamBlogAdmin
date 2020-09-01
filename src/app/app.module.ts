@@ -6,7 +6,6 @@ import { NzDatePickerModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginModule } from '@/login/login.module';
-import { DashboardModule } from '@/dashboard/dashboard.module';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,7 +24,6 @@ registerLocaleData(zh);
     HttpClientModule,
     NzDatePickerModule,
     LoginModule,
-    DashboardModule,
     AppRoutingModule,
   ],
   providers: [ // 声明服务

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: '@/dashboard/dashboard.module#DashboardModule'
+    loadChildren: () => import('@/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   // 路由重定向
   {
