@@ -23,7 +23,7 @@ export class HttpRequestService {
     private http: HttpClient,
     private message: NzMessageService
   ) {
-    this.path = environment['path'];
+    this.path = environment['path'] || '/api';
   }
 
   // 登录请求
