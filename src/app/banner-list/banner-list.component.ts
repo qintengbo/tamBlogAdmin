@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd';
 import { NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { HttpRequestService } from 'services/httpRequest.service';
 
