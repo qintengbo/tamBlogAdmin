@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
+import { NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { HttpRequestService } from 'services/httpRequest.service';
 
 @Component({
@@ -137,7 +138,7 @@ export class BannerListComponent implements OnInit {
   }
 
   // 上传图片
-  handleUpload = (item: UploadXHRArgs) => {
+  handleUpload = (item: NzUploadXHRArgs) => {
     // 构建一个 FormData 对象，用于存储文件或其他参数
     const formData = new FormData();
     formData.append(item.name, item.file as any);
