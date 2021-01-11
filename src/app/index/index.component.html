@@ -1,6 +1,63 @@
 <nz-breadcrumb class="breadCon" nzSeparator=">">
   <nz-breadcrumb-item>首页</nz-breadcrumb-item>
 </nz-breadcrumb>
-<nz-content class="indexContent">
-  index works
+<nz-content>
+  <div nz-row [nzGutter]="30">
+    <div nz-col [nzSpan]="6">
+      <nz-card 
+        class="indexCard"
+        [nzBorderless]="true"
+      >
+        <div class="cardIconWrap" style="color: #d5e5a3">
+          <i nz-icon nzType="user" nzTheme="outline"></i>
+        </div>
+        <div class="cardContent">
+          <p>昨日访问量</p>
+          <p>4524</p>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card 
+        class="indexCard"
+        [nzBorderless]="true"
+      >
+        <div class="cardIconWrap" style="color: #F3BB45">
+          <i nz-icon nzType="desktop" nzTheme="outline"></i>
+        </div>
+        <div class="cardContent">
+          <p>总访问量</p>
+          <p>4524343</p>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card 
+        class="indexCard"
+        [nzBorderless]="true"
+      >
+        <div class="cardIconWrap" style="color: #7AC29A">
+          <i nz-icon nzType="comment" nzTheme="outline"></i>
+        </div>
+        <div class="cardContent">
+          <p>昨日评论数</p>
+          <p>24</p>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-card 
+        class="indexCard"
+        [nzBorderless]="true"
+      >
+        <div class="cardIconWrap" style="color: #68B3C8">
+          <i nz-icon nzType="file-text" nzTheme="outline"></i>
+        </div>
+        <div class="cardContent">
+          <p>昨日新增文章</p>
+          <p>2</p>
+        </div>
+      </nz-card>
+    </div>
+  </div>
 </nz-content>
