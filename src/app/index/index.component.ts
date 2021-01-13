@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpRequestService } from 'services/httpRequest.service';
+import { StatisticalData } from 'class/dashboard';
 
 @Component({
   selector: 'app-index',
@@ -6,11 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.less']
 })
 export class IndexComponent implements OnInit {
+  statisticalData: StatisticalData = {
+    accessTotal: 0,
+    accessTotalDay: 0,
+    articleTotal: 0,
+    commentTotal: 0
+  };
 
   constructor(
+    private httpRequestService: HttpRequestService
   ) { }
 
+  /**
+   * 获取页头监控字段数据
+   */
+  getStatisticalData = () => {
+    this.httpRequestService.queryDashboardFieldRequest().subscribe(res => {
+      this.statisticalData = { ...res.data };
+    });
+  }
+
   ngOnInit() {
+    this.getStatisticalData();
   }
 
 }

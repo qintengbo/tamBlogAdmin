@@ -183,6 +183,13 @@ export class HttpRequestService {
     );
   }
 
+  // 查询监控字段统计信息
+  queryDashboardFieldRequest(): Observable<Response> {
+    return this.http.get<Response>(`${this.path}/count`).pipe(
+      catchError(this.handleError<any>('queryDashboardFieldRequest'))
+    );
+  }
+
   /**
    * 处理失败的http操作
    * @param result - 观察结果，可选值
