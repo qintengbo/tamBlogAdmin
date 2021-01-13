@@ -19,7 +19,8 @@ import {
 	NzSwitchModule,
 	NzTagModule,
 	NzPopconfirmModule,
-	NzDescriptionsModule
+  NzDescriptionsModule,
+  NzCardModule
 } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
@@ -55,7 +56,8 @@ import { DashboardRoutingModule } from '@/dashboard/dashboard-routing.module';
 		NzSwitchModule,
 		NzTagModule,
 		NzPopconfirmModule,
-		NzDescriptionsModule,
+    NzDescriptionsModule,
+    NzCardModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
     MarkdownModule.forRoot() // 导入ngx-markdown插件
