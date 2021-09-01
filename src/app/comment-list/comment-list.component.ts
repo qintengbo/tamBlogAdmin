@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { HttpRequestService } from 'services/httpRequest.service';
 import { NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { CommentListParams, CommentInfo } from './data';

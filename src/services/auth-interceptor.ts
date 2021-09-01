@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

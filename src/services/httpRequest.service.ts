@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { LoginForm } from 'class/login/LoginForm';
 import { Response } from 'class/common/Response';
 import { ArticleForm } from 'class/article/ArticleForm';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { environment } from 'environments/environment';
 
 @Injectable({
